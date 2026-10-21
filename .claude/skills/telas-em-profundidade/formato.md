@@ -2,13 +2,15 @@
 
 Resumo: você em tela cheia e, atrás da sua cabeça, interfaces e telas reais (perfil, painel de métricas, fluxo, calendário) que se montam e reagem ao que você fala; embaixo, uma notificação em pílula.
 
+O visual descrito aqui (cores, fontes, materiais, legenda, música) é o **Original do formato**. Se a pessoa escolher outro estilo visual, o layout, as posições e o ritmo daqui continuam valendo e a aparência vem do estilo: siga `maquina-de-edicao/referencias/estilos-visuais.md`.
+
 ## Como fica
 
 A pessoa ocupa a tela toda, mas o fundo real dela fica escurecido e, entre o fundo e a pessoa, aparece uma tela de produto grande: o perfil do Instagram crescendo, um painel com gráfico subindo, um fluxo com passos ganhando check verde, um calendário se preenchendo. A cabeça fica **na frente** da tela, o que dá a sensação de profundidade. Na altura do peito, uma pílula de notificação mostra o resultado daquele momento ("+154% de visualizações").
 
-## Escolhas que este estilo já define
+## Escolhas que este formato já define
 
-Formato (vertical 9:16), nível (equivale ao Completo, sem câmera virtual de passagem), estilo das legendas, estilo visual, capa, verificação de fontes (ligada).
+Proporção (vertical 9:16), nível (equivale ao Completo, sem câmera virtual de passagem), visual original da legenda e dos gráficos (trocado se a pessoa escolher outro estilo visual), capa, verificação de fontes (ligada).
 
 ## Base técnica
 
@@ -85,7 +87,7 @@ Se houver "comenta X": a pílula de resultado vira uma mensagem ("@novocliente: 
 
 `edit/final.mp4`, 1080 × 1920, 60 fps, H.264 + AAC 48 kHz.
 
-## Verificação do estilo
+## Verificação do formato
 
 - A cabeça fica na frente do painel em todos os quadros, sem borda de recorte visível.
 - Informação importante do painel nunca escondida atrás da cabeça.

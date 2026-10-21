@@ -2,13 +2,15 @@
 
 Resumo: você recortado (sem o fundo da gravação) na frente de imagens em tela cheia que trocam a cada ideia, mudando de tamanho e de lugar na tela, com legenda condensada no meio.
 
+O visual descrito aqui (cores, fontes, materiais, legenda, música) é o **Original do formato**. Se a pessoa escolher outro estilo visual, o layout, as posições e o ritmo daqui continuam valendo e a aparência vem do estilo: siga `maquina-de-edicao/referencias/estilos-visuais.md`.
+
 ## Como fica
 
 O fundo real da gravação some. Atrás da pessoa, uma imagem ocupa a tela inteira e troca a cada ideia: um lugar, um objeto, uma tela, um gráfico. A pessoa também muda: às vezes grande e centralizada, às vezes pequena num canto, como se fosse colada sobre a imagem. A legenda é condensada, branca, com sombra, no meio da tela. O gancho abre com um mosaico de 4 imagens e um título em caixa branca.
 
-## Escolhas que este estilo já define
+## Escolhas que este formato já define
 
-Formato (vertical 9:16), nível (equivale ao Com imagens, com um layout próprio), estilo das legendas, estilo visual, capa (mosaico + título em caixa branca), verificação de fontes (ligada só pra notícia ou número citado).
+Proporção (vertical 9:16), nível (equivale ao Com imagens, com um layout próprio), visual original da legenda e dos gráficos (trocado se a pessoa escolher outro estilo visual), capa (mosaico + título em caixa branca), verificação de fontes (ligada só pra notícia ou número citado).
 
 ## Base técnica
 
@@ -19,7 +21,7 @@ Formato (vertical 9:16), nível (equivale ao Com imagens, com um layout próprio
 
 ## Entradas extras
 
-Nenhuma obrigatória. Pasta `imagens/` tem prioridade; depois, a ordem de origem de `estilos-prontos.md`.
+Nenhuma obrigatória. Pasta `imagens/` tem prioridade; depois, a ordem de origem de `formatos-prontos.md`.
 
 As imagens aqui ocupam a tela inteira, então precisam de resolução: mínimo 1080 px no lado menor depois do recorte pra 9:16. Imagens horizontais pequenas viram fundo desfocado (ver Gráficos).
 
@@ -98,7 +100,7 @@ Se houver "comenta X": no último trecho, a legenda vira "comenta X" com X em Os
 
 `edit/final.mp4`, 1080 × 1920, 60 fps, H.264 + AAC 48 kHz.
 
-## Verificação do estilo
+## Verificação do formato
 
 - Recorte limpo em todos os enquadramentos, sem halo e sem pedaços do fundo real.
 - Nenhuma imagem de fundo esticada ou pixelada.

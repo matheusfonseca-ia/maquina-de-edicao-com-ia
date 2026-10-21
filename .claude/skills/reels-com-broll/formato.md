@@ -2,13 +2,15 @@
 
 Resumo: corte rápido, seus próprios clipes de apoio entrando por cima da fala e frases-chave empilhadas na legenda, com uma palavra grande em serifa laranja.
 
+O visual descrito aqui (cores, fontes, materiais, legenda, música) é o **Original do formato**. Se a pessoa escolher outro estilo visual, o layout, as posições e o ritmo daqui continuam valendo e a aparência vem do estilo: siga `maquina-de-edicao/referencias/estilos-visuais.md`.
+
 ## Como fica
 
 Vídeo vertical com cara de criador, sem gráfico nenhum. A pessoa fala pra câmera e, a cada ideia que dá pra mostrar, entra um clipe de apoio (B-roll) dela mesma: bastidor, rotina, tela do computador, lugar, produto. A legenda é pequena e limpa, mas nos momentos-chave a frase se empilha: uma palavra pequena em cima, e embaixo uma palavra grande em branco seguida de outra em serifa itálica laranja ("É o seu / **sistema.**").
 
-## Escolhas que este estilo já define
+## Escolhas que este formato já define
 
-Formato (vertical 9:16), nível (equivale ao Básico, mais os clipes de apoio), estilo das legendas, estilo visual (não tem gráficos), capa (sem caixa: o gancho é a própria legenda empilhada), verificação de fontes (desligada).
+Proporção (vertical 9:16), nível (equivale ao Básico, mais os clipes de apoio), visual original da legenda (trocado se a pessoa escolher outro estilo visual; não tem gráficos), capa (sem caixa: o gancho é a própria legenda empilhada), verificação de fontes (desligada).
 
 ## Base técnica
 
@@ -23,7 +25,7 @@ Formato (vertical 9:16), nível (equivale ao Básico, mais os clipes de apoio), 
 Na fase 0, se a pasta não existir ou estiver vazia, pergunte:
 
 - **Vou colocar meus clipes na pasta `broll/` (Recomendado)**: espere a pessoa avisar que colocou e confira de novo.
-- **Usar só imagens**: no lugar dos clipes, use imagens seguindo a ordem de origem de `estilos-prontos.md`, com um movimento lento de aproximação (escala 1 → 1,06 no trecho todo).
+- **Usar só imagens**: no lugar dos clipes, use imagens seguindo a ordem de origem de `formatos-prontos.md`, com um movimento lento de aproximação (escala 1 → 1,06 no trecho todo).
 - **Sem B-roll**: o vídeo fica só com a câmera e a legenda empilhada.
 
 ### Como escolher os clipes
@@ -74,7 +76,7 @@ Nenhum além da legenda.
 - De 2 a 4 palavras por bloco.
 - Posição: centralizada em x, centro do texto em y = 1130 (altura do peito) na câmera cheia e no B-roll vertical. No B-roll horizontal, y = 1180 (dentro da faixa, na parte de baixo).
 
-### Frase empilhada (o destaque deste estilo)
+### Frase empilhada (o destaque deste formato)
 
 Uma vez a cada 6–10 segundos, na frase mais importante (a virada, a conclusão, o nome do passo):
 
@@ -103,7 +105,7 @@ Se houver "comenta X": frase empilhada com "Comenta" em cima e a palavra X em la
 
 `edit/final.mp4`, 1080 × 1920, 60 fps, H.264 + AAC 48 kHz.
 
-## Verificação do estilo
+## Verificação do formato
 
 - Nenhum B-roll no gancho nem na chamada pra ação.
 - B-roll entre 25% e 40% do tempo.

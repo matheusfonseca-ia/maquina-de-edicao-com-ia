@@ -1,6 +1,6 @@
 # Kit Noite
 
-Kit visual compartilhado pelos estilos prontos escuros: fundo preto, brilho laranja difuso, cards de vidro e a dupla de fontes Inter (sans) + Instrument Serif itálico (destaque). Os estilos que usam o kit dizem isso na seção "Direção visual" e só descrevem o que muda.
+Kit visual compartilhado: fundo preto, brilho laranja difuso, cards de vidro e a dupla de fontes Inter (sans) + Instrument Serif itálico (destaque). É o visual original de vários formatos (eles dizem isso na seção "Direção visual" e só descrevem o que muda) e a base do estilo visual Noite Laranja.
 
 Coordenadas em 1080 × 1920 (vertical). Pra 16:9 (1920 × 1080), os tamanhos de fonte caem ~12% e as distâncias seguem a mesma proporção em relação à largura.
 

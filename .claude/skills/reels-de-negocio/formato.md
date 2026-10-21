@@ -2,13 +2,15 @@
 
 Resumo: alterna câmera cheia, tela dividida e animação em tela cheia a cada corte, num visual escuro com brilho laranja, cards de vidro e legenda de uma palavra por vez.
 
+O visual descrito aqui (cores, fontes, materiais, legenda, música) é o **Original do formato**. Se a pessoa escolher outro estilo visual, o layout, as posições e o ritmo daqui continuam valendo e a aparência vem do estilo: siga `maquina-de-edicao/referencias/estilos-visuais.md`.
+
 ## Como fica
 
 Vídeo vertical de ritmo alto, pra quem vende serviço ou ensina negócio. A cada corte o layout muda: ora a pessoa ocupa a tela toda, ora a tela se divide (prova visual em cima, pessoa embaixo), ora a tela inteira vira animação (passos, documentos, números). No gancho, a pessoa fica na frente de uma fileira de cards (reels, posts) que passam atrás da cabeça. A legenda mostra uma palavra por vez, grande, no meio da tela.
 
-## Escolhas que este estilo já define
+## Escolhas que este formato já define
 
-Formato (vertical 9:16), nível (equivale ao Completo, sem câmera virtual de passagem), estilo das legendas, estilo visual dos gráficos, capa (título de gancho em duas linhas), verificação de fontes (ligada só se a fala citar notícia ou número de terceiros).
+Proporção (vertical 9:16), nível (equivale ao Completo, sem câmera virtual de passagem), visual original da legenda e dos gráficos (trocado se a pessoa escolher outro estilo visual), capa (título de gancho em duas linhas), verificação de fontes (ligada só se a fala citar notícia ou número de terceiros).
 
 ## Base técnica
 
@@ -18,7 +20,7 @@ Formato (vertical 9:16), nível (equivale ao Completo, sem câmera virtual de pa
 
 ## Entradas extras
 
-Nenhuma. Imagens e interfaces seguem a ordem de origem de `estilos-prontos.md`.
+Nenhuma. Imagens e interfaces seguem a ordem de origem de `formatos-prontos.md`.
 
 ## Ritmo e corte
 
@@ -96,7 +98,7 @@ Se houver "comenta X": pílula de notificação do Kit Noite em y = 1500, mostra
 
 `edit/final.mp4`, 1080 × 1920, 60 fps, H.264 + AAC 48 kHz.
 
-## Verificação do estilo
+## Verificação do formato
 
 - Nenhum par de trechos seguidos com o mesmo layout.
 - Nenhum trecho acima de 5 s.

@@ -2,13 +2,15 @@
 
 Resumo: você num cartão na parte de baixo com a cabeça saindo pra fora dele, e a explicação animada em cima: cards de vidro, contadores, gráficos que se desenham e títulos com uma palavra em serifa laranja.
 
+O visual descrito aqui (cores, fontes, materiais, legenda, música) é o **Original do formato**. Se a pessoa escolher outro estilo visual, o layout, as posições e o ritmo daqui continuam valendo e a aparência vem do estilo: siga `maquina-de-edicao/referencias/estilos-visuais.md`.
+
 ## Como fica
 
 A tela é preta, com uma grade de pontos quase invisível e brilho laranja difuso. Embaixo fica um cartão arredondado com a gravação da pessoa, e a cabeça passa por cima da borda do cartão. Em cima, cada ideia vira uma animação: título curto no topo, cards de vidro que acendem em laranja quando são citados, números que contam, gráficos que se desenham, barra de progresso dos passos. De vez em quando o vídeo corta pra pessoa em tela cheia, pra dar respiro.
 
-## Escolhas que este estilo já define
+## Escolhas que este formato já define
 
-Formato (vertical 9:16), nível (equivale ao Com imagens + animações do Kit Noite, sem câmera virtual), estilo das legendas, estilo visual, capa (o primeiro título já é a capa), verificação de fontes (ligada).
+Proporção (vertical 9:16), nível (equivale ao Com imagens + animações do Kit Noite, sem câmera virtual), visual original da legenda e dos gráficos (trocado se a pessoa escolher outro estilo visual), capa (o primeiro título já é a capa), verificação de fontes (ligada).
 
 ## Base técnica
 
@@ -90,7 +92,7 @@ Se houver "comenta X": na área de explicação, um card de vidro de 860 × 200 
 
 `edit/final.mp4`, 1080 × 1920, 60 fps, H.264 + AAC 48 kHz.
 
-## Verificação do estilo
+## Verificação do formato
 
 - A cabeça sai do cartão desde o primeiro quadro de cada trecho dividido e não se separa do corpo em movimentos rápidos.
 - Só um card ativo por vez.

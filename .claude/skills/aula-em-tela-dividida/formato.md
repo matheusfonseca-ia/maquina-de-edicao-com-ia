@@ -2,15 +2,17 @@
 
 Resumo: aula em 16:9 com um documento de anotações (gerado a partir da sua fala) rolando à esquerda, acompanhando o que você explica, e você à direita; o documento também é entregue como arquivo pra seus alunos.
 
+O visual descrito aqui (cores, fontes, materiais, legenda, música) é o **Original do formato**. Se a pessoa escolher outro estilo visual, o layout, as posições e o ritmo daqui continuam valendo e a aparência vem do estilo: siga `maquina-de-edicao/referencias/estilos-visuais.md`.
+
 ## Como fica
 
 O lado esquerdo é uma página branca, como um documento bem diagramado: título com uma palavra em serifa laranja, seções, etiquetas laranja "Passo 1", diagramas simples (caixas ligadas por setas), uma faixa preta com a frase-chave e, no fim, um checklist. A página rola sozinha acompanhando a fala, e o trecho que a pessoa está explicando ganha marca-texto. O lado direito é a pessoa. De vez em quando a pessoa vai pra tela cheia, com um card pequeno no canto (por exemplo, um player com a barra dividida nas etapas da aula).
 
 O documento é gerado pela skill a partir da transcrição e sai também como `documento-da-aula.html` e `.pdf`, pronto pra virar material da aula.
 
-## Escolhas que este estilo já define
+## Escolhas que este formato já define
 
-Formato (horizontal 16:9), nível (equivale ao Com imagens, com layout próprio), estilo das legendas (sem legenda na tela; entrega `.srt`), estilo visual, capa (sem capa), verificação de fontes (ligada só pra número ou notícia citados).
+Proporção (horizontal 16:9), nível (equivale ao Com imagens, com layout próprio), legendas (sem legenda na tela; entrega `.srt`), visual original (cores, fontes e materiais, trocados se a pessoa escolher outro estilo visual), capa (sem capa), verificação de fontes (ligada só pra número ou notícia citados).
 
 ## Base técnica
 
@@ -105,7 +107,7 @@ Sem cartão. Se a aula termina indicando a próxima ("continua no episódio 2"),
 
 ## Áudio
 
-- Música: opcional e mínima. Padrão: **sem música** durante a explicação; um pad suave de 4 s só na abertura e no encerramento (~−30 LUFS). Se a pessoa escolheu "música do estilo", é isso.
+- Música: opcional e mínima. Padrão: **sem música** durante a explicação; um pad suave de 4 s só na abertura e no encerramento (~−30 LUFS). Se a pessoa escolheu a música do formato, é isso.
 - Efeitos: um "tic" de papel bem baixo (18 dB abaixo do pico da voz) quando uma caixa de diagrama aparece. Nada mais.
 
 ## Saída
@@ -114,7 +116,7 @@ Sem cartão. Se a aula termina indicando a próxima ("continua no episódio 2"),
 - `edit/documento-da-aula.html` e `edit/documento-da-aula.pdf`.
 - `edit/legendas.srt`.
 
-## Verificação do estilo
+## Verificação do formato
 
 - Todo conceito do documento foi falado na aula (nada inventado).
 - O marca-texto está no elemento certo em 5 pontos espalhados pelo vídeo.

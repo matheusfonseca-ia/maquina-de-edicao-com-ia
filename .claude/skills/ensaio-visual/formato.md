@@ -2,13 +2,15 @@
 
 Resumo: preto e laranja com cara de documentário; você recortado sobre um fundo escuro com brilho laranja embaixo, e as provas (posts, notícias, números, antes e depois) aparecendo em cards brancos acima da sua cabeça.
 
+O visual descrito aqui (cores, fontes, materiais, legenda, música) é o **Original do formato**. Se a pessoa escolher outro estilo visual, o layout, as posições e o ritmo daqui continuam valendo e a aparência vem do estilo: siga `maquina-de-edicao/referencias/estilos-visuais.md`.
+
 ## Como fica
 
 A pessoa aparece recortada (sem o fundo real) sobre preto, com um brilho laranja quente subindo de baixo, como luz de palco. Acima da cabeça, cards brancos com as provas do que ela está dizendo: um post, a manchete de uma notícia, um número gigante, um quadro de antes e depois. A legenda fica pequena logo acima da cabeça. No gancho, um título grande em serifa itálica atravessa o peito da pessoa.
 
-## Escolhas que este estilo já define
+## Escolhas que este formato já define
 
-Formato (vertical 9:16), nível (equivale ao Com imagens, sem câmera virtual), estilo das legendas, estilo visual, capa (título em serifa sobre o peito), verificação de fontes (ligada).
+Proporção (vertical 9:16), nível (equivale ao Com imagens, sem câmera virtual), visual original da legenda e dos gráficos (trocado se a pessoa escolher outro estilo visual), capa (título em serifa sobre o peito), verificação de fontes (ligada).
 
 ## Base técnica
 
@@ -94,7 +96,7 @@ Se houver "comenta X": card branco de comentário (580 × 200 px) acima da cabe�
 
 `edit/final.mp4`, 1080 × 1920, 60 fps, H.264 + AAC 48 kHz.
 
-## Verificação do estilo
+## Verificação do formato
 
 - Recorte sem halo ou serrilhado visível em cabelo e ombros, inclusive em movimento.
 - Nenhum card de prova encostando na cabeça ou cortado pela borda da tela.

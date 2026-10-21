@@ -2,13 +2,15 @@
 
 Resumo: só você e a legenda; a frase vai se montando palavra por palavra, e a palavra mais forte de cada frase aparece gigante em serifa itálica laranja, com as palavras pequenas encaixadas em volta dela.
 
+O visual descrito aqui (cores, fontes, materiais, legenda, música) é o **Original do formato**. Se a pessoa escolher outro estilo visual, o layout, as posições e o ritmo daqui continuam valendo e a aparência vem do estilo: siga `maquina-de-edicao/referencias/estilos-visuais.md`.
+
 ## Como fica
 
 Vídeo sem gráfico nenhum: o trabalho todo está na tipografia. A legenda fica na altura do peito, as palavras vão se acumulando na linha conforme a pessoa fala, e quando chega a palavra-chave ela entra enorme, em serifa itálica laranja, e as palavras pequenas da frase se reorganizam em volta dela (em cima à esquerda, embaixo à direita), como numa capa de revista. A parte de baixo da imagem escurece um pouco pra legenda ler bem.
 
-## Escolhas que este estilo já define
+## Escolhas que este formato já define
 
-Formato (vertical 9:16), nível (Básico), estilo das legendas, estilo visual (não tem gráficos), capa (frase encaixada no quadro 0), verificação de fontes (desligada).
+Proporção (vertical 9:16), nível (Básico), visual original da legenda (trocado se a pessoa escolher outro estilo visual; não tem gráficos), capa (frase encaixada no quadro 0), verificação de fontes (desligada).
 
 ## Base técnica
 
@@ -42,7 +44,7 @@ Nenhum.
 
 ## Legendas
 
-Este estilo **é** a legenda.
+Este formato **é** a legenda.
 
 ### Frase acumulando (padrão)
 
@@ -101,7 +103,7 @@ Se houver "comenta X": frase encaixada com a palavra X gigante em laranja, "Come
 
 `edit/final.mp4`, 1080 × 1920, 60 fps, H.264 + AAC 48 kHz.
 
-## Verificação do estilo
+## Verificação do formato
 
 - Cada palavra aparece no máximo 1 quadro antes de ser dita.
 - Nenhuma palavra encaixada cortada na borda.

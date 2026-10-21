@@ -2,13 +2,15 @@
 
 Resumo: entra um vídeo longo (YouTube, live, podcast, call, aula) e saem vários cortes verticais, ranqueados do melhor pro pior, cada um editado com título de gancho, legenda e gráficos escuros com brilho laranja.
 
+O visual descrito aqui (cores, fontes, materiais, legenda, música) é o **Original do formato**. Se a pessoa escolher outro estilo visual, o layout, as posições e o ritmo daqui continuam valendo e a aparência vem do estilo: siga `maquina-de-edicao/referencias/estilos-visuais.md`.
+
 ## Como fica
 
 Cada corte é um reel completo e independente: começa com um título forte de duas linhas no topo, a pessoa em tela cheia (reenquadrada pro vertical), legenda com palavra em serifa laranja e, nos momentos de número, lista ou passo, a tela se divide (gráfico em cima, pessoa embaixo) ou vira animação em tela cheia. A ordem dos arquivos já é o ranking: o corte 01 é o que tem mais chance de performar.
 
-## Escolhas que este estilo já define
+## Escolhas que este formato já define
 
-Formato (vertical 9:16), nível (equivale ao Com imagens, sem câmera virtual), estilo das legendas, estilo visual, capa (título de duas linhas), verificação de fontes (ligada só pra notícia ou número de terceiros).
+Proporção (vertical 9:16), nível (equivale ao Com imagens, sem câmera virtual), visual original da legenda e dos gráficos (trocado se a pessoa escolher outro estilo visual), capa (título de duas linhas), verificação de fontes (ligada só pra notícia ou número de terceiros).
 
 ## Base técnica
 
@@ -23,11 +25,11 @@ Formato (vertical 9:16), nível (equivale ao Com imagens, sem câmera virtual), 
 
 ## Fluxo diferente
 
-Este estilo muda as fases 1 a 4 do motor assim:
+Este formato muda as fases 1 a 4 do motor assim:
 
 ### Fase 1 (perguntas extras)
 
-Junto com a rodada curta do caminho estilo pronto, pergunte:
+Junto com a rodada curta do caminho formato pronto, pergunte:
 
 - **Quantos cortes?** "Os 5 melhores (Recomendado)", "Os 3 melhores", "Os 10 melhores".
 - **Duração de cada corte?** "Entre 30 e 60 s (Recomendado)", "Até 30 s", "Entre 60 e 90 s".
@@ -123,7 +125,7 @@ Se o trecho original tiver chamada para ação, mantenha só se ela fizer sentid
 - `edit/cortes/01-titulo.mp4`, `edit/cortes/02-titulo.mp4`... em 1080 × 1920, 60 fps, H.264 + AAC 48 kHz.
 - `edit/ranking.md` e `edit/relatorio.md`.
 
-## Verificação do estilo
+## Verificação do formato
 
 - Cada corte entendível sozinho (leia a transcrição final do corte sem o resto do vídeo).
 - Nenhum corte começando ou terminando no meio de uma palavra ou de uma ideia.

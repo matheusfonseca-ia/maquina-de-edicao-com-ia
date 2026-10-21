@@ -2,13 +2,15 @@
 
 Resumo: você em tela cheia e, acima da sua cabeça, grupos de imagens que aparecem e se sobrepõem conforme você fala, com uma legenda pequena, minúscula e discreta à esquerda.
 
+O visual descrito aqui (cores, fontes, materiais, legenda, música) é o **Original do formato**. Se a pessoa escolher outro estilo visual, o layout, as posições e o ritmo daqui continuam valendo e a aparência vem do estilo: siga `maquina-de-edicao/referencias/estilos-visuais.md`.
+
 ## Como fica
 
 Visual calmo e editorial. A pessoa fica na câmera o tempo todo, e o terço de cima da tela vira um mural: a cada ideia, uma imagem aparece; a próxima chega por cima, levemente deslocada, até formar um grupinho de 2 ou 3. Quando a ideia muda, o grupo some e começa outro. A legenda é pequena, em letra minúscula, alinhada à esquerda, sem destaque nenhum: quem chama atenção são as imagens.
 
-## Escolhas que este estilo já define
+## Escolhas que este formato já define
 
-Formato (vertical 9:16), nível (equivale ao Com imagens, só com o layout de câmera cheia), estilo das legendas, estilo visual, capa (primeiro grupo de imagens já montado + legenda), verificação de fontes (ligada só pra notícia ou número citado).
+Proporção (vertical 9:16), nível (equivale ao Com imagens, só com o layout de câmera cheia), visual original da legenda e dos gráficos (trocado se a pessoa escolher outro estilo visual), capa (primeiro grupo de imagens já montado + legenda), verificação de fontes (ligada só pra notícia ou número citado).
 
 ## Base técnica
 
@@ -18,9 +20,9 @@ Formato (vertical 9:16), nível (equivale ao Com imagens, só com o layout de c�
 
 ## Entradas extras
 
-Nenhuma obrigatória. Pasta `imagens/` tem prioridade. Siga a ordem de origem de `estilos-prontos.md`.
+Nenhuma obrigatória. Pasta `imagens/` tem prioridade. Siga a ordem de origem de `formatos-prontos.md`.
 
-Este estilo usa **muitas** imagens (uma a cada 2–4 s de fala). Antes de construir, monte em `edit/plano.md` a lista de imagens com: tempo, palavra que a chama, origem e arquivo. Prefira fotos e capturas reais a cards de último recurso: se mais de 30% das imagens forem cards de último recurso, reduza o número de imagens (uma a cada 4–6 s) em vez de encher de card genérico.
+Este formato usa **muitas** imagens (uma a cada 2–4 s de fala). Antes de construir, monte em `edit/plano.md` a lista de imagens com: tempo, palavra que a chama, origem e arquivo. Prefira fotos e capturas reais a cards de último recurso: se mais de 30% das imagens forem cards de último recurso, reduza o número de imagens (uma a cada 4–6 s) em vez de encher de card genérico.
 
 ## Ritmo e corte
 
@@ -85,7 +87,7 @@ Se houver "comenta X": uma imagem do grupo final é um card de comentário claro
 
 `edit/final.mp4`, 1080 × 1920, 60 fps, H.264 + AAC 48 kHz.
 
-## Verificação do estilo
+## Verificação do formato
 
 - Nenhuma imagem encostando ou cobrindo a cabeça.
 - Nenhuma imagem cortada pela borda da tela.

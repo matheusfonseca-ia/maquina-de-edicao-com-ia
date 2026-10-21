@@ -2,13 +2,15 @@
 
 Resumo: tier list (S, A, B, C, D, E, F) na frente do seu peito que vai se preenchendo conforme você ranqueia cada coisa; cada item entra como um card grande e depois encolhe até a fileira da nota que você deu.
 
+O visual descrito aqui (cores, fontes, materiais, legenda, música) é o **Original do formato**. Se a pessoa escolher outro estilo visual, o layout, as posições e o ritmo daqui continuam valendo e a aparência vem do estilo: siga `maquina-de-edicao/referencias/estilos-visuais.md`.
+
 ## Como fica
 
 A pessoa em tela cheia, com o tema do ranking escrito no topo em laranja. Na frente do peito, um quadro de tier list com as fileiras coloridas de S a F. Quando a pessoa começa a falar de um item, ele aparece como um card grande com imagem e nome, por cima do quadro. Quando ela dá a nota ("isso é nota F"), o card encolhe e voa até a fileira certa, onde fica. No fim, o quadro está completo e serve de resumo do vídeo.
 
-## Escolhas que este estilo já define
+## Escolhas que este formato já define
 
-Formato (vertical 9:16), nível (equivale ao Com imagens, com o layout próprio), estilo das legendas, estilo visual, capa (quadro completo no quadro 0), verificação de fontes (desligada; o ranking é opinião).
+Proporção (vertical 9:16), nível (equivale ao Com imagens, com o layout próprio), visual original da legenda e dos gráficos (trocado se a pessoa escolher outro estilo visual), capa (quadro completo no quadro 0), verificação de fontes (desligada; o ranking é opinião).
 
 ## Base técnica
 
@@ -69,7 +71,7 @@ Se o queixo da pessoa estiver abaixo de y = 980, desça o quadro até ficar 20 p
 ### Card de item (grande)
 
 - 580 × 340 px, centralizado sobre o quadro (centro em x = 540, y = 1240), raio 6 px, borda 3 px `rgba(255,255,255,0.85)`.
-- Fundo: a imagem do item (seguindo a ordem de origem de `estilos-prontos.md`) com escurecimento de 35% embaixo; se não houver imagem boa, use um fundo de cor sólida escura (azul `#1E3A5F`, roxo `#4A1D5C`, verde `#1F4D2E` ou vinho `#5C1D2A`, alternando) com um ícone simples branco grande no meio.
+- Fundo: a imagem do item (seguindo a ordem de origem de `formatos-prontos.md`) com escurecimento de 35% embaixo; se não houver imagem boa, use um fundo de cor sólida escura (azul `#1E3A5F`, roxo `#4A1D5C`, verde `#1F4D2E` ou vinho `#5C1D2A`, alternando) com um ícone simples branco grande no meio.
 - Nome do item: Lilita One, 86 px, amarelo `#FFE14D`, caixa alta, contorno 4 px `#111111`, centralizado na parte de baixo do card (até 2 linhas).
 - Etiqueta minúscula "SUA IMAGEM" ou a origem no canto superior esquerdo em Inter 500 14 px, só se a imagem for de terceiro.
 
@@ -106,7 +108,7 @@ Se houver "comenta X": no fim, depois do último item, a legenda mostra "COMENTA
 
 `edit/final.mp4`, 1080 × 1920, 60 fps, H.264 + AAC 48 kHz.
 
-## Verificação do estilo
+## Verificação do formato
 
 - Cada card pousa na fileira da nota que a pessoa disse, no instante em que ela diz.
 - Nenhum card ou miniatura cobrindo o rosto.

@@ -2,13 +2,15 @@
 
 Resumo: edição de vídeo longo pro YouTube (16:9) com três tipos de tela que se alternam: você em tela cheia com cards pequenos flutuando ao lado, tela dividida (explicação à esquerda, você à direita) e animações explicativas em tela cheia; tudo escuro com brilho laranja.
 
+O visual descrito aqui (cores, fontes, materiais, legenda, música) é o **Original do formato**. Se a pessoa escolher outro estilo visual, o layout, as posições e o ritmo daqui continuam valendo e a aparência vem do estilo: siga `maquina-de-edicao/referencias/estilos-visuais.md`.
+
 ## Como fica
 
 A maior parte do vídeo é a pessoa em tela cheia, como num vídeo normal de YouTube. Quando ela cita alguma coisa, um card pequeno aparece flutuando no canto esquerdo, ao lado dela, sem tirar o foco. Quando o assunto pede mais espaço, a tela se divide: a explicação ocupa o lado esquerdo e a pessoa fica no direito. Nos momentos mais didáticos (passos, comparação, processo), a tela inteira vira uma animação. Sem legenda queimada no vídeo: o YouTube cuida da legenda, e a skill entrega o arquivo `.srt`.
 
-## Escolhas que este estilo já define
+## Escolhas que este formato já define
 
-Formato (horizontal 16:9), nível (equivale ao Com imagens + animações do Kit Noite), estilo das legendas (sem legenda na tela; entrega `.srt`), estilo visual, capa (sem título no vídeo; a thumbnail é à parte), verificação de fontes (ligada).
+Proporção (horizontal 16:9), nível (equivale ao Com imagens + animações do Kit Noite), legendas (sem legenda na tela; entrega `.srt`), visual original (cores, fontes e materiais, trocados se a pessoa escolher outro estilo visual), capa (sem título no vídeo; a thumbnail é à parte), verificação de fontes (ligada).
 
 ## Base técnica
 
@@ -103,7 +105,7 @@ Sem cartão. Se a pessoa pedir pra se inscrever ou comentar, mostre um card flut
 - `edit/legendas.srt`.
 - No relatório: lista de capítulos no formato da descrição do YouTube (`00:00 Título`).
 
-## Verificação do estilo
+## Verificação do formato
 
 - Nenhum card flutuante sobre o rosto.
 - Nenhuma animação em tela cheia nos primeiros 30 s.
