@@ -1,0 +1,92 @@
+# Estilos prontos
+
+Os 12 estilos que vêm com a Máquina de Edição. Cada um é uma skill própria, numa pasta ao lado desta (`<pasta de skills>/<nome-do-estilo>/`), e a especificação completa fica em `estilo.md` dentro dela.
+
+A pasta de skills é a pasta-mãe da pasta desta skill. Exemplo: se esta skill está em `~/.claude/skills/maquina-de-edicao/`, o estilo Reels de Negócio está em `~/.claude/skills/reels-de-negocio/estilo.md`.
+
+## Catálogo
+
+Use esta lista na pergunta de estilo da fase 1. Mostre o número, o nome e a descrição curta.
+
+### Vertical 9:16 (Reels, TikTok, Shorts)
+
+| # | Nome | Pasta | Descrição curta |
+|---|---|---|---|
+| 1 | Reels de Negócio | `reels-de-negocio` | Alterna câmera cheia, tela dividida e animação em tela cheia a cada corte |
+| 2 | Reels com B-roll | `reels-com-broll` | Corte rápido, seus próprios clipes de apoio e frases-chave empilhadas na legenda |
+| 3 | Tela Dividida Explicativa | `tela-dividida-explicativa` | Você embaixo e a explicação em cima, com cards de vidro, contadores e gráficos que se desenham |
+| 4 | Ensaio Visual | `ensaio-visual` | Preto e laranja, você recortado e as provas (posts, notícias, números) aparecendo acima de você |
+| 5 | Legenda Encaixada | `legenda-encaixada` | Uma palavra gigante em destaque e o resto da frase encaixado em volta |
+| 6 | Nuvem de Imagens | `nuvem-de-imagens` | Grupos de imagens acima da sua cabeça e legenda pequena e discreta |
+| 7 | Recorte com Imagens | `recorte-com-imagens` | Você recortado na frente de imagens em tela cheia que trocam a cada ideia |
+| 8 | Telas em Profundidade | `telas-em-profundidade` | Você em tela cheia com interfaces e telas reais atrás da sua cabeça |
+| 9 | Formato Ranking | `formato-ranking` | Tier list que vai se preenchendo conforme você ranqueia |
+| 10 | Cortes de Vídeo Longo | `cortes-de-video-longo` | Entra um vídeo longo ou uma call, saem cortes verticais ranqueados com gráficos |
+
+### Horizontal 16:9 (YouTube)
+
+| # | Nome | Pasta | Descrição curta |
+|---|---|---|---|
+| 11 | YouTube Educativo | `youtube-educativo` | Vídeo longo com cards sobre a câmera, tela dividida e animações explicativas |
+| 12 | Aula em Tela Dividida | `aula-em-tela-dividida` | O documento da aula rola na esquerda e você fica na direita; o documento é gerado junto |
+
+Se a pasta de um estilo não existir (a pessoa apagou ou instalou só o motor), não ofereça esse estilo e avise no fim da pergunta quais faltam.
+
+---
+
+## Como um estilo pronto se aplica
+
+Um estilo pronto é uma camada por cima de `instrucoes-base.md`. Ele não repete o que é comum a todos os vídeos. Ele só diz o que muda.
+
+### O que continua valendo sempre (do motor)
+
+- Bloco 0 (ambiente, autonomia, instalação local, nunca exportar sem aprovação).
+- Bloco 1 (sincronização e transcrição) e bloco 2 (seleção de tomadas, limpeza, silêncios, J cut, END).
+- Bloco 7 (áudio), na estrutura: os quatro stems, a voz a −14 LUFS, os efeitos sincronizados com eventos visuais e o master. O estilo pode trocar o clima da música, a paleta de efeitos e os níveis.
+- Bloco 8 (montagem, prévia, render), bloco 9 (verificação) e RELATÓRIO.
+- `variacoes.md`, seções "Gravação vertical na saída vertical" e "Sem áudio separado", quando valerem pela fase 0.
+- As fases 3, 4 e 5 da skill (Studio, aprovação, exportação, preferências).
+
+### O que o estilo substitui
+
+O arquivo `estilo.md` de cada estilo segue sempre as mesmas seções. Cada uma vale por cima do motor:
+
+| Seção do estilo | Substitui no motor |
+|---|---|
+| Escolhas que este estilo já define | As perguntas da entrevista que deixam de ser feitas |
+| Base técnica | Diz quais blocos marcados [IMAGENS+] e [COMPLETO] continuam valendo (contato visual, câmera virtual, desfoque de movimento etc.) |
+| Entradas extras | O que mais precisa estar na pasta (clipes, imagens) e o que fazer se faltar |
+| Ritmo e corte | Acrescenta regras ao bloco 2 (nunca remove as regras de limpeza) |
+| Layouts | Substitui o bloco 4 inteiro (os três layouts e as regras de distribuição) |
+| Direção visual | Substitui "Direção visual" e "Tipografia e cores" do bloco 5 |
+| Gráficos | Substitui o resto do bloco 5 (o que aparece em cada trecho e como anima) |
+| Legendas | Substitui "Legendas" do bloco 6 |
+| Capa e gancho | Substitui "Capa" do bloco 6 |
+| Chamada para ação | Substitui "Cartão de chamada para ação" do bloco 6 |
+| Áudio | Ajusta o bloco 7 (clima da música, efeitos, níveis) |
+| Saída | Substitui resolução, fps e nomes de arquivo das ENTREGAS |
+| Verificação do estilo | Acrescenta itens às verificações 9A e 9B |
+| Fluxo diferente (opcional) | Vale por cima das fases da skill. Só existe nos estilos que mudam o fluxo (ex: Cortes de Vídeo Longo gera vários vídeos) |
+
+Regras de prioridade, da mais forte pra mais fraca:
+
+1. Pedidos da pessoa na revisão (fase 3).
+2. Ajustes fixos das preferências salvas, se a pessoa escolheu usá-las.
+3. O `estilo.md`.
+4. `variacoes.md`.
+5. `instrucoes-base.md`.
+
+### Marca da pessoa
+
+Todo estilo tem uma paleta própria. Se as preferências salvas tiverem cor de marca, ou se a pessoa pedir, troque só a **cor de destaque** do estilo pela cor da marca (mantendo o contraste mínimo de 4,5:1 sobre o fundo onde ela aparece). Fundo, tipografia e layout continuam os do estilo.
+
+### Imagens, logos e interfaces
+
+Vários estilos mostram imagens a cada ideia. Ordem de origem, da melhor pra pior:
+
+1. Arquivos que a pessoa colocou na pasta `imagens/` do projeto (o nome do arquivo ajuda a casar com a fala).
+2. Coisas reais citadas na fala: logo oficial, página do produto, post, notícia (captura com `npx hyperframes capture` ou navegador).
+3. Imagem buscada ou gerada pela skill `media-use` do HyperFrames, se estiver disponível.
+4. Último recurso: card gráfico no estilo (ícone, número ou palavra-chave sobre o fundo do estilo).
+
+Nunca invente dado, print de conversa, depoimento ou número que não está na fala. Registre a origem de cada imagem no relatório.
