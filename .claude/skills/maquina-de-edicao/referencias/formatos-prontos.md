@@ -15,7 +15,7 @@ Use esta lista na pergunta de formato da fase 1. Mostre o número, o nome e a de
 | # | Nome | Pasta | Descrição curta |
 |---|---|---|---|
 | 1 | Reels de Negócio | `reels-de-negocio` | Alterna câmera cheia, tela dividida e animação em tela cheia a cada corte |
-| 2 | Reels com B-roll | `reels-com-broll` | Corte rápido, seus próprios clipes de apoio e frases-chave empilhadas na legenda |
+| 2 | Reels com B-roll | `reels-com-broll` | Corte rápido, clipes de apoio (seus ou buscados na internet) e frases-chave empilhadas na legenda |
 | 3 | Tela Dividida Explicativa | `tela-dividida-explicativa` | Você embaixo e a explicação em cima, com cards, contadores e gráficos que se desenham |
 | 4 | Ensaio Visual | `ensaio-visual` | Você recortado e as provas (posts, notícias, números) aparecendo acima de você |
 | 5 | Legenda Encaixada | `legenda-encaixada` | Uma palavra gigante em destaque e o resto da frase encaixado em volta |
@@ -87,9 +87,13 @@ Se as preferências salvas tiverem cor de marca, ou se a pessoa pedir, troque s�
 
 Vários formatos mostram imagens a cada ideia. Ordem de origem, da melhor pra pior:
 
-1. Arquivos que a pessoa colocou na pasta `imagens/` do projeto (o nome do arquivo ajuda a casar com a fala).
+1. Arquivos que a pessoa colocou na pasta `imagens/` do projeto, inclusive os que ela subiu pelo painel (`imagensEnviadas` no `edit/escolhas.json`). O nome do arquivo ajuda a casar com a fala. São opcionais: sem eles, siga a ordem abaixo.
 2. Coisas reais citadas na fala: logo oficial, página do produto, post, notícia (captura com `npx hyperframes capture` ou navegador).
 3. Imagem buscada ou gerada pela skill `media-use` do HyperFrames, se estiver disponível.
 4. Último recurso: card gráfico no estilo (ícone, número ou palavra-chave sobre o fundo do estilo).
 
 Nunca invente dado, print de conversa, depoimento ou número que não está na fala. Registre a origem de cada imagem no relatório.
+
+### Clipes de apoio (B-roll)
+
+Formatos com B-roll usam a pasta `broll/` da pessoa (que ela pode ter subido pelo painel) e, sem ela, clipes buscados em bancos de vídeo gratuitos: veja `broll-da-internet.md`.

@@ -1,11 +1,11 @@
 ---
 name: reels-com-broll
-description: Edita um vídeo falado no formato Reels com B-roll. Vídeo vertical 9:16 com corte rápido, os clipes de apoio da própria pessoa (pasta broll/) entrando por cima da fala e frases-chave empilhadas na legenda. Depois de escolher o formato, a pessoa escolhe o estilo visual (original do formato, Pixelado, Noite Laranja, Claro Tecnológico ou um que ela criou). Faz parte da Máquina de Edição (precisa da skill maquina-de-edicao instalada). Use quando o usuário chamar /reels-com-broll ou pedir pra editar um vídeo "no formato Reels com B-roll", "reels com b-roll", "usar meus clipes de apoio" ou "reels de criador".
+description: Edita um vídeo falado no formato Reels com B-roll. Vídeo vertical 9:16 com corte rápido, clipes de apoio (os da pessoa ou buscados em bancos de vídeo gratuitos) entrando por cima da fala e frases-chave empilhadas na legenda. Depois de escolher o formato, a pessoa escolhe o estilo visual (original do formato, Pixelado, Noite Laranja, Claro Tecnológico ou um que ela criou). Faz parte da Máquina de Edição (precisa da skill maquina-de-edicao instalada). Use quando o usuário chamar /reels-com-broll ou pedir pra editar um vídeo "no formato Reels com B-roll", "reels com b-roll", "usar meus clipes de apoio" ou "reels de criador".
 ---
 
 # Reels com B-roll
 
-Formato pronto da Máquina de Edição. Vídeo vertical 9:16 com corte rápido, os clipes de apoio da própria pessoa (pasta broll/) entrando por cima da fala e frases-chave empilhadas na legenda.
+Formato pronto da Máquina de Edição. Vídeo vertical 9:16 com corte rápido, clipes de apoio (os da pessoa ou buscados em bancos de vídeo gratuitos) entrando por cima da fala e frases-chave empilhadas na legenda.
 
 Esta skill não tem um fluxo próprio: ela chama o motor da Máquina de Edição com este formato já escolhido.
 

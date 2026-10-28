@@ -6,7 +6,7 @@ export const FORMATOS = [
     desc: 'Alterna câmera cheia, tela dividida e animação em tela cheia a cada corte',
     original: 'Preto com brilho laranja e cards de vidro', originalIgual: 'noite-laranja' },
   { id: 'reels-com-broll', nome: 'Reels com B-roll', orient: 'v', capa: false,
-    desc: 'Corte rápido, seus próprios clipes de apoio e frases-chave empilhadas na legenda',
+    desc: 'Corte rápido, clipes de apoio (seus ou buscados na internet) e frases-chave empilhadas na legenda',
     original: 'Sua gravação e seus clipes, com a frase-chave empilhada em laranja' },
   { id: 'tela-dividida-explicativa', nome: 'Tela Dividida Explicativa', orient: 'v', capa: true,
     desc: 'Você embaixo e a explicação em cima, com cards, contadores e gráficos que se desenham',
@@ -121,10 +121,13 @@ export const CORTES = {
   ],
 };
 
+// De onde vêm os clipes de apoio do Reels com B-roll.
 export const BROLL = [
-  { id: 'vou-colocar', rotulo: 'Vou colocar meus clipes na pasta broll/', skill: 'Vou colocar meus clipes na pasta broll/' },
-  { id: 'imagens', rotulo: 'Usar só imagens', skill: 'Usar só imagens' },
-  { id: 'sem', rotulo: 'Sem B-roll', skill: 'Sem B-roll' },
+  { id: 'internet', rotulo: 'Buscar na internet pra mim', sub: 'bancos de vídeo gratuitos', skill: 'Buscar clipes na internet (bancos de vídeo gratuitos)' },
+  { id: 'pasta', rotulo: 'Usar os clipes da pasta broll/', sub: '', skill: 'Usar os clipes da pasta broll/' },
+  { id: 'subir', rotulo: 'Subir meus clipes aqui', sub: '', skill: 'Usar os clipes que subi pela página (pasta broll/)' },
+  { id: 'imagens', rotulo: 'Usar só imagens', sub: '', skill: 'Usar só imagens' },
+  { id: 'sem', rotulo: 'Sem B-roll', sub: '', skill: 'Sem B-roll' },
 ];
 
 export const USO_AUDIO = [

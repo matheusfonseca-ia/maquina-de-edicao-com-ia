@@ -32,6 +32,7 @@ Arquivos de apoio (leia antes da fase 2):
 - `referencias/estilos-visuais.md`: o que é um estilo visual, onde ficam, como aparecem na pergunta e como se aplicam por cima de um formato.
 - `referencias/kit-noite.md`: o kit visual escuro (fundo preto, brilho laranja, cards de vidro, Inter + Instrument Serif) que vários formatos usam no visual original e o estilo Noite Laranja usa.
 - `referencias/painel.md`: como abrir o painel de escolhas (a página local da fase 1), o que mandar pra ele e como ler o que volta.
+- `referencias/broll-da-internet.md`: como buscar clipes de apoio em bancos de vídeo gratuitos quando a pessoa não trouxe os dela.
 
 Formatos prontos: cada um numa pasta ao lado desta skill, `<pasta de skills>/<nome-do-formato>/formato.md` (a pasta de skills é a pasta-mãe desta). O catálogo está em `referencias/formatos-prontos.md`.
 
@@ -78,7 +79,8 @@ Com as ferramentas conferidas, abra o painel seguindo `referencias/painel.md`: e
 No painel ela escolhe tudo o que as seções abaixo perguntam (o caminho, o formato, o estilo visual, as perguntas da rodada curta ou as do caminho do zero), vendo uma prévia animada (com um bonequinho no lugar da pessoa). Quando o painel devolver as escolhas:
 
 - trate cada resposta como se a pessoa tivesse respondido a pergunta correspondente abaixo;
-- confira as "Entradas extras" do formato e siga o que ele manda (o painel já perguntou o que fazer sem a pasta `broll/`);
+- confira as "Entradas extras" do formato e siga o que ele manda (o painel já perguntou de onde vêm os clipes de apoio);
+- se a pessoa subiu arquivos pela página, eles já estão na pasta do vídeo: imagens em `imagens/` (`imagensEnviadas`) e clipes em `broll/` (`brollEnviados`). Use primeiro o que ela mandou. Subir é opcional: sem arquivos, busque você mesmo (imagens pela ordem de origem de `referencias/formatos-prontos.md`, clipes por `referencias/broll-da-internet.md`);
 - mostre a tabela do resumo e comece a fase 2 sem perguntar de novo.
 
 As seções abaixo continuam valendo: elas dizem o que cada escolha significa e são as perguntas que você faz no chat quando o painel não abre, quando a pessoa pede pra responder por aqui (`PREFERE_CHAT`) ou quando o tempo esgota.

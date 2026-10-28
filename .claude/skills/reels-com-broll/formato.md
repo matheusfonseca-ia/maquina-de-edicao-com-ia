@@ -20,11 +20,16 @@ Proporção (vertical 9:16), nível (equivale ao Básico, mais os clipes de apoi
 
 ## Entradas extras
 
-**Pasta `broll/`** dentro da pasta do projeto, com os clipes de apoio da pessoa (`.mp4`, `.mov`), verticais ou horizontais. Nomes descritivos ajudam ("computador-digitando.mp4", "cafe-manha.mov").
+Os clipes de apoio são opcionais pra pessoa: ela pode trazer os dela ou deixar que você busque.
 
-Na fase 0, se a pasta não existir ou estiver vazia, pergunte:
+- **Pasta `broll/`** dentro da pasta do projeto, com os clipes da pessoa (`.mp4`, `.mov`), verticais ou horizontais. Pode vir de dois jeitos: ela já tinha a pasta, ou subiu os clipes pelo painel (ficam na mesma pasta, listados em `brollEnviados` no `edit/escolhas.json`).
+- **Sem clipes da pessoa**: você busca na internet, em bancos de vídeo gratuitos, seguindo `maquina-de-edicao/referencias/broll-da-internet.md`. A pessoa não precisa fazer nada.
 
-- **Vou colocar meus clipes na pasta `broll/` (Recomendado)**: espere a pessoa avisar que colocou e confira de novo.
+A escolha vem do painel (ou, no chat, pergunte na rodada curta):
+
+- **Buscar clipes na internet (Recomendado quando não há pasta `broll/`)**: siga `broll-da-internet.md` e salve os clipes em `broll/`.
+- **Usar os clipes da pasta `broll/` (Recomendado quando a pasta existe)**: se forem menos que os pontos de B-roll, complete com clipes da internet.
+- **Usar os clipes que subi pela página**: igual à anterior.
 - **Usar só imagens**: no lugar dos clipes, use imagens seguindo a ordem de origem de `formatos-prontos.md`, com um movimento lento de aproximação (escala 1 → 1,06 no trecho todo).
 - **Sem B-roll**: o vídeo fica só com a câmera e a legenda empilhada.
 

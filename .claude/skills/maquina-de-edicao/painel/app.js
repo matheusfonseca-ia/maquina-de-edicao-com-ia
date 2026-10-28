@@ -20,7 +20,8 @@ const E = {
   formato: null, estilo: null,
   musica: 'estilo', efeitos: 'estilo', cor: 'estilo', corHex: '#9A4DFF',
   ajustes: 'sim',
-  cortesQtd: '5', cortesDur: '30-60', broll: 'vou-colocar', formatoTravado: false,
+  cortesQtd: '5', cortesDur: '30-60', broll: null, formatoTravado: false,
+  envios: { imagens: [], broll: [] },
   zero: { padrao: null, ...PADRAO_COMPLETO, marcaHex: '#9A4DFF', marcaFundo: 'claro', marcaFonte: '' },
   repetirMusica: 'eletronica', observacoes: '',
 };
@@ -158,6 +159,82 @@ const ILUSTRA = {
   repetir: `<svg class="ilustra" viewBox="0 0 120 74" aria-hidden="true"><path d="M40 37a20 20 0 1 1 6 14" fill="none" stroke="#9A4DFF" stroke-width="5" stroke-linecap="round"/><path d="M33 47l13 4 2-13" fill="none" stroke="#9A4DFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="72" y="22" width="40" height="8" rx="4" fill="#C9C4E3"/><rect x="72" y="36" width="30" height="8" rx="4" fill="#3D1BFF"/><rect x="72" y="50" width="36" height="8" rx="4" fill="#EB6BFB"/></svg>`,
 };
 
+// ------------------------------------------------------------ envio de arquivos (opcional)
+
+const brollPadrao = () => (C.pastas?.broll ? 'pasta' : 'internet');
+const enviando = () => [...E.envios.imagens, ...E.envios.broll].some((a) => a.estado === 'enviando');
+
+function blocoEnvio(destino, titulo, ajuda, accept) {
+  const lista = E.envios[destino];
+  const itens = lista.map((a, i) => `<li class="envio-item ${a.estado}">
+      ${a.previa ? `<img src="${esc(a.previa)}" alt="">` : `<span class="envio-icone" aria-hidden="true">${destino === 'broll' && a.estado !== 'erro' ? '▶' : '!'}</span>`}
+      <span class="envio-nome">${esc(a.arquivo || a.nome)}</span>
+      <span class="envio-estado">${a.estado === 'enviando' ? 'enviando…' : a.estado === 'erro' ? esc(a.erro || 'não subiu') : 'pronto'}</span>
+      ${a.estado !== 'enviando' ? `<button type="button" class="envio-remover" data-remover="${destino}:${i}" aria-label="Tirar ${esc(a.arquivo || a.nome)}">×</button>` : ''}
+    </li>`).join('');
+  return `<div class="envio">
+    <label class="envio-area">
+      <input type="file" multiple accept="${accept}" data-envio="${destino}">
+      <span class="envio-titulo">${esc(titulo)}</span>
+      <span class="envio-ajuda">${esc(ajuda)}</span>
+    </label>
+    ${lista.length ? `<ul class="envio-lista">${itens}</ul>` : ''}
+  </div>`;
+}
+
+// Os mesmos tipos que o servidor aceita.
+const EXTENSOES = {
+  imagens: ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif', '.heic'],
+  broll: ['.mp4', '.mov', '.m4v', '.webm', '.mkv'],
+};
+
+async function enviarArquivos(destino, arquivos) {
+  for (const f of arquivos) {
+    const ext = (f.name.match(/\.[^.]+$/) || [''])[0].toLowerCase();
+    if (!EXTENSOES[destino].includes(ext)) {
+      E.envios[destino].push({ nome: f.name, estado: 'erro', erro: 'tipo de arquivo não aceito' });
+      renderizar();
+      continue;
+    }
+    const item = { nome: f.name, estado: 'enviando', previa: f.type.startsWith('image/') ? URL.createObjectURL(f) : null };
+    E.envios[destino].push(item);
+    renderizar();
+    try {
+      const r = await fetch(`/api/enviar?destino=${destino}&nome=${encodeURIComponent(f.name)}`, { method: 'POST', body: f });
+      const d = await r.json().catch(() => ({}));
+      if (!r.ok || !d.ok) throw new Error(d.erro || 'não subiu');
+      Object.assign(item, { estado: 'pronto', arquivo: d.arquivo });
+    } catch (e) {
+      Object.assign(item, { estado: 'erro', erro: e.message === 'Failed to fetch' ? 'o Claude Code não respondeu' : e.message });
+    }
+    renderizar();
+  }
+}
+
+async function removerArquivo(destino, i) {
+  const item = E.envios[destino][i];
+  if (!item) return;
+  if (item.estado === 'pronto') {
+    try { await fetch(`/api/enviar?destino=${destino}&nome=${encodeURIComponent(item.arquivo)}`, { method: 'DELETE' }); } catch {}
+  }
+  if (item.previa) URL.revokeObjectURL(item.previa);
+  E.envios[destino].splice(i, 1);
+  renderizar();
+}
+
+function soltarArquivos(ev) {
+  const area = ev.target.closest?.('.envio-area');
+  if (!area) return;
+  ev.preventDefault();
+  area.classList.toggle('arrastando', ev.type === 'dragover');
+  if (ev.type === 'drop') {
+    const input = area.querySelector('input[type=file]');
+    const aceitos = [...ev.dataTransfer.files].filter((f) => (input.accept === 'video/*' ? f.type.startsWith('video/') : f.type.startsWith('image/')));
+    if (aceitos.length) enviarArquivos(input.dataset.envio, aceitos);
+  }
+}
+['dragover', 'dragleave', 'drop'].forEach((t) => document.addEventListener(t, soltarArquivos));
+
 // ------------------------------------------------------------ montagem das etapas
 
 function etapaArquivos() {
@@ -214,8 +291,13 @@ function etapaFormato() {
 }
 
 function extrasDoFormato() {
-  if (E.formato === 'reels-com-broll' && !C.pastas?.broll) {
-    return `<div class="aviso"><b>Esse formato usa seus clipes de apoio.</b> Não achei a pasta <code>broll/</code> ao lado do vídeo. O que prefere?</div><div style="margin-top:12px">${pilulas('broll', E.broll, BROLL, 'vou-colocar')}</div>`;
+  if (E.formato === 'reels-com-broll') {
+    const opcoes = BROLL.filter((o) => o.id !== 'pasta' || C.pastas?.broll);
+    const rec = brollPadrao();
+    let html = `<p class="subtitulo">De onde vêm os clipes de apoio (B-roll)?</p>${pilulas('broll', E.broll || rec, opcoes, rec)}`;
+    if ((E.broll || rec) === 'internet') html += `<p class="ajuda" style="margin-top:10px">O Claude procura clipes que mostram o que você fala em bancos de vídeo gratuitos e anota os créditos no relatório. Você não precisa juntar nada.</p>`;
+    if ((E.broll || rec) === 'subir') html += blocoEnvio('broll', 'Seus clipes', 'Arraste os vídeos aqui ou clique pra escolher. Vão pra pasta broll/ do vídeo.', 'video/*');
+    return html;
   }
   if (E.formato === 'cortes-de-video-longo') {
     const curto = duracao() && duracao() < 180;
@@ -322,6 +404,9 @@ function etapaResumo() {
   if (!r.length || falta()) return '';
   return etapa('Conferir e começar', 'É isso que vai pro Claude Code. Ele edita sozinho e te chama quando o vídeo estiver pronto pra assistir.', `
     <table class="resumo">${r.map(([k, v]) => `<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`).join('')}</table>
+    <p class="subtitulo observacoes-rotulo">Imagens pra usar no vídeo <small>(opcional)</small></p>
+    <p class="ajuda" style="margin:0 0 12px">Prints, logos, fotos do produto. Elas entram no lugar das imagens que o Claude buscaria sozinho. Sem imagens, ele busca o que você citar.</p>
+    ${blocoEnvio('imagens', 'Suas imagens', 'Arraste as imagens aqui ou clique pra escolher. Vão pra pasta imagens/ do vídeo.', 'image/*')}
     <label class="subtitulo observacoes-rotulo" for="observacoes">Observações <small>(opcional)</small></label>
     <textarea id="observacoes" class="campo observacoes" data-campo="observacoes" maxlength="2000" rows="4" placeholder="Algo que o Claude precisa saber pra editar este vídeo. Ex: corta a parte em que eu tusso no começo; o produto se chama Falow, com F maiúsculo; deixa a música bem baixinha.">${esc(E.observacoes)}</textarea>
     <p class="chat">Prefere responder as perguntas no chat? <button type="button" class="trocar" data-acao="chat">Voltar pro Claude Code sem escolher aqui</button></p>`, true, 'etapa-resumo');
@@ -330,12 +415,14 @@ function etapaResumo() {
 // ------------------------------------------------------------ o que falta e o resumo
 
 function falta() {
+  if (enviando()) return 'Espere os arquivos terminarem de subir';
   const auds = C.audios || [];
   for (let i = 0; i < auds.length; i++) if (!E.usoAudio[i]) return `Diga o que é o arquivo ${auds[i].arquivo}`;
   if (!E.modo) return 'Escolha como quer editar';
   if (E.modo === 'formato') {
     if (!E.formato) return 'Escolha o formato';
     if (!E.estilo) return 'Escolha o estilo visual';
+    if (E.formato === 'reels-com-broll' && (E.broll || brollPadrao()) === 'subir' && !E.envios.broll.some((a) => a.estado === 'pronto')) return 'Suba pelo menos um clipe ou escolha outra opção de B-roll';
     if (E.cor === 'marca' && !HEX.test(E.corHex)) return 'Escolha a cor da marca';
   }
   if (E.modo === 'zero') {
@@ -358,7 +445,7 @@ function resumo() {
   if (E.modo === 'formato') {
     r.push(['Formato', formato(E.formato)?.nome || '']);
     if (E.estilo) r.push(['Estilo visual', nomeEstilo(E.estilo)]);
-    if (E.formato === 'reels-com-broll' && !C.pastas?.broll) r.push(['B-roll', rotulo(BROLL, E.broll)]);
+    if (E.formato === 'reels-com-broll') r.push(['B-roll', rotulo(BROLL, E.broll || brollPadrao()) + (n => (n ? ` (${n} ${n === 1 ? 'clipe' : 'clipes'})` : ''))(E.envios.broll.filter((a) => a.estado === 'pronto').length)]);
     if (E.formato === 'cortes-de-video-longo') { r.push(['Quantos cortes', rotulo(CORTES.qtd, E.cortesQtd)]); r.push(['Duração de cada corte', rotulo(CORTES.dur, E.cortesDur)]); }
     r.push(['Música', { estilo: 'Com música (a do estilo)', pasta: 'Com a música da pasta', sem: 'Sem música' }[E.musica]]);
     r.push(['Efeitos sonoros', E.efeitos === 'nenhum' ? 'Sem efeitos sonoros' : 'Com efeitos sonoros (os do estilo)']);
@@ -382,6 +469,8 @@ function resumo() {
     r.push(['Caminho', 'Repetir o último vídeo']);
     if (prefs()?.musicaDaPasta && !temMusicaNaPasta()) r.push(['Música', rotulo(ZERO.musica, E.repetirMusica)]);
   }
+  const imgs = E.envios.imagens.filter((a) => a.estado === 'pronto');
+  if (imgs.length) r.push(['Imagens enviadas', `${imgs.length} ${imgs.length === 1 ? 'imagem' : 'imagens'} na pasta imagens/`]);
   return r;
 }
 
@@ -394,6 +483,8 @@ function saida() {
     audios: (C.audios || []).map((a, i) => ({ arquivo: a.arquivo, uso: E.usoAudio[i], usoTexto: rotulo(USO_AUDIO, E.usoAudio[i]) })),
     resumo: resumo(),
     observacoes: E.observacoes.trim() || null,
+    imagensEnviadas: E.envios.imagens.filter((a) => a.estado === 'pronto').map((a) => `imagens/${a.arquivo}`),
+    brollEnviados: E.envios.broll.filter((a) => a.estado === 'pronto').map((a) => `broll/${a.arquivo}`),
   };
   if (E.modo === 'formato') {
     Object.assign(base, {
@@ -406,7 +497,7 @@ function saida() {
         corMarca: E.cor === 'marca' ? E.corHex : null,
         aplicarAjustesFixos: prefs()?.ajustesFixos?.length ? E.ajustes === 'sim' : null,
         cortes: E.formato === 'cortes-de-video-longo' ? { quantidade: rotulo(CORTES.qtd, E.cortesQtd), duracao: rotulo(CORTES.dur, E.cortesDur) } : null,
-        broll: E.formato === 'reels-com-broll' && !C.pastas?.broll ? rotulo(BROLL, E.broll) : null,
+        broll: E.formato === 'reels-com-broll' ? rotulo(BROLL, E.broll || brollPadrao()) : null,
       },
     });
   }
@@ -567,6 +658,8 @@ document.addEventListener('click', (ev) => {
     else som.amostraEfeitos(valor, cfgSom().pixel);
     return;
   }
+  const rem = ev.target.closest('[data-remover]');
+  if (rem) { const [d, i] = rem.dataset.remover.split(':'); removerArquivo(d, Number(i)); return; }
   const acao = ev.target.closest('[data-acao]')?.dataset.acao;
   if (acao === 'destravar') {
     E.formatoTravado = false;
@@ -609,6 +702,7 @@ function carregarFonte(nome) {
 // Cor escolhida: redesenha as miniaturas com a cor nova.
 document.addEventListener('change', (ev) => {
   if (ev.target.type === 'color') renderizar();
+  if (ev.target.dataset?.envio && ev.target.files?.length) enviarArquivos(ev.target.dataset.envio, [...ev.target.files]);
 });
 
 $('#tocar').addEventListener('click', () => {

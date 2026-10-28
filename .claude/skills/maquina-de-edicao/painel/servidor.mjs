@@ -18,6 +18,9 @@
 //   ESCOLHAS_SALVAS <caminho>        (código 0)
 //   PREFERE_CHAT                     (código 3: a pessoa pediu pra responder no chat)
 //   TEMPO_ESGOTADO                   (código 2)
+//
+// A página também pode enviar arquivos (opcional): imagens vão pra
+// <pasta do vídeo>/imagens/ e clipes de apoio pra <pasta do vídeo>/broll/.
 
 import http from 'node:http';
 import fs from 'node:fs';
@@ -51,7 +54,35 @@ if (arqContexto) {
 }
 
 // Arquivos que a página pode pedir: só os listados no contexto.
-const pastaVideo = contexto.pasta || (arqContexto ? path.dirname(path.resolve(arqContexto)) : process.cwd());
+// Pasta do vídeo: a do contexto; sem ela, a pasta acima de edit/ (onde o contexto costuma ficar).
+function acharPastaVideo() {
+  if (contexto.pasta) return path.resolve(contexto.pasta);
+  if (!arqContexto) return process.cwd();
+  const dir = path.dirname(path.resolve(arqContexto));
+  return path.basename(dir) === 'edit' ? path.dirname(dir) : dir;
+}
+const pastaVideo = acharPastaVideo();
+
+// Envio de arquivos pela página: só estes tipos, só nestas pastas.
+const DESTINOS = {
+  imagens: { exts: ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif', '.heic'], limite: 50 * 1024 * 1024 },
+  broll: { exts: ['.mp4', '.mov', '.m4v', '.webm', '.mkv'], limite: 4 * 1024 * 1024 * 1024 },
+};
+const enviados = new Set();
+
+function nomeSeguro(nome) {
+  const base = path.basename(String(nome || 'arquivo')).normalize('NFC');
+  const limpo = base.replace(/[\\/:*?"<>|\x00-\x1f]/g, '-').replace(/^\.+/, '').slice(0, 120);
+  return limpo || 'arquivo';
+}
+
+function caminhoLivre(dir, nome) {
+  const ext = path.extname(nome);
+  const raiz = nome.slice(0, nome.length - ext.length);
+  let alvo = path.join(dir, nome);
+  for (let i = 2; fs.existsSync(alvo); i++) alvo = path.join(dir, `${raiz} ${i}${ext}`);
+  return alvo;
+}
 const permitidos = new Map();
 function liberar(chave, caminho) {
   if (!caminho) return null;
@@ -124,6 +155,44 @@ const servidor = http.createServer(async (req, res) => {
       json(res, 400, { ok: false, erro: e.message });
     }
     return;
+  }
+
+  if (url.pathname === '/api/enviar' && req.method === 'POST') {
+    const destino = DESTINOS[url.searchParams.get('destino')] ? url.searchParams.get('destino') : null;
+    const nome = nomeSeguro(url.searchParams.get('nome'));
+    if (!destino || !DESTINOS[destino].exts.includes(path.extname(nome).toLowerCase())) return json(res, 400, { ok: false, erro: 'Esse tipo de arquivo não é aceito aqui.' });
+    const dir = path.join(pastaVideo, destino);
+    fs.mkdirSync(dir, { recursive: true });
+    const alvo = caminhoLivre(dir, nome);
+    const saida = fs.createWriteStream(alvo);
+    let bytes = 0, falhou = false;
+    req.on('data', (c) => {
+      bytes += c.length;
+      if (bytes > DESTINOS[destino].limite && !falhou) {
+        falhou = true;
+        req.unpipe(saida); saida.destroy(); fs.rm(alvo, { force: true }, () => {});
+        json(res, 413, { ok: false, erro: 'Arquivo grande demais.' });
+        req.destroy();
+      }
+    });
+    req.pipe(saida);
+    saida.on('finish', () => {
+      if (falhou) return;
+      enviados.add(alvo);
+      json(res, 200, { ok: true, arquivo: path.basename(alvo), pasta: destino });
+    });
+    saida.on('error', (e) => { if (!falhou) { falhou = true; json(res, 500, { ok: false, erro: e.message }); } });
+    return;
+  }
+
+  if (url.pathname === '/api/enviar' && req.method === 'DELETE') {
+    const destino = DESTINOS[url.searchParams.get('destino')] ? url.searchParams.get('destino') : null;
+    const alvo = destino ? path.join(pastaVideo, destino, nomeSeguro(url.searchParams.get('nome'))) : null;
+    // Só apaga o que foi enviado por esta página nesta sessão.
+    if (!alvo || !enviados.has(alvo)) return json(res, 404, { ok: false });
+    fs.rmSync(alvo, { force: true });
+    enviados.delete(alvo);
+    return json(res, 200, { ok: true });
   }
 
   if (url.pathname === '/api/prefiro-chat' && req.method === 'POST') {

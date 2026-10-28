@@ -83,7 +83,9 @@ Tudo que a fase 0 descobriu. Campos ausentes viram "não tem".
   "estiloVisual": { "id": "pixelado", "nome": "Pixelado" },
   "respostas": { "musica": "A do estilo", "efeitos": "Os do estilo", "corDestaque": "A do estilo", "corMarca": null, "aplicarAjustesFixos": true, "cortes": null, "broll": null },
   "resumo": [["Formato", "Reels de Negócio"], ["Estilo visual", "Pixelado"]],
-  "observacoes": "corta a parte em que eu tusso no começo; o produto se chama Falow, com F maiúsculo"
+  "observacoes": "corta a parte em que eu tusso no começo; o produto se chama Falow, com F maiúsculo",
+  "imagensEnviadas": ["imagens/print-do-painel.png"],
+  "brollEnviados": []
 }
 ```
 
@@ -94,5 +96,9 @@ Tudo que a fase 0 descobriu. Campos ausentes viram "não tem".
 - `repetir-ultimo` traz só o que depende deste vídeo (a música, quando a da pasta não existe). O resto vem de `preferencias.md`.
 - `resumo` é a tabela pronta pro resumo da fase 1.
 - `observacoes`: o que a pessoa escreveu no campo "Observações" da página (opcional; `null` quando ficou vazio). Veja "Observações" no SKILL.md.
+- `imagensEnviadas` e `brollEnviados`: arquivos que a pessoa subiu pela página (opcional; listas vazias quando ela não subiu nada). O servidor grava direto na pasta do vídeo, em `imagens/` e `broll/`, e nunca sobrescreve: se o nome já existe, acrescenta um número. Use esses arquivos antes de buscar qualquer coisa.
+- `respostas.broll` (só no Reels com B-roll): de onde vêm os clipes. "Buscar clipes na internet (bancos de vídeo gratuitos)" quer dizer seguir `broll-da-internet.md`.
+
+O envio aceita imagens (`.jpg`, `.jpeg`, `.png`, `.webp`, `.gif`, `.avif`, `.heic`, até 50 MB cada) e vídeos (`.mp4`, `.mov`, `.m4v`, `.webm`, `.mkv`, até 4 GB cada). A pasta do vídeo é a do campo `pasta` do contexto: preencha sempre com o caminho absoluto.
 
 A pessoa já viu e confirmou o resumo na página. Mostre a tabela no chat (com as observações embaixo, se houver), avise que a edição começou e siga direto pra fase 2, **sem** perguntar "Posso começar a edição?".

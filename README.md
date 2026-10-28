@@ -24,7 +24,7 @@ Qualquer formato combina com qualquer estilo. Formato Ranking + Pixelado vira um
 | Comando | Como o vídeo sai |
 |---|---|
 | `/reels-de-negocio` | Alterna câmera cheia, tela dividida e animação em tela cheia a cada corte |
-| `/reels-com-broll` | Corte rápido, seus clipes de apoio e frases-chave empilhadas na legenda |
+| `/reels-com-broll` | Corte rápido, clipes de apoio (seus ou buscados na internet) e frases-chave empilhadas na legenda |
 | `/tela-dividida-explicativa` | Você embaixo e a explicação em cima, com cards de vidro, contadores e gráficos que se desenham |
 | `/ensaio-visual` | Preto e laranja, você recortado e as provas aparecendo acima de você |
 | `/legenda-encaixada` | Uma palavra gigante em destaque e o resto da frase encaixado em volta |
@@ -97,8 +97,8 @@ O que você aprovar fica salvo. No próximo vídeo, dá pra escolher "Repetir o 
 
 ### Alguns formatos pedem coisas a mais na pasta
 
-- **Reels com B-roll**: coloque seus clipes de apoio numa pasta `broll/` dentro da pasta do vídeo.
-- **Nuvem de Imagens**, **Recorte com Imagens**, **Ensaio Visual** e **Formato Ranking**: se quiser usar suas próprias imagens, coloque numa pasta `imagens/` (com nomes que digam o que é cada uma). Sem isso, o Claude busca logos, páginas e imagens reais do que você citou.
+- **Reels com B-roll**: não precisa juntar clipes. O Claude busca clipes de apoio em bancos de vídeo gratuitos e anota os créditos. Se preferir os seus, suba pela página ou coloque numa pasta `broll/` dentro da pasta do vídeo.
+- **Imagens (qualquer formato)**: são opcionais. Se quiser usar as suas (prints, logos, fotos do produto), suba pela página ou coloque numa pasta `imagens/`. Sem isso, o Claude busca logos, páginas e imagens reais do que você citou.
 - **Aula em Tela Dividida**: se tiver o roteiro da aula, coloque na pasta. O documento da aula fica mais fiel.
 - **Cortes de Vídeo Longo**: o Claude te mostra o ranking dos melhores trechos antes de editar, e você aprova ou troca.
 
