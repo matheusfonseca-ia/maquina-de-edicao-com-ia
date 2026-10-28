@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Instala a Máquina de Edição e os 12 estilos prontos no Claude Code (Mac e Linux).
+# Instala a Máquina de Edição e os 12 formatos prontos no Claude Code (Mac e Linux).
 # Uso, dentro da pasta do repositório:
 #   bash instalar.sh
 #
@@ -44,5 +44,5 @@ if [ "$fez_backup" = 1 ]; then
 fi
 echo ""
 echo "Feche e abra o Claude Code de novo. Depois, na pasta do seu vídeo, digite:"
-echo "  /maquina-de-edicao      (escolhe entre editar do zero ou com um estilo pronto)"
-echo "  /reels-de-negocio       (ou o nome de qualquer estilo, pra ir direto)"
+echo "  /maquina-de-edicao      (escolhe entre editar do zero ou com um formato pronto)"
+echo "  /reels-de-negocio       (ou o nome de qualquer formato, pra ir direto)"

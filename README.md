@@ -66,7 +66,7 @@ Abra o terminal e rode:
 **Windows (PowerShell)**
 
 ```powershell
-git clone <LINK-DO-REPOSITORIO> maquina-de-edicao
+git clone https://github.com/matheusfonseca-ia/maquina-de-edicao-com-ia.git maquina-de-edicao
 cd maquina-de-edicao
 powershell -ExecutionPolicy Bypass -File .\instalar.ps1
 ```
@@ -74,7 +74,7 @@ powershell -ExecutionPolicy Bypass -File .\instalar.ps1
 **Mac**
 
 ```bash
-git clone <LINK-DO-REPOSITORIO> maquina-de-edicao
+git clone https://github.com/matheusfonseca-ia/maquina-de-edicao-com-ia.git maquina-de-edicao
 cd maquina-de-edicao
 bash instalar.sh
 ```

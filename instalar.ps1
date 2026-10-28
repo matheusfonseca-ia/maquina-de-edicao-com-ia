@@ -1,4 +1,4 @@
-# Instala a Maquina de Edicao e os 12 estilos prontos no Claude Code (Windows).
+# Instala a Maquina de Edicao e os 12 formatos prontos no Claude Code (Windows).
 # Uso, dentro da pasta do repositorio:
 #   powershell -ExecutionPolicy Bypass -File .\instalar.ps1
 #
@@ -42,5 +42,5 @@ if ($fezBackup) {
 }
 Write-Host ""
 Write-Host "Feche e abra o Claude Code de novo. Depois, na pasta do seu video, digite:"
-Write-Host "  /maquina-de-edicao      (escolhe entre editar do zero ou com um estilo pronto)"
-Write-Host "  /reels-de-negocio       (ou o nome de qualquer estilo, pra ir direto)"
+Write-Host "  /maquina-de-edicao      (escolhe entre editar do zero ou com um formato pronto)"
+Write-Host "  /reels-de-negocio       (ou o nome de qualquer formato, pra ir direto)"
