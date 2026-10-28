@@ -8,6 +8,10 @@ Combina com: todos. Fica melhor em Reels de Negócio, Tela Dividida Explicativa,
 
 Visual de "caderno de ideias + videogame": tudo é claro, limpo e com cara de papel quadriculado, e nos momentos mais fortes do vídeo a tela vira uma cena de jogo em pixel art (arena, cemitério, corrida, chefão), com HUD de jogo. Os gráficos ilustram a frase ao pé da letra: "respostas ruins" vira um cemitério de lápides, "faz 100 versões" vira um personagem se multiplicando até uma grade de 100.
 
+**Cada frase falada vira uma pequena cena que mostra literalmente o que está sendo dito.** Não existe cartão genérico com ícone e título: o gráfico sempre conta a frase. Antes de construir, escreva em `edit/plano.md` uma tabela "frase → metáfora visual" pro vídeo inteiro, escolhendo cada cena do repertório de motions abaixo. Se não achar metáfora pra uma frase, use a peça real (print da página, terminal, chat) com uma ação em cima (cursor, risco, contorno, carimbo).
+
+O formato continua mandando na estrutura (onde ficam a câmera, os gráficos e a legenda, e quanto tempo dura cada layout). O Pixelado manda no que aparece dentro das áreas gráficas e em como isso se mexe.
+
 ## Papéis
 
 | Papel | Valor |
@@ -42,8 +46,8 @@ Quando o formato pede fundo escuro (ex: tela C do Reels de Negócio, Tela Dividi
 - Mantém apóstrofo e interrogação. Sem ponto final.
 - Posição: a do formato. Nos layouts divididos, a pílula fica **em cima da emenda** (metade sobre o gráfico, metade sobre a câmera).
 - Formatos com legenda especial:
-  - Legenda Encaixada: palavras pequenas em JetBrains Mono 800 caixa alta branca com sombra (sem pílula); a palavra encaixada em **Silkscreen 700**, terracota, com sombra dura de 6 px `#151513` (sem desfoque), como letreiro de jogo.
-  - Reels com B-roll (frase empilhada): linha de cima em mono caixa alta; palavra branca em Inter 900; palavra de destaque em Silkscreen 700 terracota com sombra dura.
+  - Legenda Encaixada: palavras pequenas em JetBrains Mono 800 caixa alta branca com sombra (sem pílula); a palavra encaixada em **Silkscreen 700**, terracota, com sombra dura de 6 px `#151513` (sem desfoque), como letreiro de jogo. A Silkscreen é bem mais larga que a serifa do formato: o tamanho é o maior que deixa a palavra inteira dentro de 960 px de largura (normalmente 100 a 150 px, nunca os 200 px do formato).
+  - Reels com B-roll (frase empilhada): linha de cima em mono caixa alta; palavra branca em Inter 900; palavra de destaque em Silkscreen 700 terracota com sombra dura. A linha de baixo inteira (palavra branca + palavra em Silkscreen) cabe em 920 px: reduza as duas juntas até caber.
   - Formato Ranking: legenda em pílula escura (como acima); nome do item no card em Silkscreen 700 dourado `#E8B547` com contorno `#151513`.
 
 ## Título de gancho e capa
@@ -88,8 +92,35 @@ Legenda Encaixada, Reels com B-roll, Nuvem de Imagens e Recorte com Imagens ganh
 - na Nuvem de Imagens, as imagens ganham moldura de 4 px `#151513` com sombra dura e, a cada 3 grupos, um dos itens é um sprite pixel em vez de foto;
 - no Recorte com Imagens, uma das imagens de fundo (a do clímax) é um cenário pixel art com a pessoa recortada dentro.
 
+## Repertório de motions
+
+As cenas que o Pixelado usa dentro das áreas gráficas do formato. Escolha pela frase (tabela "frase → metáfora visual"); a mesma peça pode voltar com outro conteúdo.
+
+- **Multiplicação com contador**: um personagem no centro se divide em vários, em cascata, até uma grade (10 × 10), com contador "×1 → ×51 → ×100" embaixo ("×" em terracota, número em Inter 900 ~70 px). Pra "faz várias versões", "escala", "um time inteiro".
+- **Cartão de produto**: ilustração à esquerda (mascote sobre um montinho de terra ou areia), à direita etiqueta mono terracota em pílula `#F6E3DA` ("/nome") e o nome do produto em Inter 800 ~90 px sendo digitado, com a descrição curta em cinza embaixo. Pra apresentar a ferramenta.
+- **Print real** (site, GitHub, documentação) dentro de cartão branco com sombra, capturado com `npx hyperframes capture`. Às vezes o print encolhe e sobe pra dar lugar ao próximo elemento.
+- **Carimbo**: palavra em Inter 900 dentro de retângulo com borda, girado −8 a −12°, entra grande (escala 1,6 → 1) com tremida curta. Verde pra coisa boa ("GRÁTIS" sobre o print), terracota vazado pra repetição ("IGUAL ×100" sobre um cartão).
+- **Terminal** escuro (`#151513`, raio 18, três bolinhas no topo): comando digitado letra a letra com autocompletar em terracota; depois uma lista de tarefas rodando (árvore com ├─, ids coloridos, "rodando" → "pronto").
+- **Chat**: cartão creme com texto em Newsreader e barra de ações embaixo; os pedidos da pessoa em bolha cinza à direita ("tenta de novo", "ainda genérico. de novo") e respostas ruins se empilhando.
+- **Anotação à mão em vermelho** `#C8102E`: risco atravessando clichês, elipse desenhada em volta de uma expressão, palavra manuscrita inclinada em Caveat ("*genérico.*") entrando na hora. Traço desenhado em ~0,3 s (stroke-dashoffset).
+- **Cartão de tarefa**: etiqueta "TAREFA" mono terracota, a frase em serifa ~60 px e, à direita, "enviada pra **0** / 100" com o número subindo.
+- **Personagens cercando um cartão**: sprites dos dois lados com rastro pontilhado colorido vindo de fora até o cartão central.
+- **Três mini cartões lado a lado**: cabeçalho mono e um diagrama simples que se anima (barras empilhando, lista de ✓ e ✕, curva em degraus sendo desenhada).
+- **Linha de etapas**: chips "Rascunho → Crítica → Reescrita" acendendo em sequência, com fundo pastel.
+- **Cartas de baralho**: verso escuro que vira e revela a frente colorida com um título; três cartas em leque.
+- **Etiquetas de crítica em pixel**: caixas brancas com borda preta e "✕ GENÉRICO", "✕ SEM PROVA" em Silkscreen sobre os personagens. O perdedor fica cinza com olhos em "×" e cai.
+- **Cronômetro**: chip "⏱ TEMPO PERDIDO" com contador mono vermelho correndo (00:51 → 47:12) sobre uma pilha de cartões; no fim, um traço vermelho grosso risca a pilha.
+- **Fluxo de instalação**: o print do repositório encolhe pro topo, uma seta terracota desce até um chat escuro onde o link e depois "instala a skill" são digitados; o campo ganha contorno terracota.
+- **Duelo e vencedor** (na cena pixel art): HUD "RODADA 1 · 50 DUELOS", contador dourado descendo (100 → 25 → 13 → 7 → 4), personagens se atacando e caindo, e no fim "VENCEDOR" com coroa e confete em pixel.
+
+### Chamada pra ação
+
+Cartão com duas linhas numeradas por círculos terracota: (1) foto de perfil com anel de story, "Seguir" em Inter 700 e o @perfil, com um botão azul "Seguir" que vira "Seguindo" cinza; (2) "Comenta" e um campo onde a palavra-chave é digitada em caixa alta, que ganha contorno terracota. Embaixo, pequeno: "✈ Te mando o passo a passo no direct". Entra quando a pessoa fala "comenta X" e fica até o fim. O lugar é o que o formato define pra chamada.
+
 ## Movimento
 
+- **Ritmo dentro dos gráficos**: uma cena gráfica nova a cada ~2 s de fala, e dentro da cena algo muda a cada 0,3–0,6 s (um elemento entra, um contador sobe, um risco é desenhado, uma palavra é digitada). A tela nunca fica parada com um gráfico estático.
+- Trocas de conteúdo dentro do mesmo layout: corte seco ou dissolvência rápida (≤ 0,15 s). Às vezes o mesmo cartão se transforma em vez de trocar.
 - Entradas: fade + escala 0,96 → 1 + subida de 8–12 px, 0,25 s, power2.out.
 - Texto de terminal e de chat é digitado letra a letra com cursor de bloco.
 - Contadores rolam números.
@@ -104,6 +135,11 @@ Legenda Encaixada, Reels com B-roll, Nuvem de Imagens e Recorte com Imagens ganh
 - Se a pessoa tiver ajuste fixo contra "8 bits" ou "tique", ele vale: use só os efeitos que sobrarem.
 
 ## Verificação do estilo
+
+- A tabela "frase → metáfora visual" existe no plano e cada cena gráfica do vídeo mostra a frase dita naquele momento (nenhum cartão genérico de ícone e título).
+- Dentro de cada cena gráfica, alguma coisa muda pelo menos a cada 0,6 s.
+
+- Nenhuma palavra em Silkscreen passando da borda da tela (meça a largura do texto renderizado, não estime).
 
 - Pixel art nítido em todos os quadros (sem borrão de redimensionamento).
 - Legenda em caixa alta, mono, dentro da pílula, sem cor de destaque.

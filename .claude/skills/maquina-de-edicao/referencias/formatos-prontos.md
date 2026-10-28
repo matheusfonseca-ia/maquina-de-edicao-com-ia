@@ -8,7 +8,7 @@ A pasta de skills é a pasta-mãe da pasta desta skill. Exemplo: se esta skill e
 
 ## Catálogo
 
-Use esta lista na pergunta de formato da fase 1. Mostre o número, o nome e a descrição curta.
+Use esta lista na pergunta de formato da fase 1. Mostre o número, o nome e a descrição curta, e só os formatos que combinam com a orientação da gravação: gravação vertical → os verticais, sem o Cortes de Vídeo Longo; gravação horizontal → os horizontais e o Cortes de Vídeo Longo.
 
 ### Vertical 9:16 (Reels, TikTok, Shorts)
 

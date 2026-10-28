@@ -79,7 +79,7 @@ cd maquina-de-edicao
 bash instalar.sh
 ```
 
-O instalador copia as 13 skills (a Máquina e os 12 formatos, com os estilos visuais dentro da Máquina) pra pasta de skills do Claude Code no seu computador (`~/.claude/skills/`), e aí elas funcionam em qualquer pasta. Se você já tinha uma versão antiga da Máquina de Edição, ela é guardada em `~/.claude/skills-backup/` antes da troca. Suas preferências e estilos salvos não são apagados.
+O instalador copia as 13 skills (a Máquina e os 12 formatos, com os estilos visuais dentro da Máquina) pra pasta de skills do Claude Code no seu computador (`~/.claude/skills/`), e aí elas funcionam em qualquer pasta. Se você já tinha uma versão antiga da Máquina de Edição, ela é guardada em `~/.claude/skills-backup/` antes da troca. Suas preferências e os estilos visuais que você criou não são apagados.
 
 Depois de instalar, **feche e abra o Claude Code de novo**.
 
@@ -87,8 +87,8 @@ Depois de instalar, **feche e abra o Claude Code de novo**.
 
 1. Crie uma pasta pro vídeo e coloque a gravação bruta dentro (e o áudio do microfone, se gravou separado).
 2. Abra o Claude Code nessa pasta.
-3. Digite `/maquina-de-edicao` e escolha **do zero** ou **formato pronto**. No formato pronto, escolha o formato e depois o estilo visual. Ou digite direto o comando do formato, por exemplo `/ensaio-visual`, e escolha só o estilo visual.
-4. Responda as perguntas rápidas (no formato pronto são só música, efeitos e cor de destaque).
+3. Digite `/maquina-de-edicao`. O Claude confere se as ferramentas estão instaladas e abre uma página no seu navegador.
+4. Na página, escolha **do zero** ou **formato pronto**, o formato, o estilo visual e os detalhes. Cada escolha aparece numa prévia animada (com um bonequinho no seu lugar), com botão pra ouvir a música e os efeitos. Quando estiver do seu jeito, clique em **Começar a edição** e volte pro Claude Code. Se digitar direto o comando de um formato (ex: `/ensaio-visual`), a página já abre nele. Prefere responder no chat? Tem um link pra isso no fim da página.
 5. Espere. Quando o vídeo estiver montado, o Claude te passa um link do **HyperFrames Studio** pra assistir.
 6. Peça os ajustes que quiser, em português normal ("legenda maior", "tira esse efeito", "corta essa frase").
 7. Quando estiver bom, diga **"pode exportar"**. O vídeo final sai em `edit/final.mp4`.
@@ -104,10 +104,7 @@ O que você aprovar fica salvo. No próximo vídeo, dá pra escolher "Repetir o 
 
 ## Quer seu próprio estilo?
 
-Mande o link de um reel que você gosta e peça pra Máquina **"analisar o estilo de edição desse vídeo e salvar"**. Ela pergunta se você quer copiar:
-
-- **a edição inteira** (estrutura + visual): vira um estilo seu que aparece na lista de formatos, junto com os 12;
-- **só o visual** (cores, fontes, legenda, música): vira um estilo visual novo, que você aplica em qualquer um dos 12 formatos.
+Mande o link de um reel que você gosta e peça pra Máquina **"analisar o estilo de edição desse vídeo e salvar"**. Ela copia o visual (cores, fontes, legenda, motions, música) e cria um estilo visual novo, que você aplica em qualquer um dos 12 formatos.
 
 Também dá pra criar um estilo visual descrevendo ("cria um estilo visual neon roxo com legenda em caixa alta"). Ele fica salvo em `~/.maquina-de-edicao/estilos-visuais/` e aparece na próxima edição.
 

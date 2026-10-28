@@ -20,8 +20,8 @@ Proporção (vertical 9:16), nível (equivale ao Com imagens, sem câmera virtua
 
 ## Entradas extras
 
-- O vídeo longo na pasta (qualquer orientação, qualquer duração). Pode ter mais de uma pessoa (podcast, call).
-- Se a fase 0 detectar vídeo com menos de 3 minutos, avise: "Esse vídeo é curto pra virar cortes. Quer editar ele inteiro como um reel? (Reels de Negócio é o mais parecido)". Se a pessoa insistir, siga com 1 ou 2 cortes.
+- O vídeo longo na pasta, gravado na horizontal (é o formato oferecido pra gravação horizontal; numa gravação vertical, os formatos verticais servem melhor). Qualquer duração. Pode ter mais de uma pessoa (podcast, call).
+- Se a fase 0 detectar vídeo com menos de 3 minutos, avise: "Esse vídeo é curto pra virar cortes. Quer editar ele inteiro? (O YouTube Educativo é o mais parecido.)". Se a pessoa insistir, siga com 1 ou 2 cortes.
 
 ## Fluxo diferente
 

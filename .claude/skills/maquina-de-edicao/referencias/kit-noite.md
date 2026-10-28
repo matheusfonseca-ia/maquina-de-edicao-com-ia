@@ -67,6 +67,7 @@ Usado no topo das telas gráficas.
 - De 2 a 5 palavras por bloco, quebrando em frase, nunca no meio de um nome.
 - Uma palavra de destaque a cada 2–3 blocos: Instrument Serif itálico, 1,15× o tamanho, `#CC7430` (ou `#E0894A` se o fundo atrás for a câmera e o contraste ficar baixo).
 - Entra com fade de 0,12 s. Sem animação palavra por palavra, a não ser que o estilo peça.
+- Se a legenda cair sobre uma área clara da gravação (roupa branca, parede clara), use o reforço de contraste de `estilos-visuais.md` ("Legenda legível sobre a câmera").
 
 ## Movimento
 

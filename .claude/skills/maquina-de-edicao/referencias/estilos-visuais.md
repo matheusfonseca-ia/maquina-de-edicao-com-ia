@@ -64,3 +64,8 @@ Regras da troca:
 - **Marca da pessoa**: se ela pediu a cor da marca, troque só a cor de destaque do estilo (com contraste de 4,5:1).
 
 Prioridade (da mais forte pra mais fraca): pedidos da revisão → ajustes fixos salvos → estilo visual (no que é aparência) → formato → `variacoes.md` → `instrucoes-base.md`.
+
+## Vale pra todo estilo (inclusive o Original do formato)
+
+- **Texto sempre dentro da tela.** Quando a fonte do estilo é mais larga que a do formato (Silkscreen, mono em caixa alta), meça a largura do texto já renderizado e reduza até caber com 60 px de margem de cada lado. Nunca deixe palavra cortada na borda.
+- **Legenda legível sobre a câmera.** Antes de fixar a legenda de cada trecho, meça a luminância média da gravação no retângulo onde ela fica. Se passar de 0,55 (roupa branca, parede clara, luz estourada), a legenda que não tem caixa nem contorno (Kit Noite, Noite Laranja e os originais de Ensaio Visual, Legenda Encaixada, Reels com B-roll, Nuvem de Imagens, Recorte com Imagens e Telas em Profundidade) ganha reforço: sombra dupla `0 2px 6px rgba(0,0,0,0.85), 0 0 28px rgba(0,0,0,0.6)` e, na palavra de destaque colorida, contorno de 3 px `rgba(0,0,0,0.55)` (`paint-order: stroke fill`). Legendas com pílula ou contorno próprio (Pixelado, Claro Tecnológico) não precisam. Confira nos quadros da verificação 9A: nenhuma palavra branca sobre fundo claro sem reforço.
