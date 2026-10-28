@@ -63,7 +63,7 @@ Regras da troca:
 - **Áudio**: o clima da música e a paleta de efeitos vêm do estilo. As regras de nível, sincronia e master vêm do motor.
 - **Marca da pessoa**: se ela pediu a cor da marca, troque só a cor de destaque do estilo (com contraste de 4,5:1).
 
-Prioridade (da mais forte pra mais fraca): pedidos da revisão → ajustes fixos salvos → estilo visual (no que é aparência) → formato → `variacoes.md` → `instrucoes-base.md`.
+Prioridade (da mais forte pra mais fraca): pedidos da revisão e observações da pessoa → ajustes fixos salvos → estilo visual (no que é aparência) → formato → `variacoes.md` → `instrucoes-base.md`.
 
 ## Vale pra todo estilo (inclusive o Original do formato)
 

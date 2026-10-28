@@ -22,7 +22,7 @@ const E = {
   ajustes: 'sim',
   cortesQtd: '5', cortesDur: '30-60', broll: 'vou-colocar', formatoTravado: false,
   zero: { padrao: null, ...PADRAO_COMPLETO, marcaHex: '#9A4DFF', marcaFundo: 'claro', marcaFonte: '' },
-  repetirMusica: 'eletronica',
+  repetirMusica: 'eletronica', observacoes: '',
 };
 
 const som = new Som();
@@ -322,6 +322,8 @@ function etapaResumo() {
   if (!r.length || falta()) return '';
   return etapa('Conferir e começar', 'É isso que vai pro Claude Code. Ele edita sozinho e te chama quando o vídeo estiver pronto pra assistir.', `
     <table class="resumo">${r.map(([k, v]) => `<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`).join('')}</table>
+    <label class="subtitulo observacoes-rotulo" for="observacoes">Observações <small>(opcional)</small></label>
+    <textarea id="observacoes" class="campo observacoes" data-campo="observacoes" maxlength="2000" rows="4" placeholder="Algo que o Claude precisa saber pra editar este vídeo. Ex: corta a parte em que eu tusso no começo; o produto se chama Falow, com F maiúsculo; deixa a música bem baixinha.">${esc(E.observacoes)}</textarea>
     <p class="chat">Prefere responder as perguntas no chat? <button type="button" class="trocar" data-acao="chat">Voltar pro Claude Code sem escolher aqui</button></p>`, true, 'etapa-resumo');
 }
 
@@ -391,6 +393,7 @@ function saida() {
     video: v.arquivo || null,
     audios: (C.audios || []).map((a, i) => ({ arquivo: a.arquivo, uso: E.usoAudio[i], usoTexto: rotulo(USO_AUDIO, E.usoAudio[i]) })),
     resumo: resumo(),
+    observacoes: E.observacoes.trim() || null,
   };
   if (E.modo === 'formato') {
     Object.assign(base, {

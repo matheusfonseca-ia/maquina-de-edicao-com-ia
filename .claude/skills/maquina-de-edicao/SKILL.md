@@ -201,7 +201,16 @@ Use a ferramenta de perguntas de múltipla escolha (AskUserQuestion) quando disp
 
 ### Resumo
 
-Mostre uma tabela curta com todas as escolhas (incluindo o que foi detectado na fase 0: orientação da gravação e se tem áudio separado) e pergunte: **"Posso começar a edição?"**. Ajuste o que a pessoa pedir. Avise que a edição demora e que você só volta a falar quando o vídeo estiver pronto pra assistir no Studio.
+Mostre uma tabela curta com todas as escolhas (incluindo o que foi detectado na fase 0: orientação da gravação e se tem áudio separado) e pergunte: **"Posso começar a edição?"**. Diga junto que, se quiser, ela pode mandar alguma observação pra edição (opcional). Ajuste o que a pessoa pedir. Avise que a edição demora e que você só volta a falar quando o vídeo estiver pronto pra assistir no Studio.
+
+### Observações
+
+A pessoa pode escrever observações livres pra edição: no campo "Observações" do painel (vem em `observacoes` no `edit/escolhas.json`) ou no chat. São opcionais. Quando existirem:
+
+- copie o texto inteiro, sem resumir, numa seção "Observações da pessoa" do `edit/plano.md`;
+- trate cada uma como pedido da pessoa: vale por cima das escolhas, do estilo visual, do formato e das instruções base (mesma força de um pedido na revisão). Se uma observação contradisser uma escolha feita no painel, siga a observação e anote a decisão no plano;
+- se alguma for impossível ou ambígua, faça a melhor interpretação, siga e explique no relatório (não pare a edição pra perguntar);
+- não salve as observações nas preferências: elas valem só pra este vídeo, a não ser que a pessoa diga que quer sempre assim.
 
 ---
 

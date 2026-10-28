@@ -72,7 +72,7 @@ O `formato.md` de cada formato segue sempre as mesmas seções. Cada uma vale po
 
 Regras de prioridade, da mais forte pra mais fraca:
 
-1. Pedidos da pessoa na revisão (fase 3).
+1. Pedidos da pessoa na revisão (fase 3) e as observações que ela mandou (painel ou chat).
 2. Ajustes fixos das preferências salvas, se a pessoa escolheu usá-los.
 3. O estilo visual, no que é aparência (ver `estilos-visuais.md`).
 4. O `formato.md`.

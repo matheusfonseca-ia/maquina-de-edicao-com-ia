@@ -82,7 +82,8 @@ Tudo que a fase 0 descobriu. Campos ausentes viram "não tem".
   "formato": { "id": "reels-de-negocio", "nome": "Reels de Negócio" },
   "estiloVisual": { "id": "pixelado", "nome": "Pixelado" },
   "respostas": { "musica": "A do estilo", "efeitos": "Os do estilo", "corDestaque": "A do estilo", "corMarca": null, "aplicarAjustesFixos": true, "cortes": null, "broll": null },
-  "resumo": [["Formato", "Reels de Negócio"], ["Estilo visual", "Pixelado"]]
+  "resumo": [["Formato", "Reels de Negócio"], ["Estilo visual", "Pixelado"]],
+  "observacoes": "corta a parte em que eu tusso no começo; o produto se chama Falow, com F maiúsculo"
 }
 ```
 
@@ -92,5 +93,6 @@ Tudo que a fase 0 descobriu. Campos ausentes viram "não tem".
 - `do-zero` traz `padraoCompleto` (true quando a pessoa escolheu o padrão completo) e, se ela escolheu as cores da marca, `respostas.marca` com cor, fundo e fonte.
 - `repetir-ultimo` traz só o que depende deste vídeo (a música, quando a da pasta não existe). O resto vem de `preferencias.md`.
 - `resumo` é a tabela pronta pro resumo da fase 1.
+- `observacoes`: o que a pessoa escreveu no campo "Observações" da página (opcional; `null` quando ficou vazio). Veja "Observações" no SKILL.md.
 
-A pessoa já viu e confirmou o resumo na página. Mostre a tabela no chat, avise que a edição começou e siga direto pra fase 2, **sem** perguntar "Posso começar a edição?".
+A pessoa já viu e confirmou o resumo na página. Mostre a tabela no chat (com as observações embaixo, se houver), avise que a edição começou e siga direto pra fase 2, **sem** perguntar "Posso começar a edição?".
