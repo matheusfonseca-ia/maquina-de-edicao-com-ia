@@ -604,59 +604,113 @@ function carimbo(ctx, texto, cor, x, y, w, em) {
 
 const GITHUB_PATH = 'M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2 0 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1 .9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3';
 
+// Personagem do estilo (12 × 8 blocos), o mesmo da referência.
+const SIRI = ['..BBBBBBBB..', '..BBBBBBBB..', '..BEBBBBEB..', 'BBBEBBBBEBBB', 'BBBBBBBBBBBB', '..BBBBBBBB..', '..B.B..B.B..', '..B.B..B.B..'];
+function siri(cor = '#D97757', p = 10, morto = false) {
+  let r = '';
+  SIRI.forEach((l, y) => [...l].forEach((c, x) => {
+    if (c === '.') return;
+    if (c === 'E' && morto) { r += `<text x="${x * p + p / 2}" y="${y * p + p * 0.9}" font-size="${p * 1.3}" text-anchor="middle" fill="#151513" font-family="monospace">×</text>`; return; }
+    r += `<rect x="${x * p}" y="${y * p}" width="${p}" height="${p}" fill="${c === 'E' ? '#1A1A1A' : (morto ? '#9a9692' : cor)}"/>`;
+  }));
+  return `<svg width="${12 * p}" height="${8 * p}" viewBox="0 0 ${12 * p} ${8 * p}" shape-rendering="crispEdges" style="display:block;overflow:visible">${r}</svg>`;
+}
+const CORES_SIRI = ['#D97757', '#4A90D9', '#E86AA6', '#4CAF50', '#8E5BD9', '#E8B547', '#3FC1C9', '#E5484D'];
+
+// Cemitério em pixel art ao pôr do sol, dentro do cartão do dividido (gancho da referência).
+function cemiterio(ctx, c) {
+  Object.assign(c.style, { overflow: 'hidden', background: '#3b2230' });
+  const ceu = h('div', { position: 'absolute', inset: '0', background: 'linear-gradient(#5b2a4a 0 14%, #8c3a4c 14% 28%, #c4523f 28% 40%, #e8823c 40% 50%, #f2b25a 50% 56%, #4a2b2b 56% 58%, #5a3426 58%)', imageRendering: 'pixelated' });
+  const lua = h('div', caixa(700, 60, 84, 84, { background: '#F6D9A0', borderRadius: '50%', boxShadow: '0 0 30px rgba(246,217,160,.6)' }));
+  const cerca = h('div', caixa(0, 222, 900, 26, { backgroundImage: 'linear-gradient(90deg, #2a1a1e 6px, transparent 6px)', backgroundSize: '22px 26px', borderTop: '4px solid #2a1a1e', boxSizing: 'border-box' }));
+  const arvore = h('div', caixa(790, 120, 80, 130), `<svg viewBox="0 0 80 130" width="80" height="130" shape-rendering="crispEdges"><path d="M36 130 V60 H30 V40 H22 V30 H14 M36 60 H48 V36 H58 V24 H68 M36 80 H24 V70" stroke="#2a1a1e" stroke-width="8" fill="none"/></svg>`);
+  c.append(ceu, lua, cerca, arvore);
+  const m = h('div', { position: 'absolute', left: '70px', top: '330px' }, siri('#D97757', 11));
+  c.appendChild(m);
+  ctx.anima(m, [{ transform: 'translateY(0)' }, { transform: 'translateY(-10px)' }], { dur: .5, ease: 'steps(2)', iter: Infinity, dir: 'alternate' });
+  const frases = ['Espero que esteja bem', 'Prezado cliente', 'Ótima pergunta!', 'Conforme combinado'];
+  frases.forEach((f, i) => {
+    const l = h('div', caixa(250 + i * 158, 228, 140, 190, { background: '#C9C6C2', borderRadius: '60px 60px 0 0', border: '5px solid #6b6763', boxSizing: 'border-box', textAlign: 'center', paddingTop: '22px', color: '#3A3836' }),
+      `<div style="font:700 28px Silkscreen,monospace">RIP</div><div style="font:italic 400 19px Newsreader,Georgia,serif;line-height:1.1;margin:8px 10px 0">“${f}”</div>`);
+    c.appendChild(l);
+    ctx.anima(l, [{ opacity: 0, transform: 'translateY(40px)' }, { opacity: 1, transform: 'none' }], { em: .25 + i * .55, dur: .25, ease: 'steps(4)', som: 'tum' });
+  });
+}
+
+// Arena em pixel art em tela cheia, com HUD e duelo até sobrar um (clímax da referência).
+function arena(ctx) {
+  const { W, H } = ctx;
+  const g = h('div', caixa(0, 0, W, H, { overflow: 'hidden', background: '#E9C98F' }));
+  const arq = h('div', caixa(0, 0, W, 560, { background: 'repeating-linear-gradient(90deg, #C7533F 0 18px, #9E3B2E 18px 24px, #C7533F 24px 120px)', borderBottom: '14px solid #7A2E24' }));
+  for (let fila = 0; fila < 3; fila++) {
+    const f = h('div', caixa(0, 40 + fila * 165, W, 120, { backgroundImage: 'radial-gradient(circle at 50% 100%, #3a2a24 0 46px, transparent 47px), repeating-linear-gradient(90deg, #E8C9A0 0 4px, #6b4a3a 4px 8px, #d9a07a 8px 12px)', backgroundSize: '120px 120px, auto' }));
+    arq.appendChild(f);
+  }
+  g.appendChild(arq);
+  g.appendChild(h('div', caixa(0, 574, W, H - 574, { backgroundImage: 'radial-gradient(#d4ad6e 3px, transparent 3.5px)', backgroundSize: '70px 54px' })));
+  const hud = (html, l, t) => h('div', { position: 'absolute', left: px(l), top: px(t), fontFamily: 'Silkscreen, monospace', fontSize: '40px', color: '#fff', background: '#151513', border: '4px solid #3A3836', padding: '12px 24px', whiteSpace: 'nowrap' }, html);
+  const ronda = hud('<span style="color:#E8B547">RODADA 1</span> <span style="font-size:26px">50 DUELOS</span>', 300, 470);
+  g.appendChild(ronda);
+  ctx.anima(ronda, [{ opacity: 0, transform: 'scale(1.4)' }, { opacity: 1, transform: 'none' }], { em: 0, dur: .2, ease: 'steps(3)' });
+  // multidão que vai caindo até sobrar um
+  let s = 7;
+  const rnd = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+  for (let i = 0; i < 28 && !ctx.estatico; i++) {
+    const x = 120 + rnd() * 760, y = 960 + rnd() * 520;
+    const p = h('div', { position: 'absolute', left: px(x), top: px(y) }, siri(CORES_SIRI[i % CORES_SIRI.length], 7));
+    g.appendChild(p);
+    ctx.anima(p, [{ transform: 'translateX(0)' }, { transform: `translateX(${i % 2 ? -14 : 14}px)` }], { dur: .3, ease: 'steps(2)', iter: Infinity, dir: 'alternate' });
+    const morto = h('div', { position: 'absolute', left: px(x), top: px(y), opacity: '0' }, siri('#9a9692', 7, true));
+    g.appendChild(morto);
+    ctx.anima(p, [{ opacity: 1 }, { opacity: 0 }], { em: .5 + i * .05, dur: .05, preso: true });
+    ctx.anima(morto, [{ opacity: 0 }, { opacity: 1, offset: .2 }, { opacity: 1, offset: .7 }, { opacity: 0 }], { em: .5 + i * .05, dur: .6 });
+  }
+  const restam = hud('RESTAM <span style="color:#E8B547">100</span>', 360, 470);
+  const num = restam.querySelector('span');
+  g.appendChild(restam);
+  ctx.anima(ronda, [{ opacity: 1 }, { opacity: 0 }], { em: .45, dur: .05, preso: true });
+  ctx.anima(restam, [{ opacity: 0 }, { opacity: 1 }], { em: .45, dur: .05, som: 'moeda' });
+  ctx.tempo(.5, 1.4, k => { num.textContent = String(Math.max(1, Math.round(100 - 99 * (1 - (1 - k) ** 2)))); });
+  const rei = h('div', { position: 'absolute', left: '420px', top: '1180px' }, `<div style="width:100px;height:40px;margin:0 auto -6px;background:#E8B547;clip-path:polygon(0 100%,0 0,25% 50%,50% 0,75% 50%,100% 0,100% 100%)"></div>${siri('#4A90D9', 20)}`);
+  g.appendChild(rei);
+  ctx.anima(rei, [{ opacity: 0, transform: 'translateY(30px)' }, { opacity: 1, transform: 'none' }], { em: 1.95, dur: .25, ease: 'steps(4)', som: 'confirma' });
+  const venc = hud('<span style="color:#E8B547">VENCEDOR</span> <span style="font-size:26px">VENCEU 99</span>', 290, 470);
+  g.appendChild(venc);
+  ctx.anima(restam, [{ opacity: 1 }, { opacity: 0 }], { em: 1.95, dur: .05, preso: true });
+  ctx.anima(venc, [{ opacity: 0, transform: 'scale(1.3)' }, { opacity: 1, transform: 'none' }], { em: 1.95, dur: .2, ease: 'steps(3)' });
+  // No quadro parado (cartão de escolha) fica só o fim: o vencedor.
+  if (ctx.estatico) { ronda.remove(); restam.remove(); }
+  return g;
+}
+
+// O personagem se multiplica até 100, em cima e embaixo da legenda, com contador.
+function multiplica100(ctx) {
+  const g = fundoGrafico(ctx, 0, 0, 1080, 1920);
+  const primeiro = h('div', { position: 'absolute', left: '450px', top: '420px' }, siri('#D97757', 15));
+  g.appendChild(primeiro);
+  ctx.anima(primeiro, [{ opacity: 1 }, { opacity: 0 }], { em: .55, dur: .1, preso: true });
+  for (let i = 0; i < 100; i++) {
+    const metade = i < 50 ? 0 : 1, k = i % 50;
+    const x = 75 + (k % 10) * 96, y = (metade ? 860 : 250) + Math.floor(k / 10) * 84;
+    const p = h('div', { position: 'absolute', left: px(x), top: px(y) }, siri(CORES_SIRI[(i * 3) % CORES_SIRI.length], 6));
+    g.appendChild(p);
+    ctx.anima(p, [{ opacity: 0, transform: 'scale(.3)' }, { opacity: 1, transform: 'none' }], { em: .55 + i * .012, dur: .15, som: i % 25 === 0 ? 'pop' : null });
+  }
+  const cont = h('div', { position: 'absolute', left: '0', width: '1080px', top: '1330px', textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: '96px', color: '#1A1A1A', letterSpacing: '-.03em' });
+  const num = h('span', {}, '1');
+  cont.append(h('span', { color: '#D97757' }, '×'), num);
+  g.appendChild(cont);
+  ctx.tempo(.55, 1.25, k => { num.textContent = String(Math.max(1, Math.round(100 * k))); });
+  if (ctx.estatico) primeiro.remove();
+  return g;
+}
+
 function demoRnPixel() {
   return [
-    { nome: 'Gancho', dur: 2.8, fala: 'A IA acabou de *matar* o atendimento manual', leg: LEG_OPUS,
-      montar: (ctx) => divididoOpus(ctx, (c) => {
-        // celular com o feed
-        const cel = h('div', caixa(355, 22, 190, 400, { background: '#111', borderRadius: '34px', padding: '10px', boxSizing: 'border-box' }));
-        const tela = h('div', { position: 'relative', width: '100%', height: '100%', borderRadius: '26px', overflow: 'hidden', background: '#fff' });
-        const feed = h('div', {}, ['#ffd6a5', '#bde0fe', '#caffbf', '#ffc6ff'].map(cor => `<div style="margin:0 10px 8px;height:96px;border-radius:10px;background:${cor}"></div>`).join(''));
-        tela.append(h('div', { height: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center', font: 'italic 700 20px Inter', color: '#111' }, 'Atendimento'), feed);
-        cel.appendChild(tela);
-        c.appendChild(cel);
-        ctx.anima(feed, [{ transform: 'translateY(0)' }, { transform: 'translateY(-60px)' }], { dur: 1, ease: 'linear' });
-        // mascote salta e golpeia
-        const m = h('div', { position: 'absolute', left: '110px', top: '250px' }, mascote('#D97757', 9));
-        c.appendChild(m);
-        ctx.anima(m, [{ transform: 'translate(-60px,0)', opacity: 0 }, { transform: 'translate(0,0)', opacity: 1, offset: .35 }, { transform: 'translate(120px,-140px)', opacity: 1, offset: .75 }, { transform: 'translate(150px,-40px)', opacity: 1 }], { em: .1, dur: .9, ease: 'steps(9)', som: 'pop' });
-        // corte diagonal, tela trincada e glitch
-        const corte = h('div', { position: 'absolute', left: '300px', top: '210px', width: '300px', height: '10px', background: '#fff', boxShadow: '0 0 18px #fff, 0 0 4px #151513', borderRadius: '6px' });
-        c.appendChild(corte);
-        ctx.anima(corte, [{ transform: 'rotate(-35deg) scaleX(0)', opacity: 1 }, { transform: 'rotate(-35deg) scaleX(1.2)', opacity: 1, offset: .5 }, { transform: 'rotate(-35deg) scaleX(1.2)', opacity: 0 }], { em: .95, dur: .3, som: 'impacto' });
-        const trinca = h('div', caixa(10, 10, 170, 380), `<svg viewBox="0 0 170 380" width="170" height="380"><path d="M85 150 L40 60 M85 150 L150 90 M85 150 L30 250 M85 150 L130 300 M85 150 L95 20" stroke="#151513" stroke-width="3" fill="none"/></svg>`);
-        cel.appendChild(trinca);
-        ctx.anima(trinca, [{ opacity: 0 }, { opacity: 1 }], { em: 1.1, dur: .05 });
-        ctx.anima(tela, [{ filter: 'none', transform: 'none' }, { filter: 'hue-rotate(160deg) saturate(3)', transform: 'translateX(-6px)', offset: .3 }, { filter: 'none', transform: 'translateX(5px)', offset: .6 }, { filter: 'grayscale(1) brightness(.5)', transform: 'none' }], { em: 1.1, dur: .35 });
-        // o celular cai e sobe a lápide
-        ctx.anima(cel, [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(60px) rotate(8deg)' }], { em: 1.55, dur: .2 });
-        ctx.anima(m, [{ opacity: 1 }, { opacity: 0 }], { em: 1.55, dur: .15 });
-        const lapide = h('div', caixa(345, 90, 210, 300, { background: '#9a9692', borderRadius: '105px 105px 0 0', border: '6px solid #151513', boxSizing: 'border-box', display: 'grid', placeItems: 'center', fontFamily: 'Silkscreen, monospace', fontSize: '64px', color: '#151513' }), 'RIP');
-        c.appendChild(lapide);
-        ctx.anima(lapide, [{ opacity: 0, transform: 'translateY(80px)' }, { opacity: 1, transform: 'none' }], { em: 1.6, dur: .3, ease: 'steps(5)', som: 'tum' });
-        c.appendChild(carimbo(ctx, 'MORTO', '#C8102E', 220, 140, 460, 2.05));
-      }) },
-    { nome: 'Gráfico', dur: 2.8, fala: 'São *onze* ferramentas cada uma faz uma coisa', leg: LEG_OPUS,
-      montar: (ctx) => {
-        const g = fundoGrafico(ctx, 0, 0, 1080, 1920);
-        const cont = h('div', { position: 'absolute', left: '0', width: '1080px', top: '330px', textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: '220px', color: '#1A1A1A', letterSpacing: '-.04em', lineHeight: '1' });
-        const num = h('span', {}, '1');
-        cont.append(h('span', { color: '#D97757' }, '×'), num);
-        g.appendChild(cont);
-        ctx.tempo(.45, .9, k => { num.textContent = String(Math.max(1, Math.round(11 * k))); });
-        const icones = ['✎', '💬', '↩', '👤', '📅', '📈', '🔍', '🎬', '🗂', '✉', '★'];
-        let i = 0;
-        [4, 4, 3].forEach((n, l) => {
-          for (let j = 0; j < n; j++, i++) {
-            const x = 540 - (n * 190 - 30) / 2 + j * 190;
-            const k = card(ctx, x, 880 + l * 200, 160, 176, `<div style="height:100%;display:grid;place-items:center;font-size:62px">${icones[i]}</div>`, { pad: 0 });
-            Object.assign(k.style, { borderRadius: '18px', border: '2px solid #E6E4E1' });
-            g.appendChild(k);
-            ctx.anima(k, [{ opacity: 0, transform: 'scale(.4)' }, { opacity: 1, transform: 'none' }], { em: i === 0 ? 0 : .45 + i * .08, dur: .22, som: i % 4 === 0 ? 'pop' : null });
-          }
-        });
-        return g;
-      } },
+    { nome: 'Gancho', dur: 2.8, fala: 'Se a IA continua te dando *respostas* ruins', leg: LEG_OPUS,
+      montar: (ctx) => divididoOpus(ctx, (c) => cemiterio(ctx, c)) },
+    { nome: 'Gráfico', dur: 2.6, fala: 'Faz *cem* versões da resposta', leg: LEG_OPUS,
+      montar: (ctx) => multiplica100(ctx) },
     { nome: 'Dividido', dur: 2.6, fala: 'E é um repositório *gratuito*', leg: LEG_OPUS,
       montar: (ctx) => divididoOpus(ctx, (c) => {
         const repo = h('div', { position: 'absolute', inset: '0', padding: '34px 44px', fontFamily: 'Inter', color: '#1A1A1A' });
@@ -671,8 +725,8 @@ function demoRnPixel() {
         c.appendChild(repo);
         c.appendChild(carimbo(ctx, 'GRÁTIS', '#2DA44E', 230, 150, 440, 1.45));
       }) },
-    { nome: 'Pixel art', dur: 2.6, fala: 'E aí a IA *venceu* a disputa', leg: LEG_OPUS,
-      montar: (ctx) => cenaPixel(ctx) },
+    { nome: 'Pixel art', dur: 2.8, fala: 'Elas lutam até sobrar só a *melhor*', leg: LEG_OPUS,
+      montar: (ctx) => arena(ctx) },
     { nome: 'Chamada', dur: 3.4, fala: 'Comenta *IA* que eu te envio na DM', leg: LEG_OPUS,
       montar: (ctx) => divididoOpus(ctx, (c) => {
         const bola = (n) => `<div style="width:48px;height:48px;border-radius:50%;background:#D97757;color:#fff;display:grid;place-items:center;font:800 26px Inter;flex:none">${n}</div>`;

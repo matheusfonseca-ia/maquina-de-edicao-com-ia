@@ -1,10 +1,31 @@
 # Reels de Negócio + Pixelado
 
-Quando a pessoa escolhe o formato **Reels de Negócio** com o estilo visual **Pixelado**, o vídeo segue **este arquivo**, não os layouts do `formato.md`. É o formato dos reels do Matheus editados no estilo Opus Jake (os que foram aprovados sem correção): tela dividida com a câmera embaixo, gráfico em tela cheia e cena em pixel art em tela cheia, alternando a cada frase, e cada frase virando uma cena que mostra literalmente o que está sendo dito.
+Quando a pessoa escolhe o formato **Reels de Negócio** com o estilo visual **Pixelado**, o vídeo segue **este arquivo**, não os layouts do `formato.md`. É exatamente o estilo do reel do @opusjake (link em "Referência"), o mesmo dos reels do Matheus editados nesse estilo e aprovados sem correção: tela dividida com a câmera embaixo, gráfico em tela cheia e cena em pixel art em tela cheia, alternando a cada frase, e cada frase virando uma cena que mostra literalmente o que está sendo dito.
 
 Prioridade: este arquivo vale por cima do `formato.md` do Reels de Negócio e por cima do `estilos-visuais/pixelado.md`. Onde este arquivo não fala nada, vale o `pixelado.md` (paleta, fontes, repertório de motions, peças) e depois o motor. Ajustes fixos salvos e observações da pessoa continuam valendo por cima de tudo.
 
 Do `formato.md` só continuam: vertical 1080 × 1920, 60 fps, base técnica (contato visual, produtos citados, fontes e verificação), silêncios secos e a saída. **Não usar** do `formato.md`: câmera cheia, gancho com cards atrás da cabeça, título de capa em duas linhas, tela dividida meio a meio, legenda de uma palavra por vez, pílula de notificação no CTA, Kit Noite.
+
+## Referência
+
+O estilo é o do reel https://www.instagram.com/p/DdysDw5t4Km/ ("Arena skill", @opusjake, 34 s). **O vídeo tem que ficar igual a esse reel** em estrutura, ritmo, legenda e acabamento, com o conteúdo da fala da pessoa.
+
+Antes de montar o plano, olhe o reel:
+
+1. Se existir `~/.maquina-de-edicao/estilos/opus-jake/`, abra as imagens de lá (as `folha-*.jpg` mostram 4 quadros por segundo, lidos linha a linha).
+2. Se não existir, baixe o reel com `yt-dlp` numa pasta temporária fora do projeto, gere folhas de quadros com FFmpeg (`ffmpeg -i reel.mp4 -vf "fps=4,scale=240:-1,tile=6x4" folha-%02d.jpg`) e olhe todas. Se o download pedir login, siga só por este arquivo. Não use quadros do reel no vídeo nem guarde na pasta do projeto: é só referência.
+
+O que o reel faz, em ordem (é isso que o vídeo novo reproduz, com o assunto da pessoa):
+
+- 0–3 s, dividido: no cartão, um cemitério em pixel art ao pôr do sol (céu em faixas de laranja e roxo, lua, cerca, árvore seca), o personagem à esquerda e lápides "RIP" com frases clichê subindo uma por uma, no ritmo da fala.
+- 3–6 s, gráfico cheio: o personagem sozinho acima da legenda; depois ele se multiplica em cascata até 100 (50 acima e 50 abaixo da legenda), com o contador "×1 → ×51 → ×100" embaixo.
+- 6–7 s, pixel art cheia: arena (coliseu com arquibancada lotada, chão de areia) com dezenas de personagens armados.
+- 7–9 s, dividido: cartão de produto (personagem com escudo e espada sobre um montinho de areia, "/arena" em pílula terracota, nome "Arena" digitado).
+- 9–10 s, dividido: print do repositório e carimbo verde "FREE".
+- 18–21 s, dividido: três linhas de etapas acendendo ("Draft → Critique → Rewrite"), depois três cartas que viram.
+- 21–30 s, pixel art cheia: "RODADA 1 · 50 DUELOS", etiquetas de crítica sobre os personagens, duelo, "RESTAM 100 → 25 → 13 → 7 → 4" em dourado, perdedores cinza com olhos em ×, e "VENCEDOR" com coroa e confete.
+- 30–31 s, gráfico cheio: print pequeno em cima, seta terracota descendo, chat escuro embaixo com o link e "instala a skill" sendo digitados.
+- 31–34 s, dividido: CTA (seguir + comentar).
 
 ## Cenas-modelo
 
@@ -25,7 +46,7 @@ Antes de construir, escreva em `edit/plano.md` a tabela **"# · início · fim �
 ### D. Dividido (o principal, ~50–60% do vídeo)
 
 - **Faixa de cima (y 0 a 770):** fundo creme `#EFEDEB` com grade bem fraca (linhas de 2 px a cada 90 px, `#E6E4E1`: `background-image: linear-gradient(#e6e4e1 2px, transparent 2px), linear-gradient(90deg, #e6e4e1 2px, transparent 2px); background-size: 90px 90px; background-position: -1px -1px`).
-- **Cartão:** x 90 a 990 (900 px), y 255 a 700 (445 px), raio 28, fundo `#F9F8F6`, sombra `0 18px 40px rgba(0,0,0,.10)`. Pode crescer pra cima até y ≈ 200, **nunca abaixo de y 700**. Selos, chips e cursores podem ficar fora do cartão, na faixa creme, sempre acima de y 700. O conteúdo do cartão muda a cada frase.
+- **Cartão:** x 90 a 990 (900 px), y 255 a 700 (445 px), raio 28, fundo `#F9F8F6`, sombra `0 18px 40px rgba(0,0,0,.10)`. Pode crescer pra cima até y ≈ 200, **nunca abaixo de y 700**. Selos, chips e cursores podem ficar fora do cartão, na faixa creme, sempre acima de y 700. O conteúdo do cartão muda a cada frase. Variações que o reel usa nessa faixa: um cartão largo com ilustração pixel de borda a borda; três cartões finos empilhados (linhas de etapas); três cartas em leque; cartão de produto; print com carimbo.
 - **Câmera (y 770 a 1920):** largura total, **borda reta**, sem moldura, sem cartão arredondado, sem cabeça saindo pra fora. Corte horizontal seco entre o creme e o vídeo. O vídeo é posicionado pra que os olhos fiquem em ~y 1180 (com enquadramento de selfie comum, o topo do vídeo de 1080 × 1920 fica em ~y 500 e só aparece a parte abaixo de 770). Enquadramento fixo: sem zoom, sem punch-in, sem acompanhamento de cabeça.
 
 ### F. Gráfico cheio (~25–40%)
@@ -36,6 +57,8 @@ Antes de construir, escreva em `edit/plano.md` a tabela **"# · início · fim �
 ### P. Pixel art cheia (~10–15%, 1 ou 2 por vídeo, no clímax)
 
 - Cena pixel art opaca em 1080 × 1920 (cenário + personagens em sprite andando, se multiplicando, se enfrentando, caindo).
+- **O cenário é uma ilustração rica, não blocos lisos**: arquibancada com público, arcos, chão com textura, céu em faixas. Gere com a skill `media-use` ou outro modelo de imagem ("pixel art, 16-bit, <cenário>, sem texto, sem personagens") e amplie com vizinho mais próximo (nunca suavizado). Sem gerador, desenhe o cenário num `<canvas>` pequeno com detalhe (fileiras de público em pontos de cor, arcos, textura de chão) e amplie com `image-rendering: pixelated`.
+- O mesmo vale pra ilustração pixel dentro do cartão do dividido (ex: o cemitério do gancho): ela preenche o cartão de borda a borda, com os cantos arredondados do cartão.
 - HUD em Silkscreen dentro de caixa preta `#151513` com borda `#3A3836`; número em dourado `#E8B547` (contador descendo ou subindo, "VENCEDOR" com confete).
 - Deixe a faixa y 721 a 807 sem nada importante (é da legenda).
 
@@ -122,3 +145,4 @@ Embaixo, pequeno: "✈ Te envio na DM". Na palavra "DM" (ou "direct"), uma notif
 - Cada efeito na palavra que o nomeia (confira 3 ou 4 nos quadros).
 - Cortes de cena conferidos nos dois lados em quadros reais: a cena nova aparece desde o primeiro quadro previsto.
 - Compare snapshots com as cenas-modelo: mesmo acabamento (hierarquia, alinhamento simétrico, nada cortado, texto legível).
+- Monte uma folha de quadros do vídeo (4 por segundo) e ponha do lado das folhas do reel de referência: mesmas telas, mesma legenda, mesmo ritmo de troca e o mesmo nível de ação dentro de cada cena. Onde estiver mais parado ou mais genérico que o reel, refaça a cena.
