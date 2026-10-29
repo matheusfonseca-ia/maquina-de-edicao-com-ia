@@ -23,7 +23,7 @@ Proporção (vertical 9:16), nível (equivale ao Básico, mais os clipes de apoi
 Os clipes de apoio são opcionais pra pessoa: ela pode trazer os dela ou deixar que você busque.
 
 - **Pasta `broll/`** dentro da pasta do projeto, com os clipes da pessoa (`.mp4`, `.mov`), verticais ou horizontais. Pode vir de dois jeitos: ela já tinha a pasta, ou subiu os clipes pelo painel (ficam na mesma pasta, listados em `brollEnviados` no `edit/escolhas.json`).
-- **Sem clipes da pessoa**: você busca na internet, em bancos de vídeo gratuitos, seguindo `maquina-de-edicao/referencias/broll-da-internet.md`. A pessoa não precisa fazer nada.
+- **Sem clipes da pessoa**: você busca em qualquer lugar da internet, seguindo `maquina-de-edicao/referencias/broll-da-internet.md`. A pessoa não precisa fazer nada.
 
 A escolha vem do painel (ou, no chat, pergunte na rodada curta):
 

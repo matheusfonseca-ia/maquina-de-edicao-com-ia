@@ -295,7 +295,7 @@ function extrasDoFormato() {
     const opcoes = BROLL.filter((o) => o.id !== 'pasta' || C.pastas?.broll);
     const rec = brollPadrao();
     let html = `<p class="subtitulo">De onde vêm os clipes de apoio (B-roll)?</p>${pilulas('broll', E.broll || rec, opcoes, rec)}`;
-    if ((E.broll || rec) === 'internet') html += `<p class="ajuda" style="margin-top:10px">O Claude procura clipes que mostram o que você fala em bancos de vídeo gratuitos e anota os créditos no relatório. Você não precisa juntar nada.</p>`;
+    if ((E.broll || rec) === 'internet') html += `<p class="ajuda" style="margin-top:10px">O Claude procura na internet clipes que mostram o que você fala e anota de onde veio cada um no relatório. Você não precisa juntar nada.</p>`;
     if ((E.broll || rec) === 'subir') html += blocoEnvio('broll', 'Seus clipes', 'Arraste os vídeos aqui ou clique pra escolher. Vão pra pasta broll/ do vídeo.', 'video/*');
     return html;
   }

@@ -32,7 +32,7 @@ Arquivos de apoio (leia antes da fase 2):
 - `referencias/estilos-visuais.md`: o que é um estilo visual, onde ficam, como aparecem na pergunta e como se aplicam por cima de um formato.
 - `referencias/kit-noite.md`: o kit visual escuro (fundo preto, brilho laranja, cards de vidro, Inter + Instrument Serif) que vários formatos usam no visual original e o estilo Noite Laranja usa.
 - `referencias/painel.md`: como abrir o painel de escolhas (a página local da fase 1), o que mandar pra ele e como ler o que volta.
-- `referencias/broll-da-internet.md`: como buscar clipes de apoio em bancos de vídeo gratuitos quando a pessoa não trouxe os dela.
+- `referencias/broll-da-internet.md`: como buscar clipes de apoio e imagens na internet (qualquer fonte) quando a pessoa não trouxe os dela.
 
 Formatos prontos: cada um numa pasta ao lado desta skill, `<pasta de skills>/<nome-do-formato>/formato.md` (a pasta de skills é a pasta-mãe desta). O catálogo está em `referencias/formatos-prontos.md`.
 
@@ -69,6 +69,7 @@ Antes de abrir o painel, confira o que a edição vai precisar, nesta ordem: `no
 - Depois de instalar, confira de novo. Só siga com tudo respondendo.
 - Anote as versões: elas vão pro contexto do painel.
 - Se a pessoa não conseguir instalar o Node agora, siga a fase 1 pelo chat (o painel precisa do Node).
+- `yt-dlp --version` é opcional: serve pra baixar clipes e vídeos de referência da internet. Se faltar, ofereça instalar (`winget install yt-dlp` / `brew install yt-dlp`), mas não trave a edição por isso.
 
 ## Fase 1: Entrevista
 

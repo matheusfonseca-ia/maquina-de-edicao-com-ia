@@ -97,7 +97,7 @@ Tudo que a fase 0 descobriu. Campos ausentes viram "não tem".
 - `resumo` é a tabela pronta pro resumo da fase 1.
 - `observacoes`: o que a pessoa escreveu no campo "Observações" da página (opcional; `null` quando ficou vazio). Veja "Observações" no SKILL.md.
 - `imagensEnviadas` e `brollEnviados`: arquivos que a pessoa subiu pela página (opcional; listas vazias quando ela não subiu nada). O servidor grava direto na pasta do vídeo, em `imagens/` e `broll/`, e nunca sobrescreve: se o nome já existe, acrescenta um número. Use esses arquivos antes de buscar qualquer coisa.
-- `respostas.broll` (só no Reels com B-roll): de onde vêm os clipes. "Buscar clipes na internet (bancos de vídeo gratuitos)" quer dizer seguir `broll-da-internet.md`.
+- `respostas.broll` (só no Reels com B-roll): de onde vêm os clipes. "Buscar clipes na internet" quer dizer seguir `broll-da-internet.md`.
 
 O envio aceita imagens (`.jpg`, `.jpeg`, `.png`, `.webp`, `.gif`, `.avif`, `.heic`, até 50 MB cada) e vídeos (`.mp4`, `.mov`, `.m4v`, `.webm`, `.mkv`, até 4 GB cada). A pasta do vídeo é a do campo `pasta` do contexto: preencha sempre com o caminho absoluto.
 

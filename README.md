@@ -97,7 +97,7 @@ O que você aprovar fica salvo. No próximo vídeo, dá pra escolher "Repetir o 
 
 ### Alguns formatos pedem coisas a mais na pasta
 
-- **Reels com B-roll**: não precisa juntar clipes. O Claude busca clipes de apoio em bancos de vídeo gratuitos e anota os créditos. Se preferir os seus, suba pela página ou coloque numa pasta `broll/` dentro da pasta do vídeo.
+- **Reels com B-roll**: não precisa juntar clipes. O Claude busca clipes de apoio na internet e anota de onde veio cada um. Se preferir os seus, suba pela página ou coloque numa pasta `broll/` dentro da pasta do vídeo.
 - **Imagens (qualquer formato)**: são opcionais. Se quiser usar as suas (prints, logos, fotos do produto), suba pela página ou coloque numa pasta `imagens/`. Sem isso, o Claude busca logos, páginas e imagens reais do que você citou.
 - **Aula em Tela Dividida**: se tiver o roteiro da aula, coloque na pasta. O documento da aula fica mais fiel.
 - **Cortes de Vídeo Longo**: o Claude te mostra o ranking dos melhores trechos antes de editar, e você aprova ou troca.

@@ -123,7 +123,7 @@ export const CORTES = {
 
 // De onde vêm os clipes de apoio do Reels com B-roll.
 export const BROLL = [
-  { id: 'internet', rotulo: 'Buscar na internet pra mim', sub: 'bancos de vídeo gratuitos', skill: 'Buscar clipes na internet (bancos de vídeo gratuitos)' },
+  { id: 'internet', rotulo: 'Buscar na internet pra mim', sub: 'o Claude acha os clipes', skill: 'Buscar clipes na internet' },
   { id: 'pasta', rotulo: 'Usar os clipes da pasta broll/', sub: '', skill: 'Usar os clipes da pasta broll/' },
   { id: 'subir', rotulo: 'Subir meus clipes aqui', sub: '', skill: 'Usar os clipes que subi pela página (pasta broll/)' },
   { id: 'imagens', rotulo: 'Usar só imagens', sub: '', skill: 'Usar só imagens' },

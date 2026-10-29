@@ -89,11 +89,11 @@ Vários formatos mostram imagens a cada ideia. Ordem de origem, da melhor pra pi
 
 1. Arquivos que a pessoa colocou na pasta `imagens/` do projeto, inclusive os que ela subiu pelo painel (`imagensEnviadas` no `edit/escolhas.json`). O nome do arquivo ajuda a casar com a fala. São opcionais: sem eles, siga a ordem abaixo.
 2. Coisas reais citadas na fala: logo oficial, página do produto, post, notícia (captura com `npx hyperframes capture` ou navegador).
-3. Imagem buscada ou gerada pela skill `media-use` do HyperFrames, se estiver disponível.
+3. Imagem buscada em qualquer lugar da internet (busca de imagens, site da fonte, notícia) ou gerada pela skill `media-use` do HyperFrames: veja `broll-da-internet.md`.
 4. Último recurso: card gráfico no estilo (ícone, número ou palavra-chave sobre o fundo do estilo).
 
 Nunca invente dado, print de conversa, depoimento ou número que não está na fala. Registre a origem de cada imagem no relatório.
 
 ### Clipes de apoio (B-roll)
 
-Formatos com B-roll usam a pasta `broll/` da pessoa (que ela pode ter subido pelo painel) e, sem ela, clipes buscados em bancos de vídeo gratuitos: veja `broll-da-internet.md`.
+Formatos com B-roll usam a pasta `broll/` da pessoa (que ela pode ter subido pelo painel) e, sem ela, clipes buscados em qualquer lugar da internet: veja `broll-da-internet.md`.
