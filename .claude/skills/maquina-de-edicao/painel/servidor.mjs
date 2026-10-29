@@ -138,8 +138,8 @@ function encerrar(codigo, linha) {
 const servidor = http.createServer(async (req, res) => {
   const url = new URL(req.url, 'http://127.0.0.1');
   // Só aceita quem está no próprio computador.
-  const host = (req.headers.host || '').split(':')[0];
-  if (!['127.0.0.1', 'localhost'].includes(host)) { res.writeHead(403); return res.end(); }
+  const host = (req.headers.host || '').replace(/:\d+$/, '');
+  if (!['127.0.0.1', 'localhost', '[::1]'].includes(host)) { res.writeHead(403); return res.end(); }
 
   if (url.pathname === '/api/contexto') return json(res, 200, contexto);
 
@@ -219,11 +219,30 @@ function abrirNavegador(url) {
   try { spawn(cmd, args, { stdio: 'ignore', detached: true, windowsHide: true }).unref(); } catch {}
 }
 
-servidor.listen(portaFixa, '127.0.0.1', () => {
-  const url = `http://127.0.0.1:${servidor.address().port}/`;
-  console.log(`PAINEL_ABERTO ${url}`);
-  if (!semNavegador) abrirNavegador(url);
-});
+// A página abre sempre em http://localhost:<porta>/. Escuta só no próprio computador
+// (127.0.0.1 e ::1, os dois endereços que "localhost" pode virar), nunca na rede.
+// Sem --porta, tenta 4517 a 4530 e, se todas estiverem ocupadas, qualquer porta livre.
+const PORTAS = portaFixa ? [portaFixa] : [...Array.from({ length: 14 }, (_, i) => 4517 + i), 0];
+
+function escutar(i = 0) {
+  servidor.once('error', (e) => {
+    if (e.code === 'EADDRINUSE' && i + 1 < PORTAS.length) { servidor.removeAllListeners('listening'); return escutar(i + 1); }
+    console.error(e.message);
+    process.exit(1);
+  });
+  servidor.listen(PORTAS[i], '127.0.0.1', () => {
+    servidor.removeAllListeners('error');
+    const porta = servidor.address().port;
+    const v6 = http.createServer(servidor.listeners('request')[0]);
+    v6.on('error', () => {});
+    v6.listen(porta, '::1');
+    v6.unref();
+    const url = `http://localhost:${porta}/`;
+    console.log(`PAINEL_ABERTO ${url}`);
+    if (!semNavegador) abrirNavegador(url);
+  });
+}
+escutar();
 
 setTimeout(() => encerrar(2, 'TEMPO_ESGOTADO'), minutos * 60 * 1000).unref?.();
 process.on('SIGINT', () => encerrar(130, 'CANCELADO'));

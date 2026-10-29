@@ -59,7 +59,7 @@ Antes de qualquer pergunta, liste os arquivos da pasta atual.
 - A pasta precisa ter o que o formato pede na seção "Entradas extras" do `formato.md` (ex: o Reels com B-roll procura uma pasta `broll/`). Essa checagem acontece depois que o formato é escolhido.
 - Anote também se existem as pastas `broll/` e `imagens/` e um roteiro (`roteiro.md`, `.txt`, `.docx` ou `.pdf`). O painel usa isso.
 
-Na fase 0 não pergunte nada no chat (nem qual vídeo, nem o que é o áudio): o painel pergunta. Só pergunte no chat se o painel não abrir.
+Na fase 0 não pergunte nada no chat (nem qual vídeo, nem o que é o áudio): o painel pergunta.
 
 ## Fase 0b: Conferir as ferramentas
 
@@ -68,14 +68,14 @@ Antes de abrir o painel, confira o que a edição vai precisar, nesta ordem: `no
 - Se faltar algum, avise em linguagem simples ("Falta instalar o FFmpeg, que é o programa que corta o vídeo") e guie a instalação pelo jeito mais fácil do sistema da pessoa (no Windows, `winget`; no Mac, `brew`). Programas do sistema a pessoa instala; pacotes npm e Python continuam locais no projeto (bloco 0 das instruções base).
 - Depois de instalar, confira de novo. Só siga com tudo respondendo.
 - Anote as versões: elas vão pro contexto do painel.
-- Se a pessoa não conseguir instalar o Node agora, siga a fase 1 pelo chat (o painel precisa do Node).
+- O painel precisa do Node: se ele faltar, a instalação é obrigatória antes de seguir. Só faça a fase 1 pelo chat se a pessoa disser que não quer ou não pode instalar.
 - `yt-dlp --version` é opcional: serve pra baixar clipes e vídeos de referência da internet. Se faltar, ofereça instalar (`winget install yt-dlp` / `brew install yt-dlp`), mas não trave a edição por isso.
 
 ## Fase 1: Entrevista
 
-### Painel de escolhas (o jeito principal)
+### Painel de escolhas (obrigatório)
 
-Com as ferramentas conferidas, abra o painel seguindo `referencias/painel.md`: escreva `edit/painel-contexto.json` com tudo que a fase 0 achou, rode o servidor em segundo plano e espere a pessoa clicar em **Começar a edição**.
+**A entrevista sempre acontece no painel, numa página em `http://localhost:<porta>/` no navegador da pessoa.** Não faça as perguntas no chat por conta própria. Com as ferramentas conferidas, abra o painel seguindo `referencias/painel.md`: escreva `edit/painel-contexto.json` com tudo que a fase 0 achou, rode o servidor em segundo plano e espere a pessoa clicar em **Começar a edição**.
 
 No painel ela escolhe tudo o que as seções abaixo perguntam (o caminho, o formato, o estilo visual, as perguntas da rodada curta ou as do caminho do zero), vendo uma prévia animada (com um bonequinho no lugar da pessoa). Quando o painel devolver as escolhas:
 
@@ -84,7 +84,7 @@ No painel ela escolhe tudo o que as seções abaixo perguntam (o caminho, o form
 - se a pessoa subiu arquivos pela página, eles já estão na pasta do vídeo: imagens em `imagens/` (`imagensEnviadas`) e clipes em `broll/` (`brollEnviados`). Use primeiro o que ela mandou. Subir é opcional: sem arquivos, busque você mesmo (imagens pela ordem de origem de `referencias/formatos-prontos.md`, clipes por `referencias/broll-da-internet.md`);
 - mostre a tabela do resumo e comece a fase 2 sem perguntar de novo.
 
-As seções abaixo continuam valendo: elas dizem o que cada escolha significa e são as perguntas que você faz no chat quando o painel não abre, quando a pessoa pede pra responder por aqui (`PREFERE_CHAT`) ou quando o tempo esgota.
+As seções abaixo continuam valendo: elas dizem o que cada escolha significa. Só viram perguntas no chat em dois casos: a pessoa clicou em responder por aqui (`PREFERE_CHAT`) ou pediu isso no chat, ou o Node não pode ser instalado. Se o painel não abrir ou o tempo esgotar, abra de novo (veja `referencias/painel.md`).
 
 ### Como quer editar este vídeo?
 

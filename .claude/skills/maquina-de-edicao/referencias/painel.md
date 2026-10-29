@@ -11,7 +11,7 @@ Página local (só no computador da pessoa) onde ela faz todas as escolhas da en
    node "<pasta desta skill>/painel/servidor.mjs" --contexto edit/painel-contexto.json --saida edit/escolhas.json
    ```
 
-   Ele abre o navegador sozinho e imprime `PAINEL_ABERTO <url>`.
+   Ele abre o navegador sozinho em `http://localhost:<porta>/` (porta 4517; se estiver ocupada, a próxima livre até 4530) e imprime `PAINEL_ABERTO <url>`. Só aceita conexões do próprio computador.
 3. Mande pra pessoa:
 
    > Abri uma página no seu navegador pra você escolher como o vídeo vai ficar. Cada escolha aparece numa prévia animada. Quando terminar, clique em **Começar a edição** e volte aqui.
@@ -24,8 +24,8 @@ Página local (só no computador da pessoa) onde ela faz todas as escolhas da en
 |---|---|---|
 | `ESCOLHAS_SALVAS <caminho>` | 0 | Leia o JSON e siga (ver "Ler as escolhas") |
 | `PREFERE_CHAT` | 3 | A pessoa pediu as perguntas no chat: faça a fase 1 do jeito antigo |
-| `TEMPO_ESGOTADO` | 2 | Passou 1 hora sem resposta: pergunte se ela quer abrir de novo ou responder no chat |
-| erro ao iniciar | outro | Faça a fase 1 no chat, sem comentar o erro em detalhe |
+| `TEMPO_ESGOTADO` | 2 | Passou 1 hora sem resposta: abra o painel de novo e mande o link |
+| erro ao iniciar | outro | Leia o erro, corrija (ex: `--porta` com outra porta livre, caminho do contexto) e abra de novo. Não troque pelo chat sem a pessoa pedir |
 
 Se a pessoa escrever no chat que já escolheu ("pronto", "terminei") antes do comando terminar, confira se `edit/escolhas.json` existe e siga com ele.
 
