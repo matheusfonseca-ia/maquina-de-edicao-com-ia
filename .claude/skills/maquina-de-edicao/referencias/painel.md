@@ -65,11 +65,12 @@ Tudo que a fase 0 descobriu. Campos ausentes viram "não tem".
     "zero": { "proporcao": "vertical", "nivel": "completo", "legendas": "padrao", "estilo": "claro", "musica": "eletronica", "efeitos": "completos", "verificar": "sim" },
     "corMarca": "#9A4DFF",
     "ajustesFixos": ["Legendas 15% maiores que o padrão"],
-    "musicaDaPasta": false
+    "musicaDaPasta": false,
+    "exportacao": { "resolucao": "1080p", "fps": 60 }
   }
   ```
 
-  `resumo` é o que a página mostra no "Repetir o último vídeo", em linguagem simples. `zero` só quando o último vídeo foi do zero; os valores usam os ids de `painel/dados.js` (`ZERO`).
+  `resumo` é o que a página mostra no "Repetir o último vídeo", em linguagem simples. `zero` só quando o último vídeo foi do zero; os valores usam os ids de `painel/dados.js` (`ZERO`). `exportacao` vem da linha "Exportação" das preferências (se existir) e já deixa essa qualidade marcada na página.
 - `formatoFixo`: o id do formato quando a skill foi chamada por uma skill de formato (ex: `/reels-de-negocio`). A página já abre nele.
 
 ## Ler as escolhas (`edit/escolhas.json`)
@@ -85,7 +86,8 @@ Tudo que a fase 0 descobriu. Campos ausentes viram "não tem".
   "resumo": [["Formato", "Reels de Negócio"], ["Estilo visual", "Pixelado"]],
   "observacoes": "corta a parte em que eu tusso no começo; o produto se chama Falow, com F maiúsculo",
   "imagensEnviadas": ["imagens/print-do-painel.png"],
-  "brollEnviados": []
+  "brollEnviados": [],
+  "exportacao": { "resolucao": "1080p", "nome": "Full HD", "largura": 1080, "altura": 1920, "fps": 60 }
 }
 ```
 
@@ -97,6 +99,7 @@ Tudo que a fase 0 descobriu. Campos ausentes viram "não tem".
 - `resumo` é a tabela pronta pro resumo da fase 1.
 - `observacoes`: o que a pessoa escreveu no campo "Observações" da página (opcional; `null` quando ficou vazio). Veja "Observações" no SKILL.md.
 - `imagensEnviadas` e `brollEnviados`: arquivos que a pessoa subiu pela página (opcional; listas vazias quando ela não subiu nada). O servidor grava direto na pasta do vídeo, em `imagens/` e `broll/`, e nunca sobrescreve: se o nome já existe, acrescenta um número. Use esses arquivos antes de buscar qualquer coisa.
+- `exportacao`: a qualidade do MP4 final que a pessoa escolheu no fim da página (4K 2160p, Full HD 1080p ou HD 720p; 60, 30 ou 24 fps), com a largura e a altura já na proporção do vídeo final. Copie pro `edit/plano.md` (seção "Exportação") e use só na fase 4, depois da aprovação. Não pergunte de novo.
 - `respostas.broll` (só no Reels com B-roll): de onde vêm os clipes. "Buscar clipes na internet" quer dizer seguir `broll-da-internet.md`.
 
 O envio aceita imagens (`.jpg`, `.jpeg`, `.png`, `.webp`, `.gif`, `.avif`, `.heic`, até 50 MB cada) e vídeos (`.mp4`, `.mov`, `.m4v`, `.webm`, `.mkv`, até 4 GB cada). A pasta do vídeo é a do campo `pasta` do contexto: preencha sempre com o caminho absoluto.

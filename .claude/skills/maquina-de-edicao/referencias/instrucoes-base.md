@@ -54,7 +54,7 @@ Antes da aprovação, a entrega é a composição completa aberta no HyperFrames
 
 Depois da aprovação, entregue:
 
-1. `final.mp4` em 1080 × 1920 pixels, 60 quadros por segundo, vídeo H.264 em alta qualidade e áudio AAC estéreo a 48 kHz.
+1. `final.mp4` na qualidade de exportação escolhida (padrão: 1080 × 1920 pixels, 60 quadros por segundo; veja 8C), vídeo H.264 em alta qualidade e áudio AAC estéreo a 48 kHz.
 2. `stems/voice.wav`.
 3. `stems/sfx.wav`.
 4. `stems/riser.wav`.
@@ -414,8 +414,16 @@ Rode `npx hyperframes check` até passar, faça a verificação prévia (9A) e a
 
 ### 8C. Render (somente após aprovação)
 
-Renderize em 1080 × 1920 pixels e 60 quadros por segundo, com o áudio master incorporado, H.264 em alta qualidade e AAC estéreo a 48 kHz.
-No nível Completo, renderize os gráficos a 240 fps e combine para 60 fps (ver Desfoque de movimento).
+**Qualidade da exportação:** a que a pessoa escolheu no painel (`exportacao` em `edit/escolhas.json`, copiada pro `edit/plano.md`). Se a fase 1 foi no chat, pergunte junto com as outras ("Qualidade da exportação?": 4K, Full HD 1080p (Recomendado) ou HD 720p; e 60 fps (Recomendado), 30 ou 24 fps). Sem escolha nenhuma, use Full HD 1080p a 60 fps. Essa escolha vale por cima da resolução e da taxa de quadros escritas no formato, no estilo, nas variações e nos ajustes fixos: os tamanhos de 1080 × 1920 (ou 1920 × 1080) que aparecem neles são o tamanho da composição, que não muda.
+
+Renderize com o áudio master incorporado, H.264 em alta qualidade e AAC estéreo a 48 kHz:
+
+- **Taxa de quadros:** `npx hyperframes render --fps <fps escolhido>`. No nível Completo, renderize os gráficos a 4× a taxa escolhida (240 pra 60, 120 pra 30, 96 pra 24) e combine de 4 em 4 (ver Desfoque de movimento).
+- **4K (2160p):** `--resolution portrait-4k` (vertical, 2160 × 3840) ou `--resolution landscape-4k` (horizontal, 3840 × 2160). O HyperFrames desenha a composição em resolução dobrada, então texto e gráficos saem nítidos de verdade.
+- **Full HD (1080p):** o tamanho da composição (`--resolution portrait` ou `landscape`).
+- **HD (720p):** renderize em 1080p e reduza com FFmpeg (`scale=720:1280:flags=lanczos` no vertical, `1280:720` no horizontal), sem recodificar o áudio.
+- A câmera usa a gravação original em resolução cheia: se a gravação for menor que a exportação, ela é ampliada (avise no relatório).
+- Confira com `ffprobe` que o `final.mp4` saiu exatamente com a largura, a altura e a taxa de quadros escolhidas.
 Não deixe quadro branco, cabeça congelada, imagem sobrando ou silêncio depois do término.
 
 ---

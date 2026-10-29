@@ -224,6 +224,7 @@ A pessoa pode escrever observações livres pra edição: no campo "Observaçõe
 1. Leia `referencias/instrucoes-base.md` e `referencias/variacoes.md` inteiros. Se um formato pronto foi escolhido, leia também a seção "Como um formato pronto se aplica" de `referencias/formatos-prontos.md` e o `formato.md` inteiro. Se um estilo visual foi escolhido (qualquer um que não seja o Original do formato), leia o arquivo dele inteiro e a seção "Como aplicar um estilo visual a um formato" de `referencias/estilos-visuais.md`. Se existir `<pasta do formato>/com-<nome-do-estilo>.md`, leia inteiro: ele manda por cima dos dois. Releia tudo se a conversa foi resumida.
 2. Crie a pasta `edit/` e salve `edit/plano.md` com:
    - as escolhas do usuário e o que foi detectado (e se vieram das preferências salvas);
+   - uma seção **"Exportação"** com a qualidade escolhida (resolução, largura × altura e fps, de `exportacao` no `edit/escolhas.json`). Ela só é usada na fase 4, então precisa estar escrita aqui pra não se perder se a conversa for resumida;
    - se um formato pronto foi escolhido: o nome do formato e as regras dele copiadas pro plano já resolvidas, seção por seção, seguindo a tabela "O que o formato substitui". Escreva no plano quais blocos do motor continuam valendo, quais o formato substituiu e o texto final de cada um. Os itens da "Verificação do formato" entram na 9A e na 9B. Se o formato tiver "Fluxo diferente", copie também e siga ele por cima das fases 2 a 4;
    - se um estilo visual foi escolhido: uma tabela "papel → valor" com cada cor, fonte, material, legenda e efeito já trocados pelos do estilo, e a lista dos elementos de assinatura do estilo com onde entram neste formato. Os itens da "Verificação do estilo" entram na 9A e na 9B. Escreva as instruções finais de cada layout já com a aparência do estilo, sem "ver estilo";
    - se usou as preferências salvas: os "ajustes fixos" do arquivo, que valem por cima das instruções base, das variações e do estilo visual (ex: "legendas 15% maiores" muda o tamanho padrão das legendas);
@@ -258,7 +259,7 @@ A pessoa pode escrever observações livres pra edição: no campo "Observaçõe
 Só depois da aprovação:
 
 1. Faça a mixagem e a masterização final (bloco 7, MASTER) e meça os stems e o master com `ebur128`.
-2. Renderize `edit/final.mp4` e exporte os stems (bloco 8C).
+2. Renderize `edit/final.mp4` e exporte os stems (bloco 8C), **na qualidade de exportação que a pessoa escolheu no painel** (resolução e fps, anotados na seção "Exportação" do `edit/plano.md`). Não pergunte de novo: só use. Na mensagem final, diga a qualidade (ex: "4K, 2160 × 3840, 60 fps").
 3. Rode a verificação final completa sobre o MP4 renderizado (bloco 9B). Se encontrar falha, corrija, exporte de novo e repita a verificação.
 4. Escreva `edit/relatorio.md` (bloco RELATÓRIO).
 5. Encerre o servidor do Studio.
@@ -280,6 +281,7 @@ Roda sozinha logo depois da exportação aprovada, sem pergunta, exceto no caso 
    - o formato pronto usado (nome da pasta, ex: `reels-de-negocio`) ou "nenhum";
    - o estilo visual usado (nome do arquivo sem `.md`, ex: `pixelado`, ou "original do formato") ou "nenhum" no caminho do zero;
    - as 7 escolhas da entrevista (proporção, nível, legendas, estilo visual, música, efeitos, verificação de fontes), mesmo quando vieram do "Padrão completo". As que vieram de um formato ou de um estilo visual ficam como "definido pelo formato" ou "definido pelo estilo";
+   - a qualidade de exportação usada (linha "Exportação", ex: "4K 2160p, 60 fps"): ela volta marcada na página na próxima edição;
    - os dados de marca, se a pessoa informou (cor em hex, fundo claro ou escuro, fonte);
    - os **ajustes fixos**: os que já estavam salvos e foram usados neste vídeo, mais os ajustes **[gosto]** desta revisão. Se um ajuste novo contradiz um antigo, fica o novo. Escreva cada um como regra que dá pra aplicar em outro vídeo ("legendas 15% maiores que o padrão"), não como pedido solto ("aumenta aí").
    - Não salve nada que dependa só deste vídeo: arquivo de música, orientação da gravação, áudio separado, ajustes [deste vídeo].
@@ -300,6 +302,7 @@ Atualizado em: AAAA-MM-DD (vídeo: nome-do-arquivo.mp4)
 - Música: Eletrônica minimalista 100–120 BPM
 - Efeitos sonoros: Completos
 - Verificar fontes: Sim
+- Exportação: Full HD 1080p, 60 fps
 
 ## Marca
 - Cor principal: (só se informada)

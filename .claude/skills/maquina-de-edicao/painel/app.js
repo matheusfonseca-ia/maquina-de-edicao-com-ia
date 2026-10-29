@@ -1,4 +1,4 @@
-import { FORMATOS, ESTILOS_MAQUINA, ZERO, PADRAO_COMPLETO, CLIMA, CORTES, BROLL, USO_AUDIO } from './dados.js';
+import { FORMATOS, ESTILOS_MAQUINA, ZERO, PADRAO_COMPLETO, CLIMA, CORTES, BROLL, USO_AUDIO, EXPORTACAO } from './dados.js';
 import { Previa, miniatura, tamanhoPalco } from './previa.js';
 import { Som } from './som.js';
 
@@ -25,6 +25,7 @@ const E = {
   envios: { imagens: [], broll: [] },
   zero: { padrao: null, ...PADRAO_COMPLETO, marcaHex: '#9A4DFF', marcaFundo: 'claro', marcaFonte: '' },
   repetirMusica: 'eletronica', observacoes: '',
+  expRes: '1080', expFps: '60',
 };
 
 const som = new Som();
@@ -406,11 +407,46 @@ function etapaRepetir() {
   return etapa('O que está salvo do último vídeo', 'Vou usar estas escolhas de novo. Se quiser mudar alguma coisa, volte e escolha outro caminho.', corpo, true, 'etapa-repetir');
 }
 
+// Proporção do vídeo final: a do formato, a escolhida no caminho do zero ou a da gravação.
+function orientacaoSaida() {
+  if (E.modo === 'formato' && E.formato) return formato(E.formato)?.orient === 'h' ? 'horizontal' : 'vertical';
+  if (E.modo === 'zero' && E.zero.padrao) return (E.zero.padrao === 'completo' ? padraoCompleto() : E.zero).proporcao;
+  return orientacao() || 'vertical';
+}
+
+function exportacao() {
+  const lado = Number(E.expRes), longo = Math.round(lado * 16 / 9);
+  const vertical = orientacaoSaida() === 'vertical';
+  const res = EXPORTACAO.resolucao.find((o) => o.id === E.expRes);
+  return { resolucao: `${lado}p`, nome: res.rotulo, largura: vertical ? lado : longo, altura: vertical ? longo : lado, fps: Number(E.expFps) };
+}
+
+function textoExportacao() {
+  const x = exportacao();
+  return `${x.nome} ${x.resolucao} (${x.largura} × ${x.altura}), ${x.fps} fps`;
+}
+
+function blocoExportacao() {
+  const x = exportacao();
+  const v = C.videos?.[E.video] || {};
+  const menor = Math.min(...String(v.resolucao || '').split(/x/i).map(Number).filter(Boolean));
+  const avisos = [];
+  if (Number.isFinite(menor) && menor < Number(E.expRes)) avisos.push(`Sua gravação tem ${menor}p: em ${x.nome} o arquivo fica maior, mas a câmera não fica mais nítida (os gráficos e a legenda ficam).`);
+  if (v.fps && Math.round(v.fps) < x.fps) avisos.push(`Sua gravação é de ${Math.round(v.fps)} fps: as animações saem a ${x.fps} fps, a câmera continua com o movimento da gravação.`);
+  return `<p class="subtitulo observacoes-rotulo">Qualidade da exportação</p>
+    <p class="ajuda" style="margin:0 0 12px">Vale pro MP4 final, que só é gerado depois que você aprovar a edição.</p>
+    ${pilulas('expRes', E.expRes, EXPORTACAO.resolucao, '1080')}
+    <div style="height:10px"></div>
+    ${pilulas('expFps', E.expFps, EXPORTACAO.fps, '60')}
+    <p class="ajuda" style="margin:12px 0 0">Sai em ${x.largura} × ${x.altura} a ${x.fps} fps.${avisos.length ? ' ' + avisos.map(esc).join(' ') : ''}</p>`;
+}
+
 function etapaResumo() {
   const r = resumo();
   if (!r.length || falta()) return '';
   return etapa('Conferir e começar', 'É isso que vai pro Claude Code. Ele edita sozinho e te chama quando o vídeo estiver pronto pra assistir.', `
     <table class="resumo">${r.map(([k, v]) => `<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`).join('')}</table>
+    ${blocoExportacao()}
     <p class="subtitulo observacoes-rotulo">Imagens pra usar no vídeo <small>(opcional)</small></p>
     <p class="ajuda" style="margin:0 0 12px">Prints, logos, fotos do produto. Elas entram no lugar das imagens que o Claude buscaria sozinho. Sem imagens, ele busca o que você citar.</p>
     ${blocoEnvio('imagens', 'Suas imagens', 'Arraste as imagens aqui ou clique pra escolher. Vão pra pasta imagens/ do vídeo.', 'image/*')}
@@ -476,6 +512,7 @@ function resumo() {
     r.push(['Caminho', 'Repetir o último vídeo']);
     if (prefs()?.musicaDaPasta && !temMusicaNaPasta()) r.push(['Música', rotulo(ZERO.musica, E.repetirMusica)]);
   }
+  if (E.modo) r.push(['Exportação', textoExportacao()]);
   const imgs = E.envios.imagens.filter((a) => a.estado === 'pronto');
   if (imgs.length) r.push(['Imagens enviadas', `${imgs.length} ${imgs.length === 1 ? 'imagem' : 'imagens'} na pasta imagens/`]);
   return r;
@@ -492,6 +529,7 @@ function saida() {
     observacoes: E.observacoes.trim() || null,
     imagensEnviadas: E.envios.imagens.filter((a) => a.estado === 'pronto').map((a) => `imagens/${a.arquivo}`),
     brollEnviados: E.envios.broll.filter((a) => a.estado === 'pronto').map((a) => `broll/${a.arquivo}`),
+    exportacao: exportacao(),
   };
   if (E.modo === 'formato') {
     Object.assign(base, {
@@ -772,6 +810,10 @@ async function iniciar() {
   });
 
   if (C.formatoFixo && formatoInstalado(C.formatoFixo) && formato(C.formatoFixo)) { E.modo = 'formato'; E.formato = C.formatoFixo; E.formatoTravado = true; }
+  // Qualidade de exportação salva nas preferências vem marcada.
+  const xp = prefs()?.exportacao;
+  if (xp && EXPORTACAO.resolucao.some((o) => o.id === String(xp.resolucao).replace('p', ''))) E.expRes = String(xp.resolucao).replace('p', '');
+  if (xp && EXPORTACAO.fps.some((o) => o.id === String(xp.fps))) E.expFps = String(xp.fps);
   cabecalho();
   acertarProporcao();
   renderizar();

@@ -135,3 +135,17 @@ export const USO_AUDIO = [
   { id: 'musica', rotulo: 'Música que quero usar', sub: '', skill: 'música que quero usar' },
   { id: 'nao', rotulo: 'Não usar', sub: '', skill: 'não usar' },
 ];
+
+// Qualidade da exportação (usada só no fim, depois da aprovação).
+export const EXPORTACAO = {
+  resolucao: [
+    { id: '2160', rotulo: '4K', sub: '2160p' },
+    { id: '1080', rotulo: 'Full HD', sub: '1080p' },
+    { id: '720', rotulo: 'HD', sub: '720p' },
+  ],
+  fps: [
+    { id: '60', rotulo: '60 fps', sub: 'mais fluido' },
+    { id: '30', rotulo: '30 fps' },
+    { id: '24', rotulo: '24 fps', sub: 'cara de cinema' },
+  ],
+};
