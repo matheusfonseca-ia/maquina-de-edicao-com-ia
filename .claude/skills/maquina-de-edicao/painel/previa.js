@@ -579,9 +579,126 @@ const pixelInsert = (cfg, T, horizontal = false) => T.pixel ? [{
   montar: (ctx) => cenaPixel(ctx),
 }] : [];
 
+// Reels de Negócio + Pixelado: o formato do estilo Opus Jake (reels-de-negocio/com-pixelado.md).
+// Dividido com a câmera embaixo (borda reta em y 770), gráfico cheio e pixel art cheia;
+// a câmera nunca fica em tela cheia e a legenda é uma pílula fixa em y 764.
+const LEG_OPUS = { y: 764, n: 3, tam: 61 };
+
+function divididoOpus(ctx, conteudo) {
+  const g = h('div', caixa(0, 0, ctx.W, ctx.H));
+  g.appendChild(camera(ctx, { y: 770, h: 1150, escala: 1, topo: 200 }));
+  const cima = fundoGrafico(ctx, 0, 0, 1080, 770);
+  const c = card(ctx, 90, 255, 900, 445, '', { pad: 0 });
+  c.style.overflow = 'visible';
+  cima.appendChild(c);
+  g.appendChild(cima);
+  conteudo(c, cima);
+  return g;
+}
+
+function carimbo(ctx, texto, cor, x, y, w, em) {
+  const el = h('div', { position: 'absolute', left: px(x), top: px(y), width: px(w), boxSizing: 'border-box', textAlign: 'center', whiteSpace: 'nowrap', fontFamily: 'Inter', fontWeight: 900, fontSize: '84px', letterSpacing: '-.01em', color: cor, border: `8px solid ${cor}`, borderRadius: '14px', padding: '6px 20px', background: 'rgba(249,248,246,.92)' }, texto);
+  ctx.anima(el, [{ opacity: 0, transform: 'rotate(-10deg) scale(1.6)' }, { opacity: 1, transform: 'rotate(-10deg) scale(1)', offset: .7 }, { opacity: 1, transform: 'rotate(-10deg) translate(4px,-3px)', offset: .85 }, { opacity: 1, transform: 'rotate(-10deg) scale(1)' }], { em, dur: .28, ease: 'cubic-bezier(.3,1.4,.5,1)', som: 'impacto' });
+  return el;
+}
+
+const GITHUB_PATH = 'M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2 0 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1 .9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3';
+
+function demoRnPixel() {
+  return [
+    { nome: 'Gancho', dur: 2.8, fala: 'A IA acabou de *matar* o atendimento manual', leg: LEG_OPUS,
+      montar: (ctx) => divididoOpus(ctx, (c) => {
+        // celular com o feed
+        const cel = h('div', caixa(355, 22, 190, 400, { background: '#111', borderRadius: '34px', padding: '10px', boxSizing: 'border-box' }));
+        const tela = h('div', { position: 'relative', width: '100%', height: '100%', borderRadius: '26px', overflow: 'hidden', background: '#fff' });
+        const feed = h('div', {}, ['#ffd6a5', '#bde0fe', '#caffbf', '#ffc6ff'].map(cor => `<div style="margin:0 10px 8px;height:96px;border-radius:10px;background:${cor}"></div>`).join(''));
+        tela.append(h('div', { height: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center', font: 'italic 700 20px Inter', color: '#111' }, 'Atendimento'), feed);
+        cel.appendChild(tela);
+        c.appendChild(cel);
+        ctx.anima(feed, [{ transform: 'translateY(0)' }, { transform: 'translateY(-60px)' }], { dur: 1, ease: 'linear' });
+        // mascote salta e golpeia
+        const m = h('div', { position: 'absolute', left: '110px', top: '250px' }, mascote('#D97757', 9));
+        c.appendChild(m);
+        ctx.anima(m, [{ transform: 'translate(-60px,0)', opacity: 0 }, { transform: 'translate(0,0)', opacity: 1, offset: .35 }, { transform: 'translate(120px,-140px)', opacity: 1, offset: .75 }, { transform: 'translate(150px,-40px)', opacity: 1 }], { em: .1, dur: .9, ease: 'steps(9)', som: 'pop' });
+        // corte diagonal, tela trincada e glitch
+        const corte = h('div', { position: 'absolute', left: '300px', top: '210px', width: '300px', height: '10px', background: '#fff', boxShadow: '0 0 18px #fff, 0 0 4px #151513', borderRadius: '6px' });
+        c.appendChild(corte);
+        ctx.anima(corte, [{ transform: 'rotate(-35deg) scaleX(0)', opacity: 1 }, { transform: 'rotate(-35deg) scaleX(1.2)', opacity: 1, offset: .5 }, { transform: 'rotate(-35deg) scaleX(1.2)', opacity: 0 }], { em: .95, dur: .3, som: 'impacto' });
+        const trinca = h('div', caixa(10, 10, 170, 380), `<svg viewBox="0 0 170 380" width="170" height="380"><path d="M85 150 L40 60 M85 150 L150 90 M85 150 L30 250 M85 150 L130 300 M85 150 L95 20" stroke="#151513" stroke-width="3" fill="none"/></svg>`);
+        cel.appendChild(trinca);
+        ctx.anima(trinca, [{ opacity: 0 }, { opacity: 1 }], { em: 1.1, dur: .05 });
+        ctx.anima(tela, [{ filter: 'none', transform: 'none' }, { filter: 'hue-rotate(160deg) saturate(3)', transform: 'translateX(-6px)', offset: .3 }, { filter: 'none', transform: 'translateX(5px)', offset: .6 }, { filter: 'grayscale(1) brightness(.5)', transform: 'none' }], { em: 1.1, dur: .35 });
+        // o celular cai e sobe a lápide
+        ctx.anima(cel, [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(60px) rotate(8deg)' }], { em: 1.55, dur: .2 });
+        ctx.anima(m, [{ opacity: 1 }, { opacity: 0 }], { em: 1.55, dur: .15 });
+        const lapide = h('div', caixa(345, 90, 210, 300, { background: '#9a9692', borderRadius: '105px 105px 0 0', border: '6px solid #151513', boxSizing: 'border-box', display: 'grid', placeItems: 'center', fontFamily: 'Silkscreen, monospace', fontSize: '64px', color: '#151513' }), 'RIP');
+        c.appendChild(lapide);
+        ctx.anima(lapide, [{ opacity: 0, transform: 'translateY(80px)' }, { opacity: 1, transform: 'none' }], { em: 1.6, dur: .3, ease: 'steps(5)', som: 'tum' });
+        c.appendChild(carimbo(ctx, 'MORTO', '#C8102E', 220, 140, 460, 2.05));
+      }) },
+    { nome: 'Gráfico', dur: 2.8, fala: 'São *onze* ferramentas cada uma faz uma coisa', leg: LEG_OPUS,
+      montar: (ctx) => {
+        const g = fundoGrafico(ctx, 0, 0, 1080, 1920);
+        const cont = h('div', { position: 'absolute', left: '0', width: '1080px', top: '330px', textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: '220px', color: '#1A1A1A', letterSpacing: '-.04em', lineHeight: '1' });
+        const num = h('span', {}, '1');
+        cont.append(h('span', { color: '#D97757' }, '×'), num);
+        g.appendChild(cont);
+        ctx.tempo(.45, .9, k => { num.textContent = String(Math.max(1, Math.round(11 * k))); });
+        const icones = ['✎', '💬', '↩', '👤', '📅', '📈', '🔍', '🎬', '🗂', '✉', '★'];
+        let i = 0;
+        [4, 4, 3].forEach((n, l) => {
+          for (let j = 0; j < n; j++, i++) {
+            const x = 540 - (n * 190 - 30) / 2 + j * 190;
+            const k = card(ctx, x, 880 + l * 200, 160, 176, `<div style="height:100%;display:grid;place-items:center;font-size:62px">${icones[i]}</div>`, { pad: 0 });
+            Object.assign(k.style, { borderRadius: '18px', border: '2px solid #E6E4E1' });
+            g.appendChild(k);
+            ctx.anima(k, [{ opacity: 0, transform: 'scale(.4)' }, { opacity: 1, transform: 'none' }], { em: i === 0 ? 0 : .45 + i * .08, dur: .22, som: i % 4 === 0 ? 'pop' : null });
+          }
+        });
+        return g;
+      } },
+    { nome: 'Dividido', dur: 2.6, fala: 'E é um repositório *gratuito*', leg: LEG_OPUS,
+      montar: (ctx) => divididoOpus(ctx, (c) => {
+        const repo = h('div', { position: 'absolute', inset: '0', padding: '34px 44px', fontFamily: 'Inter', color: '#1A1A1A' });
+        repo.innerHTML = `<div style="display:flex;align-items:center;gap:14px;font-size:30px;white-space:nowrap"><svg width="40" height="40" viewBox="0 0 24 24"><path fill="#1A1A1A" d="${GITHUB_PATH}"/></svg><span style="color:#8A8783">seu-usuario /</span><b>atendimento-ia</b><span style="font:600 20px 'JetBrains Mono';border:2px solid #E6E4E1;border-radius:999px;padding:2px 12px;color:#8A8783">Public</span></div>`;
+        const lista = h('div', { marginTop: '22px', border: '2px solid #E6E4E1', borderRadius: '14px', overflow: 'hidden' });
+        ['📁  skills', '📁  templates', '📄  README.md', '📄  LICENSE'].forEach((t, i) => {
+          const l = h('div', { padding: '13px 22px', fontSize: '26px', fontFamily: "'JetBrains Mono'", borderTop: i ? '2px solid #E6E4E1' : 'none', background: '#fff', whiteSpace: 'pre' }, t);
+          lista.appendChild(l);
+          entra(ctx, l, .15 + i * .12, { som: null });
+        });
+        repo.appendChild(lista);
+        c.appendChild(repo);
+        c.appendChild(carimbo(ctx, 'GRÁTIS', '#2DA44E', 230, 150, 440, 1.45));
+      }) },
+    { nome: 'Pixel art', dur: 2.6, fala: 'E aí a IA *venceu* a disputa', leg: LEG_OPUS,
+      montar: (ctx) => cenaPixel(ctx) },
+    { nome: 'Chamada', dur: 3.4, fala: 'Comenta *IA* que eu te envio na DM', leg: LEG_OPUS,
+      montar: (ctx) => divididoOpus(ctx, (c) => {
+        const bola = (n) => `<div style="width:48px;height:48px;border-radius:50%;background:#D97757;color:#fff;display:grid;place-items:center;font:800 26px Inter;flex:none">${n}</div>`;
+        const corpo = h('div', { position: 'absolute', inset: '0', padding: '0 46px', fontFamily: 'Inter', color: '#1A1A1A', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '38px' });
+        const l1 = h('div', { display: 'flex', alignItems: 'center', gap: '22px' }, `${bola(1)}<div style="width:92px;height:92px;border-radius:50%;padding:4px;box-sizing:border-box;background:linear-gradient(45deg,#FEDA75,#FA7E1E,#D62976,#962FBF,#4F5BD5);flex:none"><div style="width:100%;height:100%;border-radius:50%;border:4px solid #F9F8F6;box-sizing:border-box;background:linear-gradient(135deg,#bde0fe,#a0c4ff)"></div></div><div style="flex:1"><div style="font:700 40px Inter">Seguir</div><div style="font:500 26px 'JetBrains Mono';color:#8A8783">@seuperfil</div></div>`);
+        const bt = h('div', { font: '700 28px Inter', color: '#fff', background: '#0095F6', borderRadius: '12px', padding: '14px 26px', whiteSpace: 'nowrap' }, 'Seguir');
+        l1.appendChild(bt);
+        ctx.anima(bt, [{ background: '#0095F6', color: '#fff' }, { background: '#EFEFEF', color: '#1A1A1A' }], { em: .8, dur: .05, som: 'clique' });
+        ctx.tempo(.8, .01, k => { bt.textContent = k > 0 ? 'Seguindo' : 'Seguir'; });
+        const l2 = h('div', { display: 'flex', alignItems: 'center', gap: '22px' }, `${bola(2)}<div style="font:700 40px Inter;flex:none">Comente</div>`);
+        const campo = h('div', { flex: '1', height: '80px', borderRadius: '14px', border: '3px solid #E6E4E1', boxSizing: 'border-box', display: 'flex', alignItems: 'center', padding: '0 24px', font: "800 40px 'JetBrains Mono'", letterSpacing: '.06em' });
+        l2.appendChild(campo);
+        ctx.tempo(1.2, .3, k => { campo.textContent = 'IA'.slice(0, Math.round(2 * k)) + (k < 1 ? '▌' : ''); });
+        ctx.anima(campo, [{ borderColor: '#E6E4E1' }, { borderColor: '#D97757' }], { em: 1.5, dur: .15, som: 'confirma' });
+        const dm = h('div', { font: "600 26px 'JetBrains Mono'", color: '#8A8783', textAlign: 'center' }, '✈ Te envio na DM');
+        corpo.append(l1, l2, dm);
+        c.appendChild(corpo);
+        entra(ctx, dm, 2.3, { som: null });
+      }) },
+  ];
+}
+
 const DEMOS = {
   'reels-de-negocio': (cfg) => {
     const T = resolverVisual(cfg);
+    if (T.pixel) return demoRnPixel();
     const [l1, l2] = tituloCapa(cfg, ['Posta todo dia', 'mas não vende nada?']);
     return [
       { nome: 'Gancho', dur: 3.2, fala: FALA.gancho, leg: { y: 1174, um: true, tam: 96, pele: T.original ? 'rn' : null, depois: .7 },

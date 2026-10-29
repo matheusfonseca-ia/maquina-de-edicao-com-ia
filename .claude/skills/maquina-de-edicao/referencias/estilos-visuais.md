@@ -23,6 +23,10 @@ Se o visual original do formato já for igual a um dos estilos (ex: o formato us
 
 ## Como aplicar um estilo visual a um formato
 
+### Combinações com arquivo próprio
+
+Algumas combinações de formato + estilo têm estrutura própria, num arquivo `com-<estilo>.md` dentro da pasta do formato (ex: `reels-de-negocio/com-pixelado.md`, o formato dos reels editados no estilo Opus Jake). Quando ele existe, vale por cima do `formato.md` e do arquivo do estilo, inclusive nos layouts: as regras de "Nunca muda" abaixo não se aplicam ao que ele define.
+
 ### Nunca muda (vem do formato)
 
 - Os layouts, as posições, os tamanhos das áreas, as regras de distribuição e o ritmo.

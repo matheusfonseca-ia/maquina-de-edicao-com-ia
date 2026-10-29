@@ -121,6 +121,8 @@ Marque como "(Recomendado)" o estilo visual das preferências salvas, se houver;
 
 Leia o arquivo inteiro do estilo visual escolhido (se não for o Original do formato) e a seção "Como aplicar um estilo visual a um formato" de `referencias/estilos-visuais.md`.
 
+**Combinação com arquivo próprio:** se existir `<pasta do formato>/com-<nome-do-estilo>.md` (ex: `reels-de-negocio/com-pixelado.md`), essa combinação tem estrutura própria: leia o arquivo inteiro e siga ele por cima do `formato.md` e do arquivo do estilo, inclusive nos layouts, na legenda, no gancho e no CTA. Se ele citar uma pasta `cenas-modelo/`, abra as cenas antes de construir.
+
 **4. Perguntas.** Não faça a "Padrão completo ou personalizar?" nem as perguntas listadas em "Escolhas que este formato já define". Faça só **uma rodada**, com as perguntas que ficam em aberto (normalmente estas):
 
 - **Música de fundo?** Opções: "A do estilo (Recomendado)", que é o clima descrito no estilo visual (ou na seção Áudio do formato, no Original); "Usar a música que está na pasta" (só se houver arquivo de música); "Sem música".
@@ -219,7 +221,7 @@ A pessoa pode escrever observações livres pra edição: no campo "Observaçõe
 
 ## Fase 2: Edição autônoma
 
-1. Leia `referencias/instrucoes-base.md` e `referencias/variacoes.md` inteiros. Se um formato pronto foi escolhido, leia também a seção "Como um formato pronto se aplica" de `referencias/formatos-prontos.md` e o `formato.md` inteiro. Se um estilo visual foi escolhido (qualquer um que não seja o Original do formato), leia o arquivo dele inteiro e a seção "Como aplicar um estilo visual a um formato" de `referencias/estilos-visuais.md`. Releia tudo se a conversa foi resumida.
+1. Leia `referencias/instrucoes-base.md` e `referencias/variacoes.md` inteiros. Se um formato pronto foi escolhido, leia também a seção "Como um formato pronto se aplica" de `referencias/formatos-prontos.md` e o `formato.md` inteiro. Se um estilo visual foi escolhido (qualquer um que não seja o Original do formato), leia o arquivo dele inteiro e a seção "Como aplicar um estilo visual a um formato" de `referencias/estilos-visuais.md`. Se existir `<pasta do formato>/com-<nome-do-estilo>.md`, leia inteiro: ele manda por cima dos dois. Releia tudo se a conversa foi resumida.
 2. Crie a pasta `edit/` e salve `edit/plano.md` com:
    - as escolhas do usuário e o que foi detectado (e se vieram das preferências salvas);
    - se um formato pronto foi escolhido: o nome do formato e as regras dele copiadas pro plano já resolvidas, seção por seção, seguindo a tabela "O que o formato substitui". Escreva no plano quais blocos do motor continuam valendo, quais o formato substituiu e o texto final de cada um. Os itens da "Verificação do formato" entram na 9A e na 9B. Se o formato tiver "Fluxo diferente", copie também e siga ele por cima das fases 2 a 4;

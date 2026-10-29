@@ -71,6 +71,11 @@ function estilosParaFormato(fid) {
   const daMaquina = Object.entries(ESTILOS_MAQUINA).map(([id, e]) => ({ id, ...e }));
   const daPessoa = estilosDaPessoa();
   [...daMaquina, ...daPessoa].forEach((e) => { if (e.id !== f?.originalIgual) lista.push(e); });
+  // No Reels de Negócio o Pixelado muda também a estrutura (reels-de-negocio/com-pixelado.md).
+  if (fid === 'reels-de-negocio') {
+    const px = lista.find((e) => e.id === 'pixelado');
+    if (px) px.resumo = 'Tela dividida com você embaixo, cenas que ilustram cada frase no creme quadriculado e clímax em pixel art. Sem câmera cheia, legenda em pílula escura fixa no meio.';
+  }
   return lista;
 }
 

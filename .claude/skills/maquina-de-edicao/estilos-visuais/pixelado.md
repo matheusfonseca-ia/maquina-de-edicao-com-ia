@@ -12,6 +12,8 @@ Visual de "caderno de ideias + videogame": tudo é claro, limpo e com cara de pa
 
 O formato continua mandando na estrutura (onde ficam a câmera, os gráficos e a legenda, e quanto tempo dura cada layout). O Pixelado manda no que aparece dentro das áreas gráficas e em como isso se mexe.
 
+**Exceção: Reels de Negócio.** Com o Reels de Negócio, o Pixelado vira o formato completo do estilo Opus Jake (dividido com a câmera embaixo, gráfico cheio e pixel art cheia, sem câmera cheia, legenda em pílula fixa na emenda): siga `reels-de-negocio/com-pixelado.md`, que manda por cima deste arquivo e do `formato.md`.
+
 ## Papéis
 
 | Papel | Valor |

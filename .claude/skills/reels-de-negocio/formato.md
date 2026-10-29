@@ -4,6 +4,8 @@ Resumo: alterna câmera cheia, tela dividida e animação em tela cheia a cada c
 
 O visual descrito aqui (cores, fontes, materiais, legenda, música) é o **Original do formato**. Se a pessoa escolher outro estilo visual, o layout, as posições e o ritmo daqui continuam valendo e a aparência vem do estilo: siga `maquina-de-edicao/referencias/estilos-visuais.md`.
 
+**Com o estilo Pixelado, este arquivo não manda nos layouts:** siga `com-pixelado.md` (nesta pasta), o formato dos reels editados no estilo Opus Jake: dividido com a câmera embaixo, gráfico cheio e pixel art cheia, sem câmera cheia, sem título de capa, legenda em pílula fixa na emenda, e as `cenas-modelo/` como referência.
+
 ## Como fica
 
 Vídeo vertical de ritmo alto, pra quem vende serviço ou ensina negócio. A cada corte o layout muda: ora a pessoa ocupa a tela toda, ora a tela se divide (prova visual em cima, pessoa embaixo), ora a tela inteira vira animação (passos, documentos, números). No gancho, a pessoa fica na frente de uma fileira de cards (reels, posts) que passam atrás da cabeça. A legenda mostra uma palavra por vez, grande, no meio da tela.
