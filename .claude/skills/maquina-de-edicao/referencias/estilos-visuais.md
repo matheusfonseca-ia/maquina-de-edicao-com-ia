@@ -64,7 +64,7 @@ Regras da troca:
 - **Fonte diferente, mesmo espaço**: se a fonte do estilo for mais larga ou mais estreita, ajuste o tamanho pra ocupar a mesma área que o formato previu (ex: fonte mono em caixa alta costuma precisar de ~85% do tamanho).
 - **Legenda**: posição e quantidade de palavras por bloco vêm do formato. Fonte, cor, caixa, contorno, pílula e destaque vêm do estilo. Se o formato tem uma legenda que é a alma dele (Legenda Encaixada, frase empilhada do Reels com B-roll), mantenha a mecânica e troque só a tipografia e as cores pelas do estilo.
 - **Formatos com pouco gráfico** (Legenda Encaixada, Reels com B-roll, Nuvem de Imagens, Recorte com Imagens): o estilo muda a legenda, as molduras e o pouco que houver de gráfico. Se o estilo tiver a seção "Em formatos com pouco gráfico", siga o que ela manda (ex: o Pixelado acrescenta inserts em pixel art).
-- **Áudio**: o clima da música e a paleta de efeitos vêm do estilo. As regras de nível, sincronia e master vêm do motor.
+- **Áudio**: o clima da música e o timbre dos efeitos vêm do estilo. Quantidade e volume dos efeitos seguem sempre o padrão universal do motor (poucos efeitos, bem abaixo da voz: bloco 7 de `instrucoes-base.md`), assim como nível, sincronia e master.
 - **Marca da pessoa**: se ela pediu a cor da marca, troque só a cor de destaque do estilo (com contraste de 4,5:1).
 
 Prioridade (da mais forte pra mais fraca): pedidos da revisão e observações da pessoa → ajustes fixos salvos → estilo visual (no que é aparência) → formato → `variacoes.md` → `instrucoes-base.md`.

@@ -85,4 +85,4 @@ Paleta suave, todos sintetizados:
 - sinal de duas notas na confirmação (verde);
 - whoosh de ruído filtrado só em trocas de tela cheia de animação (no máximo 3 por vídeo).
 
-Níveis como no bloco 7 do motor.
+Quantidade e níveis: o padrão universal do bloco 7 do motor (só nos eventos fortes, no máximo 1 a cada 0,6 s, bem abaixo da voz). O "tic" fica só no card ou pílula principal da tela, não em cada item.

@@ -13,7 +13,7 @@ Vale tudo marcado [TODOS]. Remova tudo marcado [IMAGENS+] e [COMPLETO].
 - O vídeo inteiro usa o layout A (câmera em tela cheia). Não há regras de distribuição de layout nem limite de oito segundos por trecho.
 - A tabela de cortes registra os trechos (frases mantidas) com início, fim e conteúdo, sem coluna de layout.
 - Ignore a etapa de contato visual. Se a pessoa desviar o olhar, mantenha o trecho e registre no relatório.
-- Efeitos sonoros: só os que têm evento visual neste nível: tecla e clique no cartão de chamada para ação, e confirmação quando fizer sentido. Mantenha o riser no fim do gancho.
+- Efeitos sonoros: só os que têm evento visual neste nível: clique no cartão de chamada para ação e confirmação quando fizer sentido. Mantenha o riser no fim do gancho.
 - Não há verificação de fontes.
 
 ### Com imagens
@@ -24,7 +24,7 @@ Vale tudo marcado [TODOS] e [IMAGENS+]. Remova tudo marcado [COMPLETO].
 - **Sem câmera virtual:** o ambiente gráfico fica parado em cada trecho. Não use profundidade de campo nem desfoque de movimento.
 - **Animação simples dos elementos:** cada cartão, imagem, logotipo ou captura entra com fade e leve subida de 40 px em 0,4 s com power2.out, sincronizado com a palavra que o menciona. Saídas só por corte seco no fim do trecho. No máximo dois elementos entrando por trecho.
 - **Ações:** mostre a captura estática da interface ou página citada, sem animar digitação ou cliques dentro dela.
-- Efeitos sonoros: impacto na chegada de cartões, clique, tecla e confirmação. Sem sons de passagem.
+- Efeitos sonoros: impacto na chegada do cartão principal, clique e confirmação. Sem sons de passagem.
 - Render a 60 fps direto, sem os 240 fps.
 
 ### Completo
@@ -162,8 +162,8 @@ Pergunte: cor principal (hex), fundo claro ou escuro, e fonte (opcional, do Goog
 
 ## Efeitos sonoros
 
-- **Completos:** como em `instrucoes-base.md` (respeitando o nível).
-- **Só os essenciais:** cliques, teclas, impactos e confirmações. Sem sons de passagem. Riser mantido.
+- **Completos:** como em `instrucoes-base.md` (respeitando o nível e o padrão universal: poucos efeitos, bem abaixo da voz).
+- **Só os essenciais:** cliques, impactos e confirmações. Sem sons de passagem. Riser mantido. Mesmo padrão universal de quantidade e volume.
 - **Nenhum:** não gere `stems/sfx.wav` nem `stems/riser.wav`. Remova as verificações de áudio ligadas a efeitos. Registre no relatório.
 
 ## Verificação de fontes

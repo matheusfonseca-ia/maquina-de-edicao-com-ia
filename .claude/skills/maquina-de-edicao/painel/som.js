@@ -30,6 +30,10 @@ export class Som {
     this.busMusica = this.ac.createGain();
     this.busMusica.gain.value = 0.32;
     this.busMusica.connect(this.mestre);
+    // Padrão universal: efeitos 8 dB mais baixos (bem abaixo da voz).
+    this.busEfeitos = this.ac.createGain();
+    this.busEfeitos.gain.value = 0.4;
+    this.busEfeitos.connect(this.mestre);
     this.ruido = this.ac.createBuffer(1, this.ac.sampleRate, this.ac.sampleRate);
     const d = this.ruido.getChannelData(0);
     for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
@@ -152,6 +156,8 @@ export class Som {
   permitido(tipo) {
     const e = this.cfg.efeitos;
     if (e === 'nenhum') return false;
+    // Padrão universal: poucos efeitos, só nos eventos fortes. Sem tecla, tique, risco nem sobe.
+    if (['tique', 'digita', 'risco', 'sobe'].includes(tipo)) return false;
     if (e === 'so-tum') return tipo === 'tum';
     if (e === 'essenciais' && (tipo === 'passagem' || tipo === 'riser')) return false;
     return true;
@@ -161,12 +167,16 @@ export class Som {
     if (!forcar && (!this.ligado || !this.permitido(tipo))) return;
     const ac = this.garantir();
     const t = ac.currentTime + 0.01;
-    const out = this.mestre;
+    // No máximo um efeito a cada 0,6 s.
+    if (!forcar && tipo !== 'riser') {
+      if (t - (this.ultimoEfeito ?? -1) < 0.6) return;
+      this.ultimoEfeito = t;
+    }
+    const out = this.busEfeitos;
     const px = this.cfg.pixel;
     switch (tipo) {
       case 'pop':
-        if (px) { this.tom(988, t, 0.07, 'square', 0.06, false, null, out); this.tom(1319, t + 0.05, 0.08, 'square', 0.05, false, null, out); }
-        else { const o = this.tom(520, t, 0.09, 'sine', 0.14, false, null, out); o.frequency.exponentialRampToValueAtTime(900, t + 0.06); }
+        { const o = this.tom(520, t, 0.09, 'sine', 0.14, false, null, out); o.frequency.exponentialRampToValueAtTime(900, t + 0.06); }
         break;
       case 'tique': this.tom(2400, t, 0.025, 'square', 0.03, false, null, out); break;
       case 'clique': this.ruidoCurto(t, 0.02, 3000, 0.2); break;
@@ -192,7 +202,7 @@ export class Som {
     f.type = 'bandpass'; f.frequency.value = freq; f.Q.value = 1.2;
     g.gain.setValueAtTime(vol, t);
     g.gain.exponentialRampToValueAtTime(0.001, t + dur);
-    s.connect(f).connect(g).connect(this.mestre);
+    s.connect(f).connect(g).connect(this.busEfeitos);
     s.start(t, Math.random() * 0.5); s.stop(t + dur + 0.02);
   }
 
@@ -205,7 +215,7 @@ export class Som {
     g.gain.setValueAtTime(0.0001, t);
     g.gain.exponentialRampToValueAtTime(vol, t + dur * 0.7);
     g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-    s.connect(f).connect(g).connect(this.mestre);
+    s.connect(f).connect(g).connect(this.busEfeitos);
     s.start(t); s.stop(t + dur + 0.02);
   }
 

@@ -10,6 +10,7 @@ const HEX = /^#[0-9a-f]{6}$/i;
 const EXEMPLO = {
   videos: [{ arquivo: 'gravacao.mp4', orientacao: 'vertical', resolucao: '1080x1920', fps: 30, duracao: 92 }],
   audios: [], pastas: { broll: false, imagens: false, roteiro: false },
+  formatos: ['reels-de-negocio', 'reels-com-broll', 'tela-dividida-explicativa', 'ensaio-visual', 'recorte-com-imagens', 'telas-em-profundidade'],
   estilosVisuais: [], preferencias: null, formatoFixo: null,
   ferramentas: { node: 'ok', ffmpeg: 'ok', python: 'ok', hyperframes: 'ok' },
 };
@@ -37,7 +38,8 @@ const estilosDaPessoa = () => (C.estilosVisuais || []).filter((e) => e.origem ==
 const temMusicaNaPasta = () => (C.audios || []).some((a, i) => E.usoAudio[i] === 'musica');
 const urlMusicaPasta = () => { const i = (C.audios || []).findIndex((a, j) => E.usoAudio[j] === 'musica'); return i >= 0 ? C.audios[i].url : null; };
 const duracao = () => Number(C.videos?.[E.video]?.duracao) || 0;
-const prefs = () => C.preferencias || null;
+const formatoInstalado = (id) => Array.isArray(C.formatos) && C.formatos.includes(id);
+const prefs = () => C.preferencias?.formato && !formatoInstalado(C.preferencias.formato) ? null : C.preferencias || null;
 
 // Orientação da gravação escolhida: decide quais formatos fazem sentido.
 function orientacao() {
@@ -266,6 +268,7 @@ function etapaModo() {
   corpo += botao('modo', 'zero', E.modo, { nome: 'Do zero', desc: 'Você escolhe cada detalhe: nível, legenda, visual e música.', extra: ILUSTRA.zero });
   if (p) corpo += botao('modo', 'repetir', E.modo, { nome: 'Repetir o último vídeo', desc: 'Usa as escolhas e os ajustes do último vídeo que você aprovou.', selo: 'Recomendado', extra: ILUSTRA.repetir });
   corpo += '</div>';
+  if (C.preferencias?.formato && !formatoInstalado(C.preferencias.formato)) corpo += '<p class="aviso">O formato do último vídeo não está instalado. Escolha outro caminho ou instale o pacote que contém esse formato. Suas preferências continuam salvas.</p>';
   return etapa('Como quer editar este vídeo?', '', corpo, !!E.modo, 'etapa-modo');
 }
 
@@ -275,16 +278,15 @@ function etapaFormato() {
     const aviso = f && !serve(f) ? `<p class="aviso"><b>Esse formato é ${f.orient === 'h' ? 'horizontal' : 'vertical'} e a sua gravação é ${orientacao()}.</b> Dá pra seguir, mas a imagem vai ser bem cortada. Se quiser, troque de formato.</p>` : '';
     return etapa(`Formato: ${esc(f?.nome)}`, `${esc(f?.desc)}. <button type="button" class="trocar" data-acao="destravar">Trocar de formato</button>`, aviso, true);
   }
-  const instalados = C.formatos?.length ? FORMATOS.filter((f) => C.formatos.includes(f.id)) : FORMATOS;
+  const instalados = FORMATOS.filter((f) => formatoInstalado(f.id));
   const disponiveis = instalados.filter(serve);
-  const faltando = FORMATOS.filter((f) => serve(f) && !instalados.includes(f));
   const atual = E.formato;
   const selo = (f) => (prefs()?.formato === f.id ? 'Seu último' : '');
   const grupo = (orient) => disponiveis.filter((f) => f.orient === orient).map((f) => cartao('formato', f.id, atual, f.nome, f.desc, { tipo: 'formato', formato: f.id, estilo: 'original' }, selo(f))).join('');
   const blocoV = grupo('v') ? `<p class="subtitulo">Vertical 9:16, pra Reels, TikTok e Shorts</p><div class="grade grade-v">${grupo('v')}</div>` : '';
   const blocoH = grupo('h') ? `<p class="subtitulo">Horizontal 16:9, pro YouTube</p><div class="grade grade-h">${grupo('h')}</div>` : '';
   let corpo = orientacao() === 'horizontal' ? blocoH + blocoV : blocoV + blocoH;
-  if (faltando.length) corpo += `<p class="aviso">Não achei instalados: ${faltando.map((f) => f.nome).join(', ')}. Rode o instalador do repositório de novo pra ter todos.</p>`;
+  if (!disponiveis.length) corpo += '<p class="aviso">Nenhum formato instalado combina com a orientação desta gravação. Você pode usar o caminho Do zero ou instalar um pacote com formatos para esta orientação.</p>';
   corpo += extrasDoFormato();
   const o = orientacao();
   const ajuda = o === 'vertical'
@@ -292,7 +294,7 @@ function etapaFormato() {
     : o === 'horizontal'
       ? 'Sua gravação é horizontal, então aqui estão os formatos pro YouTube e o Cortes de Vídeo Longo, que tira cortes verticais dela. Toque num formato pra ver a prévia ao lado.'
       : 'Toque num formato pra ver a prévia ao lado. A estrutura é do formato; o visual você escolhe no próximo passo.';
-  return etapa('Qual formato?', ajuda, corpo, !!E.formato, 'etapa-formato');
+  return etapa('Qual formato?', ajuda, corpo, disponiveis.some((f) => f.id === E.formato), 'etapa-formato');
 }
 
 function extrasDoFormato() {
@@ -769,7 +771,7 @@ async function iniciar() {
     },
   });
 
-  if (C.formatoFixo && formato(C.formatoFixo)) { E.modo = 'formato'; E.formato = C.formatoFixo; E.formatoTravado = true; }
+  if (C.formatoFixo && formatoInstalado(C.formatoFixo) && formato(C.formatoFixo)) { E.modo = 'formato'; E.formato = C.formatoFixo; E.formatoTravado = true; }
   cabecalho();
   acertarProporcao();
   renderizar();

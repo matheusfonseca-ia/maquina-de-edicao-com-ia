@@ -27,6 +27,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { formatosInstalados, formatoDaEscolha } from './catalogo.mjs';
 
 const AQUI = path.dirname(fileURLToPath(import.meta.url));
 
@@ -51,6 +52,12 @@ if (arqContexto) {
     console.error(`Não consegui ler o contexto (${arqContexto}): ${e.message}`);
     process.exit(1);
   }
+}
+
+contexto.formatos = formatosInstalados(path.resolve(AQUI, '../..'), contexto.formatos);
+if (contexto.formatoFixo && !contexto.formatos.includes(contexto.formatoFixo)) {
+  console.error(`Formato não instalado: ${contexto.formatoFixo}. Instale o pacote que contém esse formato.`);
+  process.exit(1);
 }
 
 // Arquivos que a página pode pedir: só os listados no contexto.
@@ -146,6 +153,13 @@ const servidor = http.createServer(async (req, res) => {
   if (url.pathname === '/api/escolhas' && req.method === 'POST') {
     try {
       const corpo = JSON.parse(await lerCorpo(req));
+      const formatoEscolhido = formatoDaEscolha(corpo, contexto.preferencias);
+      if (corpo.caminho === 'formato-pronto' && !formatoEscolhido) {
+        return json(res, 400, { ok: false, erro: 'Escolha um formato instalado.' });
+      }
+      if (formatoEscolhido && !contexto.formatos.includes(formatoEscolhido)) {
+        return json(res, 400, { ok: false, erro: 'Esse formato não está instalado. Instale o pacote que contém esse formato.' });
+      }
       const destino = path.resolve(arqSaida);
       fs.mkdirSync(path.dirname(destino), { recursive: true });
       fs.writeFileSync(destino, JSON.stringify({ ...corpo, salvoEm: new Date().toISOString() }, null, 2), 'utf8');

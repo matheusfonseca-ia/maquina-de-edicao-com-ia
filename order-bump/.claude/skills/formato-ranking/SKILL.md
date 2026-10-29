@@ -9,7 +9,7 @@ Formato pronto da Máquina de Edição. Vídeo vertical 9:16 com uma tier list (
 
 Esta skill não tem um fluxo próprio: ela chama o motor da Máquina de Edição com este formato já escolhido.
 
-1. **Ache o motor.** Ele fica na pasta `maquina-de-edicao`, ao lado da pasta desta skill (as duas estão na mesma pasta de skills). Se não existir, pare e avise: "Esse formato precisa da Máquina de Edição. Rode o instalador do repositório de novo (`instalar.ps1` no Windows ou `instalar.sh` no Mac) e abra o Claude Code de novo."
+1. **Ache o motor.** Ele fica na pasta `maquina-de-edicao`, ao lado da pasta desta skill (as duas estão na mesma pasta de skills). Se não existir, pare e avise: "Esse formato precisa da Máquina de Edição. Rode o instalador do pacote principal da Máquina de Edição (`instalar.ps1` no Windows ou `instalar.sh` no Mac) e abra o Claude Code de novo."
 2. **Leia o `SKILL.md` do motor inteiro** e siga o fluxo dele do começo ao fim, com estas regras:
    - O formato já está escolhido: **Formato Ranking** (pasta `formato-ranking`). Pule a pergunta "Como quer editar este vídeo?" e a lista de formatos. Vá direto pro "Caminho formato pronto", a partir do passo 2.
    - A especificação do formato é o arquivo `formato.md` desta pasta. Leia inteiro antes da fase 1.

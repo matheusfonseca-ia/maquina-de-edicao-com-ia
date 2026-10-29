@@ -1,6 +1,6 @@
 ---
 name: maquina-de-edicao
-description: Edita um vídeo falado (gravação bruta pra câmera) do começo ao fim usando código (FFmpeg, Python, Node e HyperFrames). Logo no começo a pessoa escolhe se quer editar do zero (respondendo algumas perguntas) ou com um formato pronto. No formato pronto ela escolhe primeiro o formato, entre 12 (Reels de Negócio, Reels com B-roll, Tela Dividida Explicativa, Ensaio Visual, Legenda Encaixada, Nuvem de Imagens, Recorte com Imagens, Telas em Profundidade, Formato Ranking, Cortes de Vídeo Longo, YouTube Educativo, Aula em Tela Dividida), e depois o estilo visual (Original do formato, Pixelado, Noite Laranja, Claro Tecnológico ou outro que ela criou). Edita sozinha, abre o resultado no HyperFrames Studio pra revisão e só exporta o MP4 depois da aprovação. Salva as preferências do vídeo aprovado e oferece repetir na próxima edição. Também cria estilos visuais novos a partir de um vídeo de referência ou de uma descrição. Use quando o usuário chamar /maquina-de-edicao, disser "edita meu vídeo", "editar vídeo", "quero editar essa gravação", "transforma meu vídeo em reels", "quais formatos tem", "quais estilos de edição tem" ou pedir pra editar uma gravação bruta, e também quando pedir pra "analisar o estilo de edição desse vídeo", "salvar esse estilo", "copiar o visual desse reel" ou "criar um estilo visual novo".
+description: Edita gravações faladas com FFmpeg, Python, Node e HyperFrames, do zero ou com um formato instalado. Oferece seis formatos no pacote principal e mais seis quando o complemento está instalado, cada um com skill própria. Abre um painel local para escolher formato e estilo visual, monta o vídeo, abre o Studio para revisão e exporta o MP4 após aprovação. Salva preferências e cria estilos visuais a partir de referências. Use ao chamar /maquina-de-edicao, pedir para editar uma gravação, transformar um vídeo em reels, consultar formatos instalados ou copiar o visual de um vídeo.
 ---
 
 # Máquina de Edição
@@ -8,7 +8,7 @@ description: Edita um vídeo falado (gravação bruta pra câmera) do começo ao
 Você vai transformar a gravação bruta do usuário num vídeo finalizado. Existem dois caminhos, e a pessoa escolhe logo no começo:
 
 - **Do zero**: a pessoa responde algumas perguntas (nível, legenda, visual, música) e o vídeo sai do jeito que ela montou. A proporção segue a gravação.
-- **Formato pronto**: a pessoa escolhe **primeiro o formato** (a estrutura: um dos 12 formatos prontos) e **depois o estilo visual** (a aparência: cores, fontes, legenda, música). O vídeo sai naquele formato e naquele visual, quase sem perguntas.
+- **Formato pronto**: a pessoa escolhe **primeiro o formato**, entre as skills instaladas, e **depois o estilo visual** (a aparência: cores, fontes, legenda, música). São seis formatos na oferta principal e seis adicionais no complemento. O vídeo sai naquele formato e naquele visual, quase sem perguntas.
 
 Formato e estilo visual são independentes: qualquer formato combina com qualquer estilo visual. Ex: Formato Ranking + Pixelado = tier list com cara de videogame.
 
@@ -53,7 +53,7 @@ Antes de qualquer pergunta, liste os arquivos da pasta atual.
 - Rode `ffprobe` em cada vídeo e anote: orientação (horizontal ou vertical), resolução, fps e duração. Não pergunte a orientação da gravação ao usuário; detecte.
 - Se o arquivo estiver corrompido ou ilegível, pare e avise.
 - Verifique se existe `~/.maquina-de-edicao/preferencias.md`. Se existir, leia.
-- Leia `referencias/formatos-prontos.md` e confira quais pastas de formato existem ao lado desta skill.
+- Leia `referencias/formatos-prontos.md` e confira quais pastas de formato existem ao lado desta skill, com `SKILL.md` e `formato.md`. Ofereça somente essas; não procure formatos dentro do repositório ou de `order-bump/`. Os seis extras só aparecem depois da instalação do complemento. Uma lista vazia significa nenhum formato instalado.
 - Liste os estilos visuais (`estilos-visuais/*.md` desta skill e `~/.maquina-de-edicao/estilos-visuais/*.md`, sem os que começam com `_`). De cada um, leia só o título e as linhas "Resumo:" e "Combina com:".
 - **Se a skill foi chamada por uma skill de formato** (ex: a pessoa digitou `/reels-de-negocio`), o formato já está escolhido: mande ele como `formatoFixo` no contexto do painel (no chat: pule a pergunta "Como quer editar este vídeo?" e a pergunta de formato, e siga direto pro passo 2 do "Caminho formato pronto" na fase 1).
 - A pasta precisa ter o que o formato pede na seção "Entradas extras" do `formato.md` (ex: o Reels com B-roll procura uma pasta `broll/`). Essa checagem acontece depois que o formato é escolhido.
@@ -141,7 +141,7 @@ Siga a seção "Padrão completo ou personalizar?" abaixo e as rodadas 1 a 3. Aq
 
 Antes da pergunta "Como quer editar este vídeo?", mostre um resumo curto do que está salvo (formato, estilo visual, escolhas e ajustes fixos, em linguagem simples), pra pessoa saber o que "Repetir o último vídeo" significa.
 
-Se a pessoa escolher repetir: carregue as escolhas do arquivo e pule direto pro resumo. Se o arquivo tiver "Formato pronto" ou "Estilo visual", leia os arquivos deles como no caminho formato pronto (passos 2 e 3). Arquivos de versões antigas podem ter "Estilo de referência" (estilo copiado de um vídeo, que não existe mais): troque pelo estilo visual mais parecido (ex: pixel art, legenda em pílula escura e fundo creme quadriculado é o Pixelado) e avise a pessoa no resumo. Só pergunte o que depende deste vídeo:
+Se as preferências usarem um formato que não está instalado, não ofereça repetir: explique que é preciso instalar o pacote correspondente ou escolher outro caminho, sem apagar as preferências. Caso contrário, se a pessoa escolher repetir: carregue as escolhas do arquivo e pule direto pro resumo. Se o arquivo tiver "Formato pronto" ou "Estilo visual", leia os arquivos deles como no caminho formato pronto (passos 2 e 3). Arquivos de versões antigas podem ter "Estilo de referência" (estilo copiado de um vídeo, que não existe mais): troque pelo estilo visual mais parecido (ex: pixel art, legenda em pílula escura e fundo creme quadriculado é o Pixelado) e avise a pessoa no resumo. Só pergunte o que depende deste vídeo:
 
 - se a música salva for "usar a música da pasta" e não houver música na pasta, pergunte qual música usar (com as outras opções da pergunta 5);
 - se o estilo visual salvo for "cores da minha marca" e faltar algum dado da marca no arquivo, peça só o que faltar;

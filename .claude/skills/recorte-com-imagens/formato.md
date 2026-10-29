@@ -94,7 +94,7 @@ Se houver "comenta X": no último trecho, a legenda vira "comenta X" com X em Os
 ## Áudio
 
 - Música: indie eletrônica com textura, 95–105 BPM, batida leve, sintetizador quente e um arpejo discreto. ~−24 LUFS.
-- Efeitos: um "tchk" de corte de filme bem baixo (ruído curto filtrado, 60 ms, 15 dB abaixo do pico da voz) em cada troca de imagem. Riser curto terminando no fim do gancho.
+- Efeitos: um "tchk" de corte de filme bem baixo (ruído curto filtrado, 60 ms, 18 dB abaixo do pico da voz) nas trocas de imagem, respeitando no máximo 1 a cada 0,6 s. Riser curto terminando no fim do gancho.
 
 ## Saída
 

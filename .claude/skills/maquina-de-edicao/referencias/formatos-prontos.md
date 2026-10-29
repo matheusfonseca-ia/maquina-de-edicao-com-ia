@@ -1,6 +1,10 @@
 # Formatos prontos
 
-Os 12 formatos que vêm com a Máquina de Edição. O formato é a estrutura do vídeo: layouts, posições, ritmo e o que aparece em cada momento. Cada um é uma skill própria, numa pasta ao lado desta (`<pasta de skills>/<nome-do-formato>/`), e a especificação completa fica em `formato.md` dentro dela.
+Catálogo de 12 formatos, dividido entre seis da oferta principal e seis do complemento (order bump). O formato é a estrutura do vídeo: layouts, posições, ritmo e o que aparece em cada momento. Cada um é uma skill própria; depois de instalado, fica ao lado desta (`<pasta de skills>/<nome-do-formato>/`), com a especificação completa em `formato.md`.
+
+**Oferta principal:** Reels de Negócio, Reels com B-roll, Tela Dividida Explicativa, Ensaio Visual, Recorte com Imagens e Telas em Profundidade.
+
+**Complemento:** Legenda Encaixada, Nuvem de Imagens, Formato Ranking, Cortes de Vídeo Longo, YouTube Educativo e Aula em Tela Dividida.
 
 Depois do formato, a pessoa escolhe o **estilo visual** (a aparência). Ver `estilos-visuais.md`.
 
@@ -8,7 +12,7 @@ A pasta de skills é a pasta-mãe da pasta desta skill. Exemplo: se esta skill e
 
 ## Catálogo
 
-Use esta lista na pergunta de formato da fase 1. Mostre o número, o nome e a descrição curta, e só os formatos que combinam com a orientação da gravação: gravação vertical → os verticais, sem o Cortes de Vídeo Longo; gravação horizontal → os horizontais e o Cortes de Vídeo Longo.
+Use esta lista na pergunta de formato da fase 1, filtrando primeiro pelas skills instaladas ao lado do motor. Mostre o número, o nome e a descrição curta, e só os formatos que combinam com a orientação da gravação: gravação vertical → os verticais, sem o Cortes de Vídeo Longo; gravação horizontal → os horizontais e o Cortes de Vídeo Longo. Se nenhum instalado combinar, ofereça o caminho Do zero, que segue a orientação da gravação.
 
 ### Vertical 9:16 (Reels, TikTok, Shorts)
 
@@ -32,7 +36,7 @@ Use esta lista na pergunta de formato da fase 1. Mostre o número, o nome e a de
 | 11 | YouTube Educativo | `youtube-educativo` | Vídeo longo com cards sobre a câmera, tela dividida e animações explicativas |
 | 12 | Aula em Tela Dividida | `aula-em-tela-dividida` | O documento da aula rola na esquerda e você fica na direita; o documento é gerado junto |
 
-Se a pasta de um formato não existir (a pessoa apagou ou instalou só o motor), não ofereça esse formato e avise no fim da pergunta quais faltam.
+Se a pasta de um formato não existir com `SKILL.md` e `formato.md`, não ofereça esse formato. A ausência dos extras é esperada na oferta principal: não trate como instalação incompleta nem mande reinstalar o principal para obter os 12. Se a pessoa pedir um extra ausente, explique que ele pertence ao complemento e precisa ser instalado pelo pacote correspondente.
 
 ---
 
@@ -44,7 +48,7 @@ Um formato pronto é uma camada por cima de `instrucoes-base.md`. Ele não repet
 
 - Bloco 0 (ambiente, autonomia, instalação local, nunca exportar sem aprovação).
 - Bloco 1 (sincronização e transcrição) e bloco 2 (seleção de tomadas, limpeza, silêncios, J cut, END).
-- Bloco 7 (áudio), na estrutura: os quatro stems, a voz a −14 LUFS, os efeitos sincronizados com eventos visuais e o master. O clima da música e a paleta de efeitos vêm do estilo visual (ou do formato, no Original do formato).
+- Bloco 7 (áudio), na estrutura: os quatro stems, a voz a −14 LUFS, os efeitos sincronizados com eventos visuais e o master. O clima da música e o timbre dos efeitos vêm do estilo visual (ou do formato, no Original do formato). **Quantidade e volume dos efeitos seguem sempre o padrão universal do bloco 7** (poucos efeitos, só nos eventos fortes, no máximo 1 a cada 0,6 s, bem abaixo da voz), mesmo quando o `formato.md` descreve mais efeitos ou outro nível em dB.
 - Bloco 8 (montagem, prévia, render), bloco 9 (verificação) e RELATÓRIO.
 - `variacoes.md`, seções "Gravação vertical na saída vertical" e "Sem áudio separado", quando valerem pela fase 0.
 - As fases 3, 4 e 5 da skill (Studio, aprovação, exportação, preferências).

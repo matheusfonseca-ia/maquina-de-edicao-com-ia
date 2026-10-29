@@ -62,7 +62,7 @@ Entradas, trocas, velocidade, o que evitar.
 
 ## Música e efeitos
 
-Clima, BPM, nível e paleta de efeitos sonoros.
+Clima, BPM, nível e timbre dos efeitos sonoros (quantidade e volume dos efeitos seguem sempre o padrão universal do motor: poucos e bem abaixo da voz).
 
 ## Verificação do estilo
 

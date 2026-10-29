@@ -1,48 +1,46 @@
 #!/usr/bin/env bash
-# Instala a Máquina de Edição e os 12 formatos prontos no Claude Code (Mac e Linux).
-# Uso, dentro da pasta do repositório:
-#   bash instalar.sh
-#
-# Copia cada pasta de .claude/skills/ deste repositório para ~/.claude/skills/.
-# Se já existir uma skill com o mesmo nome, a versão antiga vai para
-# ~/.claude/skills-backup/<data>/ antes de ser substituída.
-# Suas preferências e estilos salvos (~/.maquina-de-edicao/) não são tocados.
-
+# Sem argumento: instala somente o pacote desta pasta.
+# No repositorio de desenvolvimento: bash instalar.sh order-bump
 set -euo pipefail
-
 raiz="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-origem="$raiz/.claude/skills"
+case "${1:-principal}" in
+  principal) pasta_pacote="$raiz" ;;
+  order-bump) pasta_pacote="$raiz/order-bump" ;;
+  *) echo 'Use: bash instalar.sh [principal|order-bump]'; exit 1 ;;
+esac
+# Le os dois campos do manifesto de distribuicao, composto apenas de slugs simples.
+# Usa ferramentas do sistema para nao exigir Python ou Node antes da instalacao.
+manifesto="$pasta_pacote/pacote.json"
+requer_motor="$(sed -n 's/.*"requerMotor":[[:space:]]*\([a-z]*\).*/\1/p' "$manifesto")"
+lista="$(sed -n '/"skills"[[:space:]]*:/,/]/p' "$manifesto" | sed 's/.*"skills"[[:space:]]*:[[:space:]]*//; s/].*//' | tr -d '[" \r' | tr ',' '\n' | sed '/^$/d')"
+if [ -z "$lista" ] || { [ "$requer_motor" != true ] && [ "$requer_motor" != false ]; }; then
+  echo 'Manifesto de pacote invalido.'; exit 1
+fi
+origem="$pasta_pacote/.claude/skills"
 destino="$HOME/.claude/skills"
-backup="$HOME/.claude/skills-backup/$(date +%Y-%m-%d_%H-%M-%S)"
-
-if [ ! -d "$origem" ]; then
-  echo "Não achei a pasta .claude/skills ao lado deste script. Rode o instalador de dentro da pasta do repositório."
+backup="$HOME/.claude/skills-backup/$(date +%Y-%m-%d_%H-%M-%S)-$$"
+if [ "$requer_motor" = true ] && [ ! -f "$destino/maquina-de-edicao/SKILL.md" ]; then
+  echo 'Instale primeiro o pacote principal da Maquina de Edicao. Depois rode este instalador de novo.'
   exit 1
 fi
-
+while IFS= read -r nome; do
+  case "$nome" in ''|*[!a-z0-9-]*|-*|*-|*--*) echo "Nome de skill invalido: $nome"; exit 1 ;; esac
+  if [ ! -f "$origem/$nome/SKILL.md" ]; then echo "Skill ausente no pacote: $nome"; exit 1; fi
+done <<< "$lista"
 mkdir -p "$destino"
-
 total=0
 fez_backup=0
-for skill in "$origem"/*/; do
-  nome="$(basename "$skill")"
+while IFS= read -r nome; do
   alvo="$destino/$nome"
   if [ -e "$alvo" ]; then
     mkdir -p "$backup"
     mv "$alvo" "$backup/$nome"
     fez_backup=1
   fi
-  cp -R "$skill" "$alvo"
+  cp -R "$origem/$nome" "$alvo"
   echo "  ok  /$nome"
   total=$((total + 1))
-done
-
-echo ""
-echo "Pronto! $total skills instaladas em $destino"
-if [ "$fez_backup" = 1 ]; then
-  echo "As versões antigas foram guardadas em $backup"
-fi
-echo ""
-echo "Feche e abra o Claude Code de novo. Depois, na pasta do seu vídeo, digite:"
-echo "  /maquina-de-edicao      (escolhe entre editar do zero ou com um formato pronto)"
-echo "  /reels-de-negocio       (ou o nome de qualquer formato, pra ir direto)"
+done <<< "$lista"
+echo "Pronto! $total skills instaladas."
+if [ "$fez_backup" = 1 ]; then echo "As versoes antigas foram guardadas em $backup"; fi
+echo 'Feche e abra o Claude Code. Na pasta do seu video, digite /maquina-de-edicao ou o comando do formato.'

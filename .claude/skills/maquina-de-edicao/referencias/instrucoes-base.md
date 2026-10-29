@@ -337,14 +337,20 @@ Normalize para −14 LUFS integrados.
 ### Efeitos sonoros
 
 Arquivo: `stems/sfx.wav`.
-Um efeito só para cada evento visual significativo:
+
+**Padrão universal: poucos efeitos e bem mais baixos que a voz.** Vale pra todo formato e todo estilo visual, por cima do que o `formato.md`, o arquivo do estilo, o Kit Noite ou `variacoes.md` disserem sobre quantidade e volume. As paletas de efeitos descritas neles definem só o timbre de cada som. Só muda se a pessoa pedir (observação, revisão ou ajuste fixo).
+
+- Efeito só nos eventos fortes: carimbo, confirmação, clique em botão, moeda e a entrada do elemento principal de cada cena. Elementos secundários, cascatas e itens de lista entram em silêncio.
+- No máximo um efeito a cada 0,6 s. Se dois eventos caírem mais perto que isso, fica só o mais forte.
+- Sem sons de tecla (digitação), tique (contadores), 8 bits e risco (anotação à mão).
+
+Os sons que sobram:
 
 1. Clique suave para botões realmente pressionados.
-2. Som curto e discreto de tecla para digitação.
-3. Sequência leve de pequenos sons para digitação longa ou transmissão de dados.
-4. Impacto abafado para a chegada de um cartão, bloco ou dispositivo. [IMAGENS+]
-5. Sinal delicado de duas notas para resposta, confirmação ou abertura de janela.
-6. Som suave de passagem feito com ruído filtrado, somente nos movimentos rápidos de câmera. [COMPLETO]
+2. Impacto abafado para a chegada do elemento principal (cartão, bloco, dispositivo) ou de um carimbo. [IMAGENS+]
+3. Sinal delicado de duas notas para resposta, confirmação ou abertura de janela.
+4. Moeda (duas notas curtas) pra um ganho, um prêmio ou um resultado.
+5. Som suave de passagem feito com ruído filtrado, somente nos movimentos rápidos de câmera. [COMPLETO]
 
 O pico do som de passagem coincide exatamente com o meio do movimento.
 No máximo um som de passagem por trecho e três no vídeo inteiro.
@@ -352,10 +358,10 @@ Alterne entre três ou quatro variações, sem repetir a mesma em sequência.
 Não coloque efeitos em mudanças de layout, deslocamentos suaves da câmera, aproximações, recuos ou zooms.
 Na apresentação de um logotipo e na chamada para ação, use só um som de passagem ou nenhum efeito.
 
-Picos em relação ao pico da voz:
-- Cliques, impactos e sinais de confirmação: 10 dB abaixo.
-- Sons de passagem: 9 dB abaixo.
-- Teclas e pequenos sons de transmissão: 16 dB abaixo.
+Picos em relação ao pico da voz (padrão universal, a voz sempre bem na frente):
+- Cliques, impactos, carimbos, moeda e sinais de confirmação: 18 dB abaixo.
+- Sons de passagem: 17 dB abaixo.
+- Nenhum efeito pode ficar a menos de 15 dB do pico da voz, mesmo que o formato ou o estilo peçam mais alto.
 
 ### Efeito crescente da introdução
 
@@ -363,7 +369,7 @@ Arquivo: `stems/riser.wav`.
 Som grave crescente de aproximadamente dois a três segundos.
 O término audível coincide exatamente com a junção em que o gancho termina e o primeiro ponto começa.
 É o único som que pode crescer até um corte.
-Pico 14 dB abaixo do pico da voz.
+Pico 22 dB abaixo do pico da voz (8 dB abaixo do antigo padrão, como os efeitos).
 
 ### Música
 
@@ -384,7 +390,7 @@ Some as quatro faixas sem modificar de novo os níveis individuais.
 Busque aproximadamente −14 LUFS integrados e pico verdadeiro máximo de −1 dBTP.
 Use limitador transparente só se algum pico ultrapassar o limite.
 Evite saturação e oscilações artificiais de volume.
-Meça as quatro faixas e o master com o filtro ebur128 do FFmpeg. Registre LUFS e pico verdadeiro no relatório.
+Meça as quatro faixas e o master com o filtro ebur128 do FFmpeg. Registre LUFS e pico verdadeiro no relatório, e confira que o pico do `sfx.wav` ficou pelo menos 15 dB abaixo do pico da voz.
 
 ---
 

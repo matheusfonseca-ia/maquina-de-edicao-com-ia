@@ -134,7 +134,7 @@ Cartão com duas linhas numeradas por círculos terracota: (1) foto de perfil co
 
 - Música: eletrônica leve e constante (chiptune suave misturado com batida moderna), 105–115 BPM, ~−24 LUFS, nível fixo.
 - Efeitos: "pop" curto em cada elemento que entra, tecla no texto digitado, tique nos contadores, "carimbo" seco nos carimbos e sons de 8 bits (moeda, golpe, pulo, fanfarra curta) nas cenas pixel art. Todos sintetizados (ondas quadradas e de pulso pros sons de 8 bits).
-- Se a pessoa tiver ajuste fixo contra "8 bits" ou "tique", ele vale: use só os efeitos que sobrarem.
+- Quantidade e volume seguem o padrão universal do motor (bloco 7 de `instrucoes-base.md`): só os eventos fortes (carimbo, confirmação, clique, moeda, entrada do elemento principal), no máximo 1 a cada 0,6 s, sem tecla, tique, 8 bits e risco, e bem abaixo da voz. A lista acima é o timbre de cada som quando ele entra.
 
 ## Verificação do estilo
 

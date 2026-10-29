@@ -1,0 +1,13 @@
+{
+  "id": "order-bump",
+  "nome": "Máquina de Edição — 6 formatos extras",
+  "requerMotor": true,
+  "skills": [
+    "legenda-encaixada",
+    "nuvem-de-imagens",
+    "formato-ranking",
+    "cortes-de-video-longo",
+    "youtube-educativo",
+    "aula-em-tela-dividida"
+  ]
+}

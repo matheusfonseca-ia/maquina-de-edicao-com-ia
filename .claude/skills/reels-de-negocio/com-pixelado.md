@@ -132,7 +132,7 @@ Embaixo, pequeno: "✈ Te envio na DM". Na palavra "DM" (ou "direct"), uma notif
 
 ## Áudio
 
-- Clima da música e efeitos: os do `pixelado.md`, filtrados pelos ajustes fixos da pessoa.
+- Clima da música e timbre dos efeitos: os do `pixelado.md`. Quantidade e volume: o padrão universal do motor (poucos efeitos, só nos eventos fortes, no máximo 1 a cada 0,6 s, bem abaixo da voz).
 - Riser curto terminando exatamente no fim do gancho.
 - Cada cena lista seus eventos de som (tempo global + tipo: pop, carimbo, clique, confirmação, moeda, 8 bits…) e o motor mixa tudo num `sfx.wav`.
 
