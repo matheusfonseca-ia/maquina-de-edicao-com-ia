@@ -118,3 +118,7 @@ No ambiente de desenvolvimento Windows com Python, Node, PowerShell e Git Bash, 
 - **Complemento pede o motor:** instale o pacote principal primeiro.
 - **Gravação horizontal sem formatos disponíveis:** o principal tem seis formatos verticais. Use Do zero ou, se comprou o complemento, instale-o para obter YouTube, aulas e cortes.
 - **PowerShell bloqueia scripts:** use o comando completo com `-ExecutionPolicy Bypass` acima.
+
+### Enquadramento em todos os vídeos
+
+A Máquina mantém o centro da cabeça da pessoa exatamente no centro horizontal da imagem ou da janela da câmera, em todos os formatos e estilos. Ajusta o enquadramento por tomada e durante movimentos, e verifica a centralização antes da revisão e na exportação final. Essa configuração é automática e também vale ao reutilizar preferências antigas.
